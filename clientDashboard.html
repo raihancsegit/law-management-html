@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cohen & Cohen P.C. - Client Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-blue': '#1e3a8a',
+                        'law-gold': '#fbbf24',
+                        'law-gray': '#6b7280',
+                        'law-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* LinkedIn-style expandable text */
+        .expandable-text .text-content {
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .expandable-text .see-more {
+            color: #1e3a8a;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline;
+        }
+        
+        .expandable-text .see-more:hover {
+            text-decoration: underline;
+        }
+        
+        .expandable-text .ellipsis {
+            color: #6b7280;
+        }
+
+        /* Sidebar collapsed state styles */
+        #sidebar.w-16 .nav-item {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        #sidebar.w-16 .nav-item i {
+            margin-right: 0 !important;
+        }
+
+        #sidebar.w-16 #sidebar-header {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    </style>
+</head>
+<body class="font-inter bg-law-light">
+    <div class="flex h-screen">
+        <aside id="sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300">
+            <div id="sidebar-header" class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h1 class="text-lg font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                <button id="sidebar-toggle" onclick="toggleSidebar()" class="p-1 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                    <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-gray-600"></i>
+                </button>
+            </div>
+            
+            <nav id="sidebar-nav" class="flex-1 p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <button onclick="showSection('dashboard')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200 active">
+                            <i class="fa-solid fa-home mr-3 text-gray-400"></i>
+                            <span>Dashboard</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('documents')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-folder mr-3 text-gray-400"></i>
+                            <span>My Documents</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('questionnaire')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-clipboard-list mr-3 text-gray-400"></i>
+                            <span>Financial Questionnaire</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('case-status')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-gavel mr-3 text-gray-400"></i>
+                            <span>Case Status</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('messages')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-envelope mr-3 text-gray-400"></i>
+                            <span>Messages</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('appointments')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-calendar mr-3 text-gray-400"></i>
+                            <span>Appointments</span>
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="border-t border-gray-200 mt-6 pt-6">
+                    <ul class="space-y-2">
+                        <li>
+                            <button onclick="showSection('settings')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                                <i class="fa-solid fa-cog mr-3 text-gray-400"></i>
+                                <span>Settings</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="showSection('help')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                                <i class="fa-solid fa-question-circle mr-3 text-gray-400"></i>
+                                <span>Help Centre</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-200">
+                                <i class="fa-solid fa-sign-out-alt mr-3 text-red-500"></i>
+                                <span>Sign Out</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="border-t border-gray-200 p-4">
+                <div class="flex items-center space-x-3">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 truncate">John Smith</p>
+                        <p class="text-xs text-gray-500 truncate">Client ID: #12345</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main-content" class="flex-1 overflow-auto">
+            <header id="header" class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
+                <div class="px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <button id="mobile-sidebar-toggle" class="p-2 rounded-lg hover:bg-gray-100 lg:hidden">
+                                <i class="fa-solid fa-bars text-gray-600"></i>
+                            </button>
+                            <h2 id="page-title" class="text-xl font-semibold text-gray-900">Dashboard</h2>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="p-2 rounded-lg hover:bg-gray-100 relative">
+                                <i class="fa-solid fa-bell text-gray-600"></i>
+                                <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                            </button>
+                            <div class="h-6 w-px bg-gray-300"></div>
+                            <div class="flex items-center space-x-2">
+                                <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                                <span class="text-sm font-medium text-gray-700 hidden sm:block">John Smith</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="dashboard-section" class="section-content p-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Welcome back, John!</h3>
+                        <p class="text-law-gray">Complete your bankruptcy case in 4 simple steps</p>
+                    </div>
+
+                    <!-- Overall Progress Bar -->
+                    <div class="mb-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-lg font-semibold text-gray-900">Case Progress</h4>
+                            <span class="text-sm text-law-gray">2 of 4 steps completed</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-gradient-to-r from-law-blue to-blue-600 h-3 rounded-full transition-all duration-500" style="width: 50%"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-xs text-gray-600">
+                            <span>Getting Started</span>
+                            <span>Documents</span>
+                            <span>Questionnaire</span>
+                            <span>Complete</span>
+                        </div>
+                    </div>
+
+                    <!-- Step-by-Step Workflow -->
+                    <div class="space-y-6">
+                        <!-- Step 1: Important Information -->
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-green-600 text-xl"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-xl font-semibold text-gray-900">Step 1: Critical Information & Rules</h4>
+                                            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">Completed</span>
+                                        </div>
+                                        <p class="text-law-gray mb-4">Essential guidelines to follow immediately after your consultation to protect your bankruptcy case.</p>
+                                        <div class="flex flex-wrap gap-3">
+                                            <button onclick="openInfoModal('detailed')" class="inline-flex items-center px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors">
+                                                <i class="fa-solid fa-list mr-2"></i>
+                                                View Detailed Information
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Document Upload -->
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="h-12 w-12 rounded-full bg-amber-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-clock text-amber-600 text-xl"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-xl font-semibold text-gray-900">Step 2: Upload Required Documents</h4>
+                                            <span class="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-medium">In Progress</span>
+                                        </div>
+                                        <p class="text-law-gray mb-4">Upload all necessary financial documents from the past 6 months.</p>
+                                        
+                                        <!-- Progress indicator -->
+                                        <div class="mb-4">
+                                            <div class="flex items-center justify-between text-sm mb-2">
+                                                <span class="text-gray-600">Document Upload Progress</span>
+                                                <span class="text-law-blue font-medium">8 of 12 uploaded</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-amber-500 h-2 rounded-full" style="width: 67%"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-wrap gap-3">
+                                            <button onclick="showSection('documents')" class="inline-flex items-center px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors">
+                                                <i class="fa-solid fa-upload mr-2"></i>
+                                                Continue Upload
+                                            </button>
+                                            <button onclick="openDocumentModal()" class="inline-flex items-center px-4 py-2 border border-law-blue text-law-blue rounded-lg hover:bg-blue-50 transition-colors">
+                                                <i class="fa-solid fa-list-check mr-2"></i>
+                                                View Checklist
+                                            </button>
+                                            <button onclick="openDocumentModal('urgent')" class="inline-flex items-center px-4 py-2 border border-red-600 text-red-600 rounded-lg hover:bg-red-50 transition-colors">
+                                                <i class="fa-solid fa-exclamation-triangle mr-2"></i>
+                                                Urgent Cases
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Financial Questionnaire -->
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
+                                            <span class="text-law-blue font-bold text-lg">3</span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-xl font-semibold text-gray-900">Step 3: Complete Financial Questionnaire</h4>
+                                            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Ready</span>
+                                        </div>
+                                        <p class="text-law-gray mb-4">Fill out the 7-section comprehensive financial questionnaire.</p>
+                                        
+                                        <!-- Progress indicator -->
+                                        <div class="mb-4">
+                                            <div class="flex items-center justify-between text-sm mb-2">
+                                                <span class="text-gray-600">Questionnaire Progress</span>
+                                                <span class="text-law-blue font-medium">2 of 7 sections completed</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-blue-500 h-2 rounded-full" style="width: 29%"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-wrap gap-3">
+                                            <button onclick="showSection('questionnaire')" class="inline-flex items-center px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors">
+                                                <i class="fa-solid fa-clipboard-list mr-2"></i>
+                                                Continue Questionnaire
+                                            </button>
+                                            <button onclick="openQuestionnaireModal()" class="inline-flex items-center px-4 py-2 border border-law-blue text-law-blue rounded-lg hover:bg-blue-50 transition-colors">
+                                                <i class="fa-solid fa-eye mr-2"></i>
+                                                Preview Sections
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Review & Submit -->
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden opacity-60">
+                            <div class="p-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <div class="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-lock text-gray-400 text-xl"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-xl font-semibold text-gray-500">Step 4: Review & Submit Case</h4>
+                                            <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full font-medium">Locked</span>
+                                        </div>
+                                        <p class="text-gray-500 mb-4">Final review of all documents and information before case submission.</p>
+                                        <p class="text-sm text-gray-500 italic">Complete steps 2 and 3 to unlock this section.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
+                            <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-3">
+                                <i class="fa-solid fa-gavel text-green-600 text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-gray-600">Case Status</p>
+                            <p class="text-lg font-semibold text-gray-900">Active & Ready</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
+                            <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-3">
+                                <i class="fa-solid fa-calendar text-law-blue text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-gray-600">Next Appointment</p>
+                            <p class="text-lg font-semibold text-gray-900">Jan 28, 2025</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
+                            <div class="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-3">
+                                <i class="fa-solid fa-envelope text-purple-600 text-xl"></i>
+                            </div>
+                            <p class="text-sm font-medium text-gray-600">New Messages</p>
+                            <p class="text-lg font-semibold text-gray-900">3 Unread</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Modal -->
+            <div id="info-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
+                <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+                    <div class="flex items-center justify-between pb-3 border-b">
+                        <h3 class="text-xl font-semibold text-gray-900">Critical Information & Rules</h3>
+                        <button onclick="closeModal('info-modal')" class="text-gray-400 hover:text-gray-600">
+                            <i class="fa-solid fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div id="info-modal-content" class="mt-4 max-h-96 overflow-y-auto">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Modal -->
+            <div id="document-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
+                <div class="relative top-5 mx-auto p-5 border w-11/12 md:w-4/5 lg:w-3/4 shadow-lg rounded-md bg-white" style="height: 90vh;">
+                    <div class="flex items-center justify-between pb-3 border-b">
+                        <h3 class="text-xl font-semibold text-gray-900">Document Requirements</h3>
+                        <button onclick="closeModal('document-modal')" class="text-gray-400 hover:text-gray-600">
+                            <i class="fa-solid fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div id="document-modal-content" class="mt-4 overflow-y-auto" style="height: calc(90vh - 120px);">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questionnaire Modal -->
+            <div id="questionnaire-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
+                <div class="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
+                    <div class="flex items-center justify-between pb-3 border-b">
+                        <h3 class="text-xl font-semibold text-gray-900">Financial Questionnaire Overview</h3>
+                        <button onclick="closeModal('questionnaire-modal')" class="text-gray-400 hover:text-gray-600">
+                            <i class="fa-solid fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <div id="questionnaire-modal-content" class="mt-4 max-h-96 overflow-y-auto">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="documents-section" class="section-content hidden p-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">My Documents</h3>
+                        <p class="text-law-gray">Upload and manage your bankruptcy case documents</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div id="financial-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-green-100 mr-3">
+                                    <i class="fa-solid fa-chart-line text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900">Financial Documents</h4>
+                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                                </div>
+                            </div>
+                            <div class="expandable-text mb-4" data-category="financial">
+                                <div class="text-content text-sm text-law-gray">
+                                    Bank statements from all accounts (checking, savings, business) for the past 6 months. Pay stubs showing current income, tax returns for the past 2 years including all schedules and attachments. Profit and loss statements if self-employed. Records of any other income sources including rental income, social security, disability, unemployment benefits, or side business income. Investment account statements, retirement account statements, and any documentation of financial assets or accounts that have been closed in the past year.
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <input type="file" id="financial-files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="hidden">
+                                <button onclick="document.getElementById('financial-files').click()" class="w-full flex items-center justify-center px-4 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-600 hover:border-law-blue hover:text-law-blue transition-colors duration-200">
+                                    <i class="fa-solid fa-cloud-upload-alt mr-2"></i>
+                                    Choose Files
+                                </button>
+                                <button class="w-full px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                    <i class="fa-solid fa-upload mr-2"></i>
+                                    Upload Files
+                                </button>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-200">
+                                <p class="text-xs text-gray-500 mb-2">Uploaded files:</p>
+                                <div class="space-y-1">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-700">bank_statement_dec.pdf</span>
+                                        <i class="fa-solid fa-check text-green-500"></i>
+                                    </div>
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-700">paystub_latest.pdf</span>
+                                        <i class="fa-solid fa-check text-green-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="property-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-blue-100 mr-3">
+                                    <i class="fa-solid fa-home text-law-blue"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900">Property Documents</h4>
+                                    <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Optional</span>
+                                </div>
+                            </div>
+                            <div class="expandable-text mb-4" data-category="property">
+                                <div class="text-content text-sm text-law-gray">
+                                    Property deeds for all real estate owned, mortgage statements and loan documents, property tax assessments and payment records. Vehicle titles, registration documents, and loan information for all cars, trucks, motorcycles, boats, or recreational vehicles. Appraisals or market valuations for real estate and vehicles. Documentation of any property transfers, sales, or gifts made in the past 2 years. Rental property income and expense records if applicable.
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <input type="file" id="property-files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="hidden">
+                                <button onclick="document.getElementById('property-files').click()" class="w-full flex items-center justify-center px-4 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-600 hover:border-law-blue hover:text-law-blue transition-colors duration-200">
+                                    <i class="fa-solid fa-cloud-upload-alt mr-2"></i>
+                                    Choose Files
+                                </button>
+                                <button class="w-full px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                    <i class="fa-solid fa-upload mr-2"></i>
+                                    Upload Files
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="debt-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-red-100 mr-3">
+                                    <i class="fa-solid fa-receipt text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900">Debt Documentation</h4>
+                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                                </div>
+                            </div>
+                            <div class="expandable-text mb-4" data-category="debt">
+                                <div class="text-content text-sm text-law-gray">
+                                    Credit card statements for all accounts for the past 6 months, including closed accounts. Personal loan documents, student loan statements, medical debt records, and collection notices. Correspondence from creditors, debt settlement agreements, and any payment plans currently in place. Documentation of secured debts like mortgages and car loans. Records of any debts that have been paid off, forgiven, or discharged in the past year. Proof of any disputes with creditors or credit reporting agencies.
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <input type="file" id="debt-files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="hidden">
+                                <button onclick="document.getElementById('debt-files').click()" class="w-full flex items-center justify-center px-4 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-600 hover:border-law-blue hover:text-law-blue transition-colors duration-200">
+                                    <i class="fa-solid fa-cloud-upload-alt mr-2"></i>
+                                    Choose Files
+                                </button>
+                                <button class="w-full px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                    <i class="fa-solid fa-upload mr-2"></i>
+                                    Upload Files
+                                </button>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-gray-200">
+                                <p class="text-xs text-gray-500 mb-2">Uploaded files:</p>
+                                <div class="space-y-1">
+                                    <div class="flex items-center justify-between text-xs">
+                                        <span class="text-gray-700">credit_card_stmt.pdf</span>
+                                        <i class="fa-solid fa-check text-green-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="income-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-purple-100 mr-3">
+                                    <i class="fa-solid fa-dollar-sign text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900">Income Verification</h4>
+                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                                </div>
+                            </div>
+                            <div class="expandable-text mb-4" data-category="income">
+                                <div class="text-content text-sm text-law-gray">
+                                    Employment verification letters from current and previous employers within the past 2 years. Social Security statements, disability award letters, unemployment benefit records, and workers' compensation documentation. Self-employment income records including 1099s, business receipts, and expense documentation. Pension, retirement, or annuity income statements. Documentation of rental income, alimony, child support, or any other regular income sources. Records of seasonal or irregular income, side business earnings, and any cash income received.
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <input type="file" id="income-files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="hidden">
+                                <button onclick="document.getElementById('income-files').click()" class="w-full flex items-center justify-center px-4 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-600 hover:border-law-blue hover:text-law-blue transition-colors duration-200">
+                                    <i class="fa-solid fa-cloud-upload-alt mr-2"></i>
+                                    Choose Files
+                                </button>
+                                <button class="w-full px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                    <i class="fa-solid fa-upload mr-2"></i>
+                                    Upload Files
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="legal-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-100 mr-3">
+                                    <i class="fa-solid fa-gavel text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900">Legal Documents</h4>
+                                    <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Optional</span>
+                                </div>
+                            </div>
+                            <div class="expandable-text mb-4" data-category="legal">
+                                <div class="text-content text-sm text-law-gray">
+                                    Divorce decrees, separation agreements, and prenuptial or postnuptial agreements. Child custody orders, child support agreements, and alimony documentation. Court judgments, liens, or garnishment orders. Lawsuit documents, settlement agreements, and legal correspondence. Power of attorney documents, wills, and trust agreements. Any pending litigation or legal proceedings documentation. Immigration documents if applicable, and any other legal contracts or agreements that may affect your financial situation.
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <input type="file" id="legal-files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="hidden">
+                                <button onclick="document.getElementById('legal-files').click()" class="w-full flex items-center justify-center px-4 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-600 hover:border-law-blue hover:text-law-blue transition-colors duration-200">
+                                    <i class="fa-solid fa-cloud-upload-alt mr-2"></i>
+                                    Choose Files
+                                </button>
+                                <button class="w-full px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                    <i class="fa-solid fa-upload mr-2"></i>
+                                    Upload Files
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="misc-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 mr-3">
+                                    <i class="fa-solid fa-file text-gray-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-900">Other Documents</h4>
+                                    <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Optional</span>
+                                </div>
+                            </div>
+                            <div class="expandable-text mb-4" data-category="misc">
+                                <div class="text-content text-sm text-law-gray">
+                                    Insurance policies including life, health, auto, and property insurance documentation. Business documents if you own a business, including operating agreements, partnership documents, and business financial records. Personal property valuations for jewelry, art, collectibles, or other valuable items. Documentation of gifts given or received over $600 in the past year. Records of gambling winnings or losses. Any other financial documents, contracts, or agreements that may be relevant to your bankruptcy case and financial situation.
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <input type="file" id="misc-files" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="hidden">
+                                <button onclick="document.getElementById('misc-files').click()" class="w-full flex items-center justify-center px-4 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-600 hover:border-law-blue hover:text-law-blue transition-colors duration-200">
+                                    <i class="fa-solid fa-cloud-upload-alt mr-2"></i>
+                                    Choose Files
+                                </button>
+                                <button class="w-full px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                    <i class="fa-solid fa-upload mr-2"></i>
+                                    Upload Files
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="questionnaire-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Financial Questionnaire</h3>
+                        <p class="text-law-gray">Complete this comprehensive form to help us prepare your bankruptcy case</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-lg font-medium text-gray-900">Progress Overview</h4>
+                            <span class="text-sm text-law-gray">45% Complete</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-law-blue h-2 rounded-full" style="width: 45%"></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div id="questionnaire-section-1" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-green-100 mr-3">
+                                        <i class="fa-solid fa-check text-green-600 text-sm"></i>
+                                    </div>
+                                    <h5 class="text-md font-medium text-gray-900">Section 1: Personal Information</h5>
+                                </div>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Complete</span>
+                            </div>
+                            <p class="text-sm text-law-gray mb-3">Basic personal and contact information</p>
+                            <button class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
+                        </div>
+
+                        <div id="questionnaire-section-2" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-green-100 mr-3">
+                                        <i class="fa-solid fa-check text-green-600 text-sm"></i>
+                                    </div>
+                                    <h5 class="text-md font-medium text-gray-900">Section 2: Employment & Income</h5>
+                                </div>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Complete</span>
+                            </div>
+                            <p class="text-sm text-law-gray mb-3">Current and past employment, income sources</p>
+                            <button class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
+                        </div>
+
+                        <div id="questionnaire-section-3" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-amber-100 mr-3">
+                                        <i class="fa-solid fa-clock text-amber-600 text-sm"></i>
+                                    </div>
+                                    <h5 class="text-md font-medium text-gray-900">Section 3: Assets & Property</h5>
+                                </div>
+                                <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">In Progress</span>
+                            </div>
+                            <p class="text-sm text-law-gray mb-3">Real estate, vehicles, personal property, investments</p>
+                            <button onclick="window.open('clientFinancialQuestionnaire.html', '_blank')" class="inline-flex items-center px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                <i class="fa-solid fa-edit mr-2"></i>
+                                Continue Section
+                            </button>
+                        </div>
+
+                        <div id="questionnaire-section-4" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-gray-100 mr-3">
+                                        <i class="fa-solid fa-circle-pause text-gray-400 text-sm"></i>
+                                    </div>
+                                    <h5 class="text-md font-medium text-gray-900">Section 4: Monthly Expenses</h5>
+                                </div>
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Pending</span>
+                            </div>
+                            <p class="text-sm text-law-gray mb-3">Housing, utilities, food, transportation, and other expenses</p>
+                            <button disabled class="text-gray-400 text-sm font-medium cursor-not-allowed">Complete previous sections first</button>
+                        </div>
+
+                        <div id="questionnaire-section-remaining" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-gray-100 mr-3">
+                                        <i class="fa-solid fa-ellipsis text-gray-400 text-sm"></i>
+                                    </div>
+                                    <h5 class="text-md font-medium text-gray-900">Remaining Sections (5-7)</h5>
+                                </div>
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Locked</span>
+                            </div>
+                            <p class="text-sm text-law-gray mb-3">Additional financial details, debt information, and legal matters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="case-status-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Case Status</h3>
+                        <p class="text-law-gray">Track the progress of your bankruptcy case</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <p class="text-law-gray">Case status information will be displayed here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="messages-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Messages</h3>
+                        <p class="text-law-gray">Communication with your legal team</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <p class="text-law-gray">Messages will be displayed here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="appointments-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Appointments</h3>
+                        <p class="text-law-gray">Schedule and manage meetings with your attorney</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <p class="text-law-gray">Appointment scheduling will be available here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settings-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Settings</h3>
+                        <p class="text-law-gray">Manage your account preferences</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <p class="text-law-gray">Account settings will be displayed here.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="help-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Help Centre</h3>
+                        <p class="text-law-gray">Find answers and get support</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <p class="text-law-gray">Help resources will be available here.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.remove('hidden');
+            
+            // Update page title
+            const titles = {
+                'dashboard': 'Dashboard',
+                'documents': 'My Documents',
+                'questionnaire': 'Financial Questionnaire',
+                'case-status': 'Case Status',
+                'messages': 'Messages',
+                'appointments': 'Appointments',
+                'settings': 'Settings',
+                'help': 'Help Centre'
+            };
+            document.getElementById('page-title').textContent = titles[sectionName];
+            
+            // Update active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active', 'bg-law-blue', 'text-white'));
+            
+            // Find and activate current nav item
+            const currentNavButton = Array.from(navItems).find(button => 
+                button.getAttribute('onclick') && button.getAttribute('onclick').includes(sectionName)
+            );
+            if (currentNavButton) {
+                currentNavButton.classList.add('active', 'bg-law-blue', 'text-white');
+            }
+        }
+
+        // Mobile sidebar toggle
+        document.getElementById('mobile-sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Sidebar toggle functionality
+        let sidebarCollapsed = false;
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleIcon = document.getElementById('sidebar-toggle-icon');
+            
+            if (!sidebarCollapsed) {
+                // Collapse sidebar
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-16');
+                
+                // Hide text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.add('hidden'));
+                
+                // Hide sidebar header text
+                const headerTitle = document.getElementById('sidebar-header').querySelector('h1');
+                if (headerTitle) {
+                    headerTitle.classList.add('hidden');
+                }
+                
+                // Hide client info at bottom
+                const clientInfo = sidebar.querySelector('.border-t.border-gray-200.p-4');
+                if (clientInfo) {
+                    clientInfo.classList.add('hidden');
+                }
+                
+                // Change toggle icon to expand arrow
+                toggleIcon.className = 'fa-solid fa-chevron-right text-gray-600';
+                
+                sidebarCollapsed = true;
+            } else {
+                // Expand sidebar
+                sidebar.classList.remove('w-16');
+                sidebar.classList.add('w-64');
+                
+                // Show text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.remove('hidden'));
+                
+                // Show sidebar header text
+                const headerTitle = document.getElementById('sidebar-header').querySelector('h1');
+                if (headerTitle) {
+                    headerTitle.classList.remove('hidden');
+                }
+                
+                // Show client info at bottom
+                const clientInfo = sidebar.querySelector('.border-t.border-gray-200.p-4');
+                if (clientInfo) {
+                    clientInfo.classList.remove('hidden');
+                }
+                
+                // Change toggle icon back to hamburger
+                toggleIcon.className = 'fa-solid fa-bars text-gray-600';
+                
+                sidebarCollapsed = false;
+            }
+        }
+
+        // Initialize with dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('dashboard');
+        });
+
+        // Modal functions
+        function openInfoModal(type = 'basic') {
+            const modal = document.getElementById('info-modal');
+            const content = document.getElementById('info-modal-content');
+            
+            if (type === 'detailed') {
+                content.innerHTML = getDetailedInfoContent();
+            } else {
+                content.innerHTML = getBasicInfoContent();
+            }
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openDocumentModal(type = 'basic') {
+            const modal = document.getElementById('document-modal');
+            const content = document.getElementById('document-modal-content');
+            
+            if (type === 'urgent') {
+                content.innerHTML = getUrgentDocumentContent();
+            } else {
+                content.innerHTML = getDocumentChecklistContent();
+            }
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openQuestionnaireModal() {
+            const modal = document.getElementById('questionnaire-modal');
+            const content = document.getElementById('questionnaire-modal-content');
+            
+            content.innerHTML = getQuestionnaireOverviewContent();
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Content functions
+        function getBasicInfoContent() {
+            return `
+                <div class="space-y-6">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-exclamation-triangle text-red-600 mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-red-800 mb-3">Critical Rules - Follow Immediately</h4>
+                                <div class="space-y-3 text-sm text-red-700">
+                                    <div class="flex items-start">
+                                        <span class="font-semibold mr-2">STOP Paying:</span>
+                                        <span>Do not use or pay for your debts (credit cards, medical bills, personal loans). Do NOT pay back any family members or friends.</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="font-semibold mr-2">KEEP Paying:</span>
+                                        <span>Pay your regular monthly payments for utilities, secured property you plan on keeping (house and cars). You must pay monthly mortgage in Chapter 7 or 13.</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="font-semibold mr-2">Creditors:</span>
+                                        <span>Tell them "I have retained a bankruptcy attorney." Provide them with our number.</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="font-semibold mr-2">Transfers:</span>
+                                        <span>Don't buy, sell, or otherwise transfer property without calling us. Contact us immediately if any event happens.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-bank text-amber-600 mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-amber-800 mb-2">Bank Account Warning</h4>
+                                <p class="text-sm text-amber-700">If you owe your bank money or have a high balance at filing, they might freeze your account. Consider opening a new account at a different bank. Avoid Wells Fargo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pt-4">
+                        <button onclick="openInfoModal('detailed')" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors">
+                            <i class="fa-solid fa-list mr-2"></i>
+                            View All 12 Information Points
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getDetailedInfoContent() {
+            return `
+                <div class="space-y-4">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <p class="text-sm text-blue-800"><strong>Note:</strong> This information may not be subject to attorney/client privilege and can be reviewed by interested parties.</p>
+                    </div>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">1. Stop Paying</h5>
+                            <p class="text-gray-700">Do not use or pay for your debts (caveat see below #2). Do not pay back any family members or friends.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">2. Keep Paying</h5>
+                            <p class="text-gray-700">Pay your regular monthly payments for utilities, secured property you plan on keeping (like house and cars). Remember you are required to pay your monthly mortgage in Chapter 7 or 13, including your 2nd (unless you are stripping it) and your ARM might go up.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-amber-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">3. Frozen Bank Accounts</h5>
+                            <p class="text-gray-700">This is very rare. However, if you owe your bank money or if you have a high balance at filing, they might freeze your account when bankruptcy is filed. To minimize this risk, open a new bank account at a bank to which you do not owe money, avoid Wells Fargo like you would the plague.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">4. Creditors</h5>
+                            <p class="text-gray-700">If you prefer, tell them "I have retained a bankruptcy attorney." Provide them with our number.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">5. Transfers/Events</h5>
+                            <p class="text-gray-700">Don't buy, sell, or otherwise transfer property without calling us. Contact us immediately if any event happens, such as a lawsuit, which will impact your bankruptcy.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-indigo-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">6. Reaffirmation Agreements</h5>
+                            <p class="text-gray-700">This applies in Chapter 7's and mainly with automobile loans (e.g., Ford Motor Credit). Although the law is unclear, if you want to keep personal property (e.g., your car) and you have a loan on it (e.g., a car loan) you are required to sign a reaffirmation agreement. We do not prepare these nor do we recommend you sign them.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-red-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">7. Unprotected Assets</h5>
+                            <p class="text-gray-700">All cases will have unprotected assets like cash on hand, wages owing, money in the bank, tax-refunds, etc. Generally these are less than $1,000 it is unlikely you will lose these. <strong>Warning, if you owe back child support then you may not be able to protect your assets!</strong></p>
+                        </div>
+                        
+                        <div class="border-l-4 border-orange-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">8. HOA's</h5>
+                            <p class="text-gray-700">Back HOA fees are non-dischargeable from the date of filing until you no longer have an equitable interest in the property – thus if you are surrendering a house with HOA's you are still liable for them until the foreclosure sale, possibly longer.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-teal-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">9. Credit & Monthly Bills</h5>
+                            <p class="text-gray-700">Remember, you bankrupt everything, even if you are keeping property such as your house and cars, they may no longer report information to the credit agencies (especially if you don't reaffirm), thus possibly making it harder to establish credit.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-pink-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">10. Inheritance</h5>
+                            <p class="text-gray-700">If you become entitled to any inheritance, bequest, or devise within 180 days of filing bankruptcy (or anytime during a Chapter 13 plan) you need to notify us.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-gray-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">11. Collections</h5>
+                            <p class="text-gray-700">There is case law that says you must list both the collection agency and the original creditor for the debt to be discharged. Ensure you give us addresses for both the collector and the original creditor!</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h5 class="font-semibold text-gray-900">12. Liens on Houses</h5>
+                            <p class="text-gray-700">We don't pull property records to search for liens. Most liens survive a bankruptcy even if you wipe out the underlying debt that caused the lien. If you think you have any liens against you or your house let us know. This costs extra to deal with, but probably worth it in the long run.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getDocumentChecklistContent() {
+            return `
+                <div class="space-y-6">
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <i class="fa-solid fa-exclamation-triangle text-red-600 mr-2"></i>
+                            <h4 class="font-semibold text-red-800">REQUIRED INFORMATION FOR NEXT STEPS</h4>
+                        </div>
+                        <p class="text-sm text-red-700"><strong>THIS INFORMATION MAY NOT BE SUBJECT TO ATTORNEY/CLIENT PRIVILEGE<sup>1</sup></strong></p>
+                        <p class="text-sm text-red-700 mt-1">(You must have the following information and documents before your paperwork will be started)</p>
+                    </div>
+                    
+                    <!-- Income Section -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="mb-4">
+                            <h5 class="font-semibold text-gray-900 flex items-center">
+                                <i class="fa-solid fa-dollar-sign text-green-600 mr-2"></i>
+                                INCOME:
+                            </h5>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-green-600">
+                                <span>Monthly pay stubs or other monthly proof of income from any other source for the past six full months for you and your spouse (if any). Also need YTD gross income and the past 2 calendar years of gross income broken down individually (W-2's & 1099's are typically the easiest).</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-green-600">
+                                <span>If you are in business for yourself, provide a business budget and proof of your gross business income and business expenses for the past six months, please break it out by month.</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-green-600">
+                                <span>If you received income from any source other than employment or your business (e.g., rental property, social security, child support, maintenance, rent, etc…) please have this years YTD gross amount and last years gross amount</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Credit Counseling & Payment Section -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="mb-4">
+                            <h5 class="font-semibold text-gray-900 flex items-center">
+                                <i class="fa-solid fa-graduation-cap text-blue-600 mr-2"></i>
+                                CREDIT COUNSELING & PAYMENT:
+                            </h5>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-blue-600">
+                                <span><strong>Don't forget to do your CREDIT COUNSELING!</strong> Reference previous page(s) for information.</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-blue-600">
+                                <span>If you need to file the day you draft, you must bring in CASH or CASHIERS check with exact change (we don't give change here)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Home Section -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="mb-4">
+                            <h5 class="font-semibold text-gray-900 flex items-center">
+                                <i class="fa-solid fa-home text-purple-600 mr-2"></i>
+                                HOME: (Including Mobile Homes)
+                            </h5>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-purple-600">
+                                <span>Mortgage, home equity loan or line of credit statements</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-purple-600">
+                                <span>Copy of Property tax bill</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-purple-600">
+                                <span>Statements for utilities; water, sewer; garbage.</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-purple-600">
+                                <span>Homeowners association dues or fees (most recent statement)</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-purple-600">
+                                <span>Homeowners or renter's insurance statement (most recent statement)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Financial Section -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="mb-4">
+                            <h5 class="font-semibold text-gray-900 flex items-center">
+                                <i class="fa-solid fa-chart-line text-indigo-600 mr-2"></i>
+                                FINANCIAL:
+                            </h5>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-indigo-600">
+                                <span>Original debt statements (not copies) for the 2 months immediately preceding your turning this packet in (e.g., Credit Card Bills, invoices, demand letters, attorney letters, collection letters, etc.)<sup>2</sup></span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-indigo-600">
+                                <span>Updated Bank Statements for the day you come in for all of your bank accounts including updated statements for the 2 months immediately preceding each bank, credit union, and investment or stock trading account (on-line statements ok)</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-indigo-600">
+                                <span>Last 2-3 years of filed tax returns. If you do not have any records then you need to order your Tax Transcripts. Contact the IRS at (800) 829-1040 or http://www.irs.gov/taxtopics/tc156.html to order a tax transcript. Specifically ask for one which has codes on the side that detail the IRS events and dates (such as assessment, filing, etc…)</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-indigo-600">
+                                <span>If you did not file taxes in the last 4 years, you may need to file them now, begin preparing them (DO NOT FILE THEM until you speak to an attorney at Cohen & Cohen, P.C.)</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-indigo-600">
+                                <span>Statement for any IRA, 401K, education individual retirement account (e.g, 529), tuition credit program or medical savings plan</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-indigo-600">
+                                <span>This one doesn't come up very often, but if you are in construction, for example, and if you have any surety bonds, those are liabilities, they need to be included.</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Domestic Matters Section -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="mb-4">
+                            <h5 class="font-semibold text-gray-900 flex items-center">
+                                <i class="fa-solid fa-heart text-pink-600 mr-2"></i>
+                                DOMESTIC MATTERS:
+                            </h5>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-pink-600">
+                                <span>Child or family support orders/pleadings</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-pink-600">
+                                <span>Dissolution agreements or judgments</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-pink-600">
+                                <span>Prenuptial or post nuptial agreements</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Identification Section -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="mb-4">
+                            <h5 class="font-semibold text-gray-900 flex items-center">
+                                <i class="fa-solid fa-id-card text-red-600 mr-2"></i>
+                                IDENTIFICATION:
+                            </h5>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-red-600">
+                                <span>Copy of Driver's license, CO. ID, or passport <strong>[YOU WILL NEED THIS FOR COURT]</strong></span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-red-600">
+                                <span>Copy of SS Card or an original W-2; or a tax notice showing your SSN <strong>[YOU WILL AN ORIGINAL FOR COURT]</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Other Documents Section -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-4">
+                        <div class="mb-4">
+                            <h5 class="font-semibold text-gray-900 flex items-center">
+                                <i class="fa-solid fa-file-alt text-gray-600 mr-2"></i>
+                                OTHER DOCUMENTS THAT AREN'T REQUIRED IN EVERY CASE BUT YOU SHOULD HAVE THEM AVAILABLE:
+                            </h5>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-700">
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-gray-600">
+                                <span>Contracts for purchase of vehicle, electronics, jewelry, etc. over time within the past three years</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-gray-600">
+                                <span>Pleadings or other information regarding lawsuits filed against you or by you in the past two years, include any demand letters</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-gray-600">
+                                <span>If you regularly tithe or otherwise give money to a charitable non-profit organization, please provide statements proving the amount you gave in the last year</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-gray-600">
+                                <span>List of all property sold or transferred, absolutely or as security, within the past two years. How much did you get and to whom (if known)?</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-gray-600">
+                                <span>If you closed any financial accounts (e.g., investments accounts; bank accounts) within the past year, please get the name, address, amount at closing.</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-gray-600">
+                                <span>Life Insurance: If your life insurance has cash value, get 4 years of statements (we need to see the increase/decrease for the past 4 years)</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-gray-600">
+                                <span>Documents regarding any workman's compensation or personal injury claim</span>
+                            </div>
+                            <div class="flex items-start">
+                                <input type="checkbox" class="mt-1 mr-3 text-gray-600">
+                                <span>We need paystubs up to the date your case is filed and for a while after. Please save all new paystubs you receive. If you are filing by yourself, we will need pay information for your non-filing spouse. In addition to pay stubs, bring all other documentation of household income such as child support, Social Security, pension, disability, unemployment, public assistance, etc…</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Important Footer Notes -->
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-exclamation-triangle text-yellow-600 mr-3 mt-1"></i>
+                            <div class="space-y-2">
+                                <p class="text-sm text-yellow-800 font-semibold">Important Legal Notice:</p>
+                                <p class="text-xs text-yellow-700">¹ There is case law that explicitly holds that information provided to an attorney to prepare bankruptcy schedules is NOT subject to the privilege. As such it can be reviewed by interested parties, US Trustee, Trustee, others.</p>
+                                <p class="text-xs text-yellow-700 font-semibold">² YOU MUST LIST ALL ASSETS AND ALL LIABILITIES; ULTIMATELY YOU ARE RESPONSIBLE FOR THE ACCURACY OF THE BANKRUPTCY SCHEDULES; IF YOU HAVE ANY QUESTIONS LET US KNOW!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pt-4">
+                        <button onclick="showSection('documents')" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors mr-3">
+                            <i class="fa-solid fa-upload mr-2"></i>
+                            Start Uploading Documents
+                        </button>
+                        <button onclick="closeModal('document-modal')" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getUrgentDocumentContent() {
+            return `
+                <div class="space-y-6">
+                    <div class="bg-red-100 border border-red-300 rounded-lg p-4">
+                        <div class="flex items-center mb-3">
+                            <i class="fa-solid fa-exclamation-triangle text-red-600 mr-2 text-xl"></i>
+                            <h4 class="font-semibold text-red-800 text-lg">Urgent Cases - Time Sensitive</h4>
+                        </div>
+                        <p class="text-red-700 mb-4">If you need to stop a Garnishment, Court Date, or Foreclosure, please fill out the following and bring the documents:</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white border border-red-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-red-800 mb-3 flex items-center">
+                                <i class="fa-solid fa-hand-holding-dollar text-red-600 mr-2"></i>
+                                Stop Garnishment
+                            </h5>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <div>☐ Name of contact in your payroll department</div>
+                                <div>☐ Payroll Contact Phone Number</div>
+                                <div>☐ Payroll Contact Fax Number</div>
+                                <div>☐ One (1) copy of the Writ of Garnishment</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white border border-orange-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-orange-800 mb-3 flex items-center">
+                                <i class="fa-solid fa-gavel text-orange-600 mr-2"></i>
+                                Stop Court Date
+                            </h5>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <div>☐ Name of attorney for Creditor taking you to court</div>
+                                <div>☐ Case #</div>
+                                <div>☐ Court Date</div>
+                                <div>☐ Attorney Phone Number</div>
+                                <div>☐ Attorney Fax Number</div>
+                                <div>☐ One (1) copy of the Complaint and Summons</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white border border-purple-200 rounded-lg p-4">
+                            <h5 class="font-semibold text-purple-800 mb-3 flex items-center">
+                                <i class="fa-solid fa-home text-purple-600 mr-2"></i>
+                                Stop Foreclosure
+                            </h5>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <div>☐ County Foreclosure is in</div>
+                                <div>☐ Foreclosure #</div>
+                                <div>☐ Sale Date</div>
+                                <div>☐ Public Trustee Phone Number</div>
+                                <div>☐ Public Trustee Fax Number</div>
+                                <div>☐ One (1) Copy of the Notice of Foreclosure</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-clock text-yellow-600 mr-3 mt-1"></i>
+                            <div>
+                                <h6 class="font-semibold text-yellow-800 mb-2">Time is Critical!</h6>
+                                <p class="text-sm text-yellow-700">If you have any of these urgent situations, contact our office immediately. We may need to file your case on an emergency basis to protect your assets and rights.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pt-4">
+                        <button onclick="window.open('tel:+1234567890', '_self')" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors mr-3">
+                            <i class="fa-solid fa-phone mr-2"></i>
+                            Call Now: (XXX) XXX-XXXX
+                        </button>
+                        <button onclick="closeModal('document-modal')" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getQuestionnaireOverviewContent() {
+            return `
+                <div class="space-y-6">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                        <h4 class="font-semibold text-blue-800 mb-2">7-Section Financial Questionnaire</h4>
+                        <p class="text-sm text-blue-700">Complete comprehensive form to help us prepare your bankruptcy case accurately.</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                <i class="fa-solid fa-check text-green-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h6 class="font-medium text-green-900">Section 1: Personal Information</h6>
+                                <p class="text-sm text-green-700">Basic personal and contact information</p>
+                            </div>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Complete</span>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                <i class="fa-solid fa-check text-green-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h6 class="font-medium text-green-900">Section 2: Employment & Income</h6>
+                                <p class="text-sm text-green-700">Current and past employment, income sources</p>
+                            </div>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Complete</span>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-amber-100 flex items-center justify-center mr-4">
+                                <i class="fa-solid fa-clock text-amber-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h6 class="font-medium text-amber-900">Section 3: Assets & Property</h6>
+                                <p class="text-sm text-amber-700">Real estate, vehicles, personal property, investments</p>
+                            </div>
+                            <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">In Progress</span>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center mr-4">
+                                <i class="fa-solid fa-circle-pause text-gray-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h6 class="font-medium text-gray-600">Section 4: Monthly Expenses</h6>
+                                <p class="text-sm text-gray-500">Housing, utilities, food, transportation, and other expenses</p>
+                            </div>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Pending</span>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center mr-4">
+                                <i class="fa-solid fa-lock text-gray-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h6 class="font-medium text-gray-600">Section 5: Debt Information</h6>
+                                <p class="text-sm text-gray-500">Credit cards, loans, and other debts</p>
+                            </div>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Locked</span>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center mr-4">
+                                <i class="fa-solid fa-lock text-gray-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h6 class="font-medium text-gray-600">Section 6: Financial History</h6>
+                                <p class="text-sm text-gray-500">Past transfers, payments, and financial transactions</p>
+                            </div>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Locked</span>
+                        </div>
+                        
+                        <div class="flex items-center p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                            <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center mr-4">
+                                <i class="fa-solid fa-lock text-gray-400"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h6 class="font-medium text-gray-600">Section 7: Legal Matters</h6>
+                                <p class="text-sm text-gray-500">Lawsuits, judgments, and other legal issues</p>
+                            </div>
+                            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Locked</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pt-4">
+                        <button onclick="showSection('questionnaire')" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors mr-3">
+                            <i class="fa-solid fa-clipboard-list mr-2"></i>
+                            Continue Questionnaire
+                        </button>
+                        <button onclick="closeModal('questionnaire-modal')" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = ['info-modal', 'document-modal', 'questionnaire-modal'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (event.target == modal) {
+                    closeModal(modalId);
+                }
+            });
+        }
+
+        // LinkedIn-style text truncation functionality
+        function initializeExpandableText() {
+            const expandableElements = document.querySelectorAll('.expandable-text');
+            
+            expandableElements.forEach(element => {
+                const textContent = element.querySelector('.text-content');
+                const originalText = textContent.textContent.trim();
+                
+                // Ensure element is visible for accurate measurements
+                if (textContent.offsetWidth === 0) {
+                    return; // Skip if element is not visible
+                }
+                
+                // Store original text and setup truncation
+                setupTruncation(element, textContent, originalText);
+            });
+        }
+
+        function setupTruncation(element, textContent, originalText) {
+            let isExpanded = false;
+            
+            // Calculate a truncated version manually (approximately 3 lines worth)
+            const words = originalText.split(' ');
+            const maxWords = Math.min(words.length, 25); // Roughly 3 lines worth of words
+            const truncatedText = words.slice(0, maxWords).join(' ');
+            
+            // Only setup truncation if we actually truncated text
+            const needsTruncation = truncatedText.length < originalText.length;
+            
+            if (!needsTruncation) {
+                // Short text, no truncation needed
+                textContent.innerHTML = originalText;
+                return;
+            }
+            
+            function updateDisplay() {
+                if (isExpanded) {
+                    textContent.innerHTML = originalText + ' <span class="see-more">See less</span>';
+                    textContent.classList.remove('collapsed');
+                } else {
+                    textContent.innerHTML = truncatedText + '<span class="ellipsis">... </span><span class="see-more">See more</span>';
+                    textContent.classList.remove('collapsed'); // Don't use CSS clamp, use manual truncation
+                }
+                
+                // Add click event to see more/see less
+                const seeMoreBtn = textContent.querySelector('.see-more');
+                if (seeMoreBtn) {
+                    seeMoreBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        isExpanded = !isExpanded;
+                        updateDisplay();
+                    });
+                }
+            }
+            
+            // Initialize with collapsed state
+            updateDisplay();
+        }
+
+        // Initialize expandable text when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeExpandableText();
+        });
+
+        // Re-initialize when switching to documents section
+        const originalShowSection = showSection;
+        showSection = function(sectionName) {
+            originalShowSection(sectionName);
+            if (sectionName === 'documents') {
+                setTimeout(initializeExpandableText, 100); // Small delay to ensure elements are visible
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Preview - Cohen & Cohen P.C.</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --law-blue: #1e3a8a;
+            --law-gold: #fbbf24;
+            --law-gray: #6b7280;
+            --law-light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .law-blue { color: var(--law-blue); }
+        .bg-law-blue { background-color: var(--law-blue); }
+        .law-gold { color: var(--law-gold); }
+        .bg-law-gold { background-color: var(--law-gold); }
+        .law-gray { color: var(--law-gray); }
+        .bg-law-gray { background-color: var(--law-gray); }
+        .law-light { color: var(--law-light); }
+        .bg-law-light { background-color: var(--law-light); }
+        .border-law-blue { border-color: var(--law-blue); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-4xl mx-auto p-6">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+            <div class="px-6 py-4 border-b border-gray-200 bg-law-blue text-white">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold">Form Preview</h2>
+                        <p class="text-blue-100 text-sm mt-1" id="form-title">Preview Mode</p>
+                    </div>
+                    <button onclick="window.close()" class="px-4 py-2 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors duration-200">
+                        <i class="fa-solid fa-times mr-2"></i>
+                        Close
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-6">
+                <form id="preview-form" class="space-y-6">
+                    <div id="form-fields">
+                        <div class="text-center text-gray-500 py-8">
+                            <i class="fa-solid fa-spinner fa-spin text-2xl mb-2"></i>
+                            <p>Loading form preview...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3 pt-6 border-t border-gray-200">
+                        <button type="button" onclick="window.close()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                            Submit Form
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const formType = urlParams.get('form');
+        
+        const sampleFormData = {
+            bankruptcy: {
+                name: 'Bankruptcy Application Form',
+                fields: [
+                    {
+                        type: 'heading',
+                        text: 'Personal Information',
+                        label: 'Personal Information'
+                    },
+                    {
+                        type: 'text',
+                        label: 'Full Name',
+                        placeholder: 'Enter your full name',
+                        required: true
+                    },
+                    {
+                        type: 'email',
+                        label: 'Email Address',
+                        placeholder: 'Enter your email',
+                        required: true
+                    },
+                    {
+                        type: 'phone',
+                        label: 'Phone Number',
+                        placeholder: '(555) 123-4567',
+                        required: true
+                    },
+                    {
+                        type: 'textarea',
+                        label: 'Address',
+                        placeholder: 'Enter your complete address',
+                        required: true
+                    },
+                    {
+                        type: 'heading',
+                        text: 'Case Information',
+                        label: 'Case Information'
+                    },
+                    {
+                        type: 'select',
+                        label: 'Type of Bankruptcy',
+                        options: ['Chapter 7', 'Chapter 13', 'Chapter 11'],
+                        required: true
+                    },
+                    {
+                        type: 'radio',
+                        label: 'Filing Status',
+                        options: ['Individual', 'Joint', 'Corporation'],
+                        required: true
+                    },
+                    {
+                        type: 'number',
+                        label: 'Estimated Debt Amount',
+                        placeholder: '0.00',
+                        required: false
+                    },
+                    {
+                        type: 'checkbox',
+                        label: 'I agree to the terms and conditions',
+                        required: true
+                    }
+                ]
+            },
+            financial: {
+                name: 'Financial Questionnaire',
+                fields: [
+                    {
+                        type: 'heading',
+                        text: 'Income Information',
+                        label: 'Income Information'
+                    },
+                    {
+                        type: 'number',
+                        label: 'Monthly Gross Income',
+                        placeholder: '0.00',
+                        required: true
+                    },
+                    {
+                        type: 'select',
+                        label: 'Employment Status',
+                        options: ['Full-time', 'Part-time', 'Self-employed', 'Unemployed', 'Retired'],
+                        required: true
+                    },
+                    {
+                        type: 'text',
+                        label: 'Employer Name',
+                        placeholder: 'Enter employer name',
+                        required: false
+                    },
+                    {
+                        type: 'heading',
+                        text: 'Assets',
+                        label: 'Assets'
+                    },
+                    {
+                        type: 'number',
+                        label: 'Cash and Bank Accounts',
+                        placeholder: '0.00',
+                        required: true
+                    },
+                    {
+                        type: 'number',
+                        label: 'Real Estate Value',
+                        placeholder: '0.00',
+                        required: false
+                    },
+                    {
+                        type: 'number',
+                        label: 'Vehicle Value',
+                        placeholder: '0.00',
+                        required: false
+                    },
+                    {
+                        type: 'heading',
+                        text: 'Debts and Liabilities',
+                        label: 'Debts and Liabilities'
+                    },
+                    {
+                        type: 'number',
+                        label: 'Credit Card Debt',
+                        placeholder: '0.00',
+                        required: true
+                    },
+                    {
+                        type: 'number',
+                        label: 'Mortgage Balance',
+                        placeholder: '0.00',
+                        required: false
+                    },
+                    {
+                        type: 'textarea',
+                        label: 'Additional Notes',
+                        placeholder: 'Any additional information about your financial situation',
+                        required: false
+                    }
+                ]
+            }
+        };
+
+        function renderPreviewForm() {
+            if (!formType || !sampleFormData[formType]) {
+                document.getElementById('form-fields').innerHTML = `
+                    <div class="text-center text-red-500 py-8">
+                        <i class="fa-solid fa-exclamation-triangle text-2xl mb-2"></i>
+                        <p>Form not found or invalid form type</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const formData = sampleFormData[formType];
+            document.getElementById('form-title').textContent = formData.name;
+            
+            let html = '';
+            formData.fields.forEach((field, index) => {
+                html += renderFormField(field, index);
+            });
+            
+            document.getElementById('form-fields').innerHTML = html;
+        }
+
+        function renderFormField(field, index) {
+            let fieldHtml = '';
+            const required = field.required ? 'required' : '';
+            const requiredIcon = field.required ? '<span class="text-red-500 ml-1">*</span>' : '';
+            
+            switch(field.type) {
+                case 'text':
+                case 'email':
+                case 'phone':
+                    fieldHtml = `
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}${requiredIcon}</label>
+                            <input type="${field.type}" name="field_${index}" placeholder="${field.placeholder || ''}" ${required} class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue transition-colors duration-200" />
+                        </div>
+                    `;
+                    break;
+                case 'textarea':
+                    fieldHtml = `
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}${requiredIcon}</label>
+                            <textarea name="field_${index}" placeholder="${field.placeholder || ''}" ${required} rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue transition-colors duration-200"></textarea>
+                        </div>
+                    `;
+                    break;
+                case 'select':
+                    fieldHtml = `
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}${requiredIcon}</label>
+                            <select name="field_${index}" ${required} class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue transition-colors duration-200">
+                                <option value="">Select an option</option>
+                                ${field.options?.map(opt => `<option value="${opt}">${opt}</option>`).join('') || ''}
+                            </select>
+                        </div>
+                    `;
+                    break;
+                case 'radio':
+                    fieldHtml = `
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">${field.label}${requiredIcon}</label>
+                            <div class="space-y-2">
+                                ${field.options?.map((opt, optIndex) => `
+                                    <div class="flex items-center">
+                                        <input type="radio" id="field_${index}_${optIndex}" name="field_${index}" value="${opt}" ${required} class="mr-3 text-law-blue focus:ring-law-blue" />
+                                        <label for="field_${index}_${optIndex}" class="text-sm text-gray-700">${opt}</label>
+                                    </div>
+                                `).join('') || ''}
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'checkbox':
+                    fieldHtml = `
+                        <div class="form-group">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="field_${index}" name="field_${index}" ${required} class="mr-3 text-law-blue focus:ring-law-blue" />
+                                <label for="field_${index}" class="text-sm text-gray-700">${field.label}${requiredIcon}</label>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'number':
+                    fieldHtml = `
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}${requiredIcon}</label>
+                            <input type="number" name="field_${index}" placeholder="${field.placeholder || ''}" ${required} step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue transition-colors duration-200" />
+                        </div>
+                    `;
+                    break;
+                case 'date':
+                    fieldHtml = `
+                        <div class="form-group">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}${requiredIcon}</label>
+                            <input type="date" name="field_${index}" ${required} class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue transition-colors duration-200" />
+                        </div>
+                    `;
+                    break;
+                case 'heading':
+                    fieldHtml = `
+                        <div class="form-group">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-200">${field.text || 'Section Heading'}</h3>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            return `<div class="mb-6">${fieldHtml}</div>`;
+        }
+
+        document.getElementById('preview-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submitted successfully! (This is just a preview)');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPreviewForm();
+        });
+    </script>
+</body>
+</html>

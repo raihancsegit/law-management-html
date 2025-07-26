@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cohen & Cohen P.C. - Admin Dashboard for managing clients, leads, users, and system settings">
+    <title>Cohen & Cohen P.C. - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-blue': '#1e3a8a',
+                        'law-gold': '#fbbf24',
+                        'law-gray': '#6b7280',
+                        'law-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom dropdown styling */
+        .status-dropdown {
+            background-image: none !important;
+        }
+        
+        .status-dropdown option {
+            padding: 8px 12px;
+            font-weight: 600;
+            border-radius: 0;
+        }
+        
+        .status-dropdown option:hover {
+            background-color: #f3f4f6;
+        }
+        
+        /* Status-specific option colors */
+        .status-dropdown option[value="not-started"] {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+        
+        .status-dropdown option[value="in-progress"] {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .status-dropdown option[value="under-review"] {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+        
+        .status-dropdown option[value="completed"] {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-dropdown option[value="cancelled"] {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+
+        /* LinkedIn-style expandable text for admin dashboard */
+        .expandable-text .text-content {
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .expandable-text .see-more {
+            color: #1e3a8a;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline;
+        }
+        
+        .expandable-text .see-more:hover {
+            text-decoration: underline;
+        }
+        
+        .expandable-text .ellipsis {
+            color: #6b7280;
+        }
+
+        /* Sidebar collapsed state styles */
+        #admin-sidebar.w-16 .nav-item {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        #admin-sidebar.w-16 .nav-item i {
+            margin-right: 0 !important;
+        }
+
+        #admin-sidebar.w-16 #sidebar-header {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    </style>
+</head>
+<body class="font-inter bg-law-light">
+    <div class="flex h-screen">
+        <aside id="admin-sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300 hidden lg:block">
+            <div id="sidebar-header" class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h1 class="text-lg font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                <button id="sidebar-toggle" onclick="toggleSidebar()" class="p-1 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                    <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-gray-600"></i>
+                </button>
+            </div>
+            
+            <nav id="admin-sidebar-nav" class="flex-1 p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <button onclick="showSection('dashboard')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200 active">
+                            <i class="fa-solid fa-chart-pie mr-3 text-gray-400"></i>
+                            <span>Dashboard Overview</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="loadClientsManagement()" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-users mr-3 text-gray-400"></i>
+                            <span>Clients & Leads</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="loadSystemManagement('user-management')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-user-gear mr-3 text-gray-400"></i>
+                            <span>User Management</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="loadSystemManagement('folders')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-folder-tree mr-3 text-gray-400"></i>
+                            <span>Folder Management</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="loadSystemManagement('forms')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-file-lines mr-3 text-gray-400"></i>
+                            <span>Form Management</span>
+                        </button>
+                    </li>
+                    <li class="pt-4 border-t border-gray-200">
+                        <button onclick="showSection('admin-profile')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-user-tie mr-3 text-gray-400"></i>
+                            <span>Admin Profile</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="logout()" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-200">
+                            <i class="fa-solid fa-sign-out-alt mr-3 text-red-500"></i>
+                            <span>Logout</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main id="admin-main-content" class="flex-1 flex flex-col overflow-hidden">
+            <header id="admin-header" class="bg-white border-b border-gray-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <button id="mobile-sidebar-toggle" class="p-2 rounded-lg hover:bg-gray-100 lg:hidden mr-3">
+                            <i class="fa-solid fa-bars text-gray-600"></i>
+                        </button>
+                        <div id="page-title">
+                            <h2 class="text-2xl font-bold text-gray-900">Dashboard Overview</h2>
+                            <p class="text-sm text-gray-600 mt-1 hidden sm:block">Manage clients, leads, and system settings</p>
+                        </div>
+                    </div>
+                    <div id="admin-actions" class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-law-blue rounded-lg">
+                                <i class="fa-solid fa-bell text-lg"></i>
+                                <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+                            </button>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Admin Avatar" class="w-8 h-8 rounded-full">
+                            <div class="text-sm">
+                                <p class="font-medium text-gray-900">John Cohen</p>
+                                <p class="text-gray-500">Administrator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="admin-content" class="flex-1 overflow-auto p-6">
+                <section id="dashboard-section" class="section-content">
+                    <div id="dashboard-stats" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div id="total-clients-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-law-blue rounded-lg flex items-center justify-center">
+                                        <i class="fa-solid fa-users text-white text-sm"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Total Clients</p>
+                                    <p class="text-2xl font-bold text-gray-900">247</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="active-leads-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-law-gold rounded-lg flex items-center justify-center">
+                                        <i class="fa-solid fa-user-plus text-white text-sm"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Active Leads</p>
+                                    <p class="text-2xl font-bold text-gray-900">38</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pending-applications-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                                        <i class="fa-solid fa-file-pen text-white text-sm"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Pending Applications</p>
+                                    <p class="text-2xl font-bold text-gray-900">12</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="completed-cases-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                                        <i class="fa-solid fa-check-circle text-white text-sm"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-600">Completed Cases</p>
+                                    <p class="text-2xl font-bold text-gray-900">189</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="recent-activity-section" class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Recent Activity</h3>
+                        </div>
+                        <div class="p-6">
+                            <div id="activity-feed" class="space-y-4">
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-user-plus text-green-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm text-gray-900">New client registration: <span class="font-medium">Sarah Johnson</span></p>
+                                        <p class="text-xs text-gray-500">2 hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-file-upload text-blue-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm text-gray-900">Document uploaded by <span class="font-medium">Michael Chen</span></p>
+                                        <p class="text-xs text-gray-500">4 hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                                            <i class="fa-solid fa-edit text-orange-600 text-sm"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm text-gray-900">Application form completed: <span class="font-medium">David Rodriguez</span></p>
+                                        <p class="text-xs text-gray-500">6 hours ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="admin-profile-section" class="section-content hidden">
+                    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                        <div class="xl:col-span-1">
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <div class="text-center">
+                                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Admin Avatar" class="w-24 h-24 rounded-full mx-auto border-4 border-gray-200">
+                                    <h3 class="text-lg font-semibold text-gray-900 mt-4">John Cohen</h3>
+                                    <p class="text-sm text-gray-600">Managing Partner</p>
+                                    <p class="text-sm text-gray-600">Administrator</p>
+                                    <div class="mt-4 space-y-2">
+                                        <button onclick="openProfileSettings()" class="w-full px-4 py-2 text-sm font-medium text-white bg-law-blue hover:bg-blue-700 rounded-lg transition-colors duration-200">
+                                            <i class="fa-solid fa-edit mr-2"></i>Edit Profile
+                                        </button>
+                                        <button onclick="changePassword()" class="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200">
+                                            <i class="fa-solid fa-key mr-2"></i>Change Password
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6">
+                                <h4 class="text-md font-semibold text-gray-900 mb-4">Quick Stats</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Login Sessions</span>
+                                        <span class="text-sm font-medium text-gray-900">2 Active</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Last Login</span>
+                                        <span class="text-sm font-medium text-gray-900">Today, 9:45 AM</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Account Created</span>
+                                        <span class="text-sm font-medium text-gray-900">Jan 15, 2023</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-sm text-gray-600">Role</span>
+                                        <span class="px-2 py-1 text-xs font-medium bg-law-gold text-white rounded-full">Admin</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="xl:col-span-2 space-y-6">
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-4">Personal Information</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                        <input type="text" value="John" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                        <input type="text" value="Cohen" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                        <input type="email" value="john@cohencohenpc.com" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                        <input type="tel" value="+1 (555) 123-4567" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button class="px-4 py-2 text-sm font-medium text-white bg-law-blue hover:bg-blue-700 rounded-lg transition-colors duration-200">
+                                        Update Information
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-4">Security Settings</h4>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900">Two-Factor Authentication</p>
+                                            <p class="text-sm text-gray-600">Add an extra layer of security</p>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded">Disabled</span>
+                                            <button class="px-3 py-1 text-xs font-medium text-law-blue bg-blue-50 hover:bg-blue-100 rounded transition-colors duration-200">
+                                                Enable
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900">Active Sessions</p>
+                                            <p class="text-sm text-gray-600">Manage your login sessions</p>
+                                        </div>
+                                        <button onclick="viewActiveSessions()" class="px-3 py-1 text-xs font-medium text-law-blue bg-blue-50 hover:bg-blue-100 rounded transition-colors duration-200">
+                                            View Sessions (2)
+                                        </button>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900">Login Notifications</p>
+                                            <p class="text-sm text-gray-600">Get notified of new logins</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-law-blue"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-sign-in-alt text-green-600 text-sm"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-900">Logged in from Windows PC</p>
+                                            <p class="text-xs text-gray-600">Today at 9:45 AM</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-edit text-blue-600 text-sm"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-900">Updated user permissions</p>
+                                            <p class="text-xs text-gray-600">Yesterday at 3:22 PM</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-file-lines text-purple-600 text-sm"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <p class="text-sm font-medium text-gray-900">Created form template</p>
+                                            <p class="text-xs text-gray-600">Yesterday at 11:15 AM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button onclick="viewFullActivityLog()" class="text-sm font-medium text-law-blue hover:text-blue-700 transition-colors duration-200">
+                                        View Full Activity Log →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Clients & Leads Management Section -->
+                <section id="clients-leads-section" class="section-content hidden">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div id="clients-leads-header" class="px-6 py-4 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-semibold text-gray-900">Clients & Leads Management</h3>
+                                <button onclick="showAddUserModal()" class="inline-flex items-center px-4 py-2 bg-law-blue text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                                    <i class="fa-solid fa-plus mr-2"></i>
+                                    Add New Lead
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="clients-leads-filters" class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                            <div class="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4">
+                                <div class="w-full sm:flex-1 sm:min-w-64">
+                                    <div class="relative">
+                                        <input type="text" id="search-input" placeholder="Search by name, email, or phone..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <i class="fa-solid fa-search text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <select id="status-filter" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue">
+                                    <option value="all">All Status</option>
+                                    <option value="lead">Lead</option>
+                                    <option value="client">Client</option>
+                                    <option value="pending">Pending Application</option>
+                                    <option value="completed">Completed Case</option>
+                                </select>
+                                <select id="case-type-filter" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue">
+                                    <option value="all">All Case Types</option>
+                                    <option value="chapter-7">Chapter 7</option>
+                                    <option value="chapter-13">Chapter 13</option>
+                                    <option value="consultation">Consultation</option>
+                                </select>
+                                <select id="newsletter-filter" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue">
+                                    <option value="all">Newsletter</option>
+                                    <option value="subscribed">Subscribed</option>
+                                    <option value="unsubscribed">Not Subscribed</option>
+                                </select>
+                                <button onclick="clearFilters()" class="px-4 py-2 text-gray-600 hover:text-gray-800 focus:outline-none">
+                                    <i class="fa-solid fa-times mr-1"></i>
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pagination Controls -->
+                        <div class="px-6 py-3 border-b border-gray-200 bg-gray-50 flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center space-x-2">
+                                    <label class="text-sm text-gray-700">Show:</label>
+                                    <select id="entries-per-page" onchange="updateEntriesPerPage()" class="px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-law-blue">
+                                        <option value="10" selected>10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    <span class="text-sm text-gray-700">entries</span>
+                                </div>
+                                <div id="entries-info" class="text-sm text-gray-700">
+                                    Showing 1 to 10 of 48 entries
+                                </div>
+                            </div>
+                            <div id="pagination-controls" class="flex items-center space-x-2">
+                                <button onclick="previousPage()" id="prev-btn" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                    Previous
+                                </button>
+                                <div id="page-numbers" class="flex space-x-1">
+                                    <!-- Page numbers will be inserted here -->
+                                </div>
+                                <button onclick="nextPage()" id="next-btn" class="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="clients-leads-table-container" class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <input type="checkbox" id="select-all" class="rounded border-gray-300 text-law-blue focus:ring-law-blue">
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact Info</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell">Case Status</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden lg:table-cell">Newsletter</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clients-leads-tbody" class="bg-white divide-y divide-gray-200">
+                                    <!-- Table rows will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- User Profile Section (when viewing individual user) -->
+                <section id="user-profile-section" class="section-content hidden">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div id="user-profile-header" class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                            <div id="user-profile-title" class="flex items-center">
+                                <button onclick="exitUserProfileMode()" class="mr-4 p-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-law-blue rounded-lg">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </button>
+                                <div class="flex items-center">
+                                    <img id="user-profile-avatar" src="" alt="" class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h3 id="user-profile-name" class="text-lg font-semibold text-gray-900"></h3>
+                                        <p id="user-profile-id" class="text-sm text-gray-500"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="editUserFromProfile()" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-law-blue focus:ring-offset-2">
+                                    <i class="fa-solid fa-edit mr-2"></i>
+                                    Edit User
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="user-profile-tabs" class="border-b border-gray-200">
+                            <nav class="flex space-x-8 px-6">
+                                <button onclick="showUserTab('profile')" class="user-tab-btn py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 border-law-blue text-law-blue" data-tab="profile">
+                                    <i class="fa-solid fa-user mr-2"></i>
+                                    Profile Details
+                                </button>
+                                <button onclick="showUserTab('documents')" class="user-tab-btn py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="documents">
+                                    <i class="fa-solid fa-folder mr-2"></i>
+                                    Documents
+                                </button>
+                                <button onclick="showUserTab('application')" class="user-tab-btn py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="application">
+                                    <i class="fa-solid fa-file-text mr-2"></i>
+                                    Application Data
+                                </button>
+                                <button onclick="showUserTab('financial')" class="user-tab-btn py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="financial">
+                                    <i class="fa-solid fa-calculator mr-2"></i>
+                                    Financial Forms
+                                </button>
+                            </nav>
+                        </div>
+                        
+                        <div id="user-tab-profile" class="user-tab-content p-6">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Personal Information</h4>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                                <input id="profile-name" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent" readonly>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                                <input id="profile-email" type="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent" readonly>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                                <input id="profile-phone" type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent" readonly>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">User Type</label>
+                                                <select id="profile-user-type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                                    <option value="lead">Lead</option>
+                                                    <option value="client">Client</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Case Status</label>
+                                                <select id="profile-case-status" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                                    <option value="not-started">Not Started</option>
+                                                    <option value="in-progress">In Progress</option>
+                                                    <option value="under-review">Under Review</option>
+                                                    <option value="completed">Completed</option>
+                                                    <option value="cancelled">Cancelled</option>
+                                                    <option value="not-set">Not Set</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Case Type</label>
+                                                <select id="profile-case-type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                                    <option value="consultation">Consultation</option>
+                                                    <option value="chapter-7">Chapter 7</option>
+                                                    <option value="chapter-13">Chapter 13</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Notes</h4>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">A Note To Yourself About This Client</label>
+                                                <textarea id="profile-notes" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent" placeholder="Add internal notes about this client/lead..."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex justify-end space-x-3">
+                                <button onclick="exitUserProfileMode()" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-law-blue focus:ring-offset-2">
+                                    Back to List
+                                </button>
+                                <button onclick="saveProfileChanges()" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-law-blue focus:ring-offset-2">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="user-tab-documents" class="user-tab-content hidden">
+                            <!-- User Documents Content - Same design as client portal -->
+                            <div class="p-6">
+                                <div class="mb-6">
+                                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Client Documents</h4>
+                                    <p class="text-law-gray">View and manage client's bankruptcy case documents</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                                    <!-- Financial Documents -->
+                                    <div id="admin-financial-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-green-100 mr-4">
+                                                <i class="fa-solid fa-chart-line text-green-600 text-xl"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center justify-between">
+                                                    <h4 class="text-lg font-medium text-gray-900">Financial Documents</h4>
+                                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="expandable-text mb-4" data-category="financial">
+                                            <div class="text-content text-sm text-law-gray">
+                                                Bank statements from all accounts (checking, savings, business) for the past 6 months. Pay stubs showing current income, tax returns for the past 2 years including all schedules and attachments. Profit and loss statements if self-employed. Records of any other income sources including rental income, social security, disability, unemployment benefits, or side business income. Investment account statements, retirement account statements, and any documentation of financial assets or accounts that have been closed in the past year.
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                                <i class="fa-solid fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                                <p class="text-sm text-gray-600 mb-2">Upload documents for client</p>
+                                                <button onclick="uploadDocumentForUser('financial')" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                                    <i class="fa-solid fa-upload mr-2"></i>
+                                                    Choose Files
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-gray-200">
+                                            <p class="text-xs text-gray-500 mb-2">Client uploaded files:</p>
+                                            <div class="space-y-1" id="admin-financial-files">
+                                                <!-- Files will be populated by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Property Documents -->
+                                    <div id="admin-property-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-blue-100 mr-4">
+                                                <i class="fa-solid fa-home text-blue-600 text-xl"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center justify-between">
+                                                    <h4 class="text-lg font-medium text-gray-900">Property Documents</h4>
+                                                    <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Optional</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="expandable-text mb-4" data-category="property">
+                                            <div class="text-content text-sm text-law-gray">
+                                                Property deeds for all real estate owned, mortgage statements and loan documents, property tax assessments and payment records. Vehicle titles, registration documents, and loan information for all cars, trucks, motorcycles, boats, or recreational vehicles. Appraisals or market valuations for real estate and vehicles. Documentation of any property transfers, sales, or gifts made in the past 2 years. Rental property income and expense records if applicable.
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                                <i class="fa-solid fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                                <p class="text-sm text-gray-600 mb-2">Upload documents for client</p>
+                                                <button onclick="uploadDocumentForUser('property')" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                                    <i class="fa-solid fa-upload mr-2"></i>
+                                                    Choose Files
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-gray-200">
+                                            <p class="text-xs text-gray-500 mb-2">Client uploaded files:</p>
+                                            <div class="space-y-1" id="admin-property-files">
+                                                <!-- Files will be populated by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Debt Documentation -->
+                                    <div id="admin-debt-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-red-100 mr-4">
+                                                <i class="fa-solid fa-receipt text-red-600 text-xl"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center justify-between">
+                                                    <h4 class="text-lg font-medium text-gray-900">Debt Documentation</h4>
+                                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="expandable-text mb-4" data-category="debt">
+                                            <div class="text-content text-sm text-law-gray">
+                                                Credit card statements for all accounts for the past 6 months, including closed accounts. Personal loan documents, student loan statements, medical debt records, and collection notices. Correspondence from creditors, debt settlement agreements, and any payment plans currently in place. Documentation of secured debts like mortgages and car loans. Records of any debts that have been paid off, forgiven, or discharged in the past year. Proof of any disputes with creditors or credit reporting agencies.
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                                <i class="fa-solid fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                                <p class="text-sm text-gray-600 mb-2">Upload documents for client</p>
+                                                <button onclick="uploadDocumentForUser('debt')" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                                    <i class="fa-solid fa-upload mr-2"></i>
+                                                    Choose Files
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-gray-200">
+                                            <p class="text-xs text-gray-500 mb-2">Client uploaded files:</p>
+                                            <div class="space-y-1" id="admin-debt-files">
+                                                <!-- Files will be populated by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Income Verification -->
+                                    <div id="admin-income-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-purple-100 mr-4">
+                                                <i class="fa-solid fa-dollar-sign text-purple-600 text-xl"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center justify-between">
+                                                    <h4 class="text-lg font-medium text-gray-900">Income Verification</h4>
+                                                    <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Required</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="expandable-text mb-4" data-category="income">
+                                            <div class="text-content text-sm text-law-gray">
+                                                Employment verification letters from current and previous employers within the past 2 years. Social Security statements, disability award letters, unemployment benefit records, and workers' compensation documentation. Self-employment income records including 1099s, business receipts, and expense documentation. Pension, retirement, or annuity income statements. Documentation of rental income, alimony, child support, or any other regular income sources. Records of seasonal or irregular income, side business earnings, and any cash income received.
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                                <i class="fa-solid fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                                <p class="text-sm text-gray-600 mb-2">Upload documents for client</p>
+                                                <button onclick="uploadDocumentForUser('income')" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                                    <i class="fa-solid fa-upload mr-2"></i>
+                                                    Choose Files
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-gray-200">
+                                            <p class="text-xs text-gray-500 mb-2">Client uploaded files:</p>
+                                            <div class="space-y-1" id="admin-income-files">
+                                                <!-- Files will be populated by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Legal Documents -->
+                                    <div id="admin-legal-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-indigo-100 mr-4">
+                                                <i class="fa-solid fa-gavel text-indigo-600 text-xl"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center justify-between">
+                                                    <h4 class="text-lg font-medium text-gray-900">Legal Documents</h4>
+                                                    <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Optional</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="expandable-text mb-4" data-category="legal">
+                                            <div class="text-content text-sm text-law-gray">
+                                                Divorce decrees, separation agreements, and prenuptial or postnuptial agreements. Child custody orders, child support agreements, and alimony documentation. Court judgments, liens, or garnishment orders. Lawsuit documents, settlement agreements, and legal correspondence. Power of attorney documents, wills, and trust agreements. Any pending litigation or legal proceedings documentation. Immigration documents if applicable, and any other legal contracts or agreements that may affect your financial situation.
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                                <i class="fa-solid fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                                <p class="text-sm text-gray-600 mb-2">Upload documents for client</p>
+                                                <button onclick="uploadDocumentForUser('legal')" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                                    <i class="fa-solid fa-upload mr-2"></i>
+                                                    Choose Files
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-gray-200">
+                                            <p class="text-xs text-gray-500 mb-2">Client uploaded files:</p>
+                                            <div class="space-y-1" id="admin-legal-files">
+                                                <!-- Files will be populated by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Other Documents -->
+                                    <div id="admin-misc-docs-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gray-100 mr-4">
+                                                <i class="fa-solid fa-file text-gray-600 text-xl"></i>
+                                            </div>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center justify-between">
+                                                    <h4 class="text-lg font-medium text-gray-900">Other Documents</h4>
+                                                    <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Optional</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="expandable-text mb-4" data-category="misc">
+                                            <div class="text-content text-sm text-law-gray">
+                                                Insurance policies including life, health, auto, and property insurance documentation. Business documents if you own a business, including operating agreements, partnership documents, and business financial records. Personal property valuations for jewelry, art, collectibles, or other valuable items. Documentation of gifts given or received over $600 in the past year. Records of gambling winnings or losses. Any other financial documents, contracts, or agreements that may be relevant to your bankruptcy case and financial situation.
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                                                <i class="fa-solid fa-cloud-upload-alt text-gray-400 text-2xl mb-2"></i>
+                                                <p class="text-sm text-gray-600 mb-2">Upload documents for client</p>
+                                                <button onclick="uploadDocumentForUser('misc')" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                                    <i class="fa-solid fa-upload mr-2"></i>
+                                                    Choose Files
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t border-gray-200">
+                                            <p class="text-xs text-gray-500 mb-2">Client uploaded files:</p>
+                                            <div class="space-y-1" id="admin-misc-files">
+                                                <!-- Files will be populated by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Admin Notes Section -->
+                                <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                    <h5 class="text-lg font-medium text-gray-900 mb-3">Document Review Notes</h5>
+                                    <textarea 
+                                        id="document-notes" 
+                                        rows="4" 
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent" 
+                                        placeholder="Add notes about document review, missing items, or client communication..."></textarea>
+                                    <div class="flex justify-end mt-3">
+                                        <button onclick="saveDocumentNotes()" class="px-4 py-2 text-sm bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors">
+                                            <i class="fa-solid fa-save mr-2"></i>
+                                            Save Notes
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="user-tab-application" class="user-tab-content hidden">
+                            <div class="p-4 max-h-screen overflow-y-auto">
+                                <div class="mb-4">
+                                    <h4 class="text-lg font-bold text-gray-900">Application Data</h4>
+                                    <p class="text-sm text-law-gray mt-1">Complete bankruptcy application information provided by the client</p>
+                                </div>
+                                
+                                <!-- Application data content will be loaded here -->
+                                <div id="application-data-container"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="user-tab-financial" class="user-tab-content p-6 hidden">
+                            <div class="text-center py-8">
+                                <i class="fa-solid fa-calculator text-gray-400 text-4xl mb-4"></i>
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">Financial Forms</h3>
+                                <p class="text-gray-500">Financial questionnaire data will be displayed here</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- User Management Section -->
+                <section id="user-management-section" class="section-content hidden">
+                    <div class="max-w-7xl mx-auto space-y-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h3 class="text-lg font-semibold text-gray-900">System Staff Management</h3>
+                                <p class="text-sm text-gray-500 mt-1">Manage administrators, attorneys, and paralegal accounts</p>
+                            </div>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50 border-b border-gray-200">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Michael Cohen">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Michael Cohen</div>
+                                                        <div class="text-sm text-gray-500">Managing Partner</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">michael@cohencohenpc.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Administrator</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg" alt="John Cohen">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">John Cohen</div>
+                                                        <div class="text-sm text-gray-500">Senior Partner</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">john@cohencohenpc.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Attorney</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Sarah Miller">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Sarah Miller</div>
+                                                        <div class="text-sm text-gray-500">Senior Paralegal</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">sarah.miller@cohencohenpc.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">Paralegal</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-7.jpg" alt="Jessica Brown">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Jessica Brown</div>
+                                                        <div class="text-sm text-gray-500">Associate Attorney</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">jessica.brown@cohencohenpc.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Attorney</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Mark Anderson">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Mark Anderson</div>
+                                                        <div class="text-sm text-gray-500">Junior Paralegal</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">mark.anderson@cohencohenpc.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">Paralegal</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h3 class="text-lg font-semibold text-gray-900">Client & Lead Account Management</h3>
+                                <p class="text-sm text-gray-500 mt-1">Manage client and lead user accounts and permissions</p>
+                            </div>
+                            
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <div class="flex flex-wrap items-center justify-between gap-4">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="relative">
+                                            <input type="text" placeholder="Search users..." class="pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                            <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                        </div>
+                                        <select class="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                            <option>All Types</option>
+                                            <option>Client</option>
+                                            <option>Lead</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <span class="text-sm text-gray-600">Show</span>
+                                        <select class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                            <option>10</option>
+                                            <option>25</option>
+                                            <option>50</option>
+                                        </select>
+                                        <span class="text-sm text-gray-600">entries</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead class="bg-gray-50 border-b border-gray-200">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User Type</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Change Type</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg" alt="Emily Johnson">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Emily Johnson</div>
+                                                        <div class="text-sm text-gray-500">ID: #CL001</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">emily.johnson@gmail.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Client</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'CL001')">
+                                                    <option value="client" selected>Client</option>
+                                                    <option value="lead">Lead</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg" alt="Robert Chen">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Robert Chen</div>
+                                                        <div class="text-sm text-gray-500">ID: #LD001</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">robert.chen@outlook.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Lead</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'LD001')">
+                                                    <option value="lead" selected>Lead</option>
+                                                    <option value="client">Client</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-6.jpg" alt="Lisa Thompson">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Lisa Thompson</div>
+                                                        <div class="text-sm text-gray-500">ID: #CL002</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">lisa.thompson@yahoo.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Client</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'CL002')">
+                                                    <option value="client" selected>Client</option>
+                                                    <option value="lead">Lead</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition-colors duration-200">
+                                                    Activate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-8.jpg" alt="David Martinez">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">David Martinez</div>
+                                                        <div class="text-sm text-gray-500">ID: #LD002</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">david.martinez@hotmail.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Lead</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'LD002')">
+                                                    <option value="lead" selected>Lead</option>
+                                                    <option value="client">Client</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-9.jpg" alt="Thomas Wilson">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Thomas Wilson</div>
+                                                        <div class="text-sm text-gray-500">ID: #CL003</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">thomas.wilson@gmail.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Client</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'CL003')">
+                                                    <option value="client" selected>Client</option>
+                                                    <option value="lead">Lead</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg" alt="Amanda Garcia">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Amanda Garcia</div>
+                                                        <div class="text-sm text-gray-500">ID: #LD003</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">amanda.garcia@yahoo.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Lead</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'LD003')">
+                                                    <option value="lead" selected>Lead</option>
+                                                    <option value="client">Client</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg" alt="Kevin Lee">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Kevin Lee</div>
+                                                        <div class="text-sm text-gray-500">ID: #CL004</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">kevin.lee@outlook.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Client</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'CL004')">
+                                                    <option value="client" selected>Client</option>
+                                                    <option value="lead">Lead</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700 transition-colors duration-200">
+                                                    Activate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg" alt="Patricia White">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Patricia White</div>
+                                                        <div class="text-sm text-gray-500">ID: #LD004</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">patricia.white@gmail.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Lead</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'LD004')">
+                                                    <option value="lead" selected>Lead</option>
+                                                    <option value="client">Client</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr class="hover:bg-gray-50 transition-colors duration-200">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-10 w-10 rounded-full" src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-8.jpg" alt="Christopher Davis">
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">Christopher Davis</div>
+                                                        <div class="text-sm text-gray-500">ID: #CL005</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">chris.davis@hotmail.com</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Client</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <select class="px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-law-blue" onchange="updateUserType(this, 'CL005')">
+                                                    <option value="client" selected>Client</option>
+                                                    <option value="lead">Lead</option>
+                                                </select>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                                                <button class="w-20 py-1 text-xs font-medium text-white bg-gray-500 rounded hover:bg-gray-600 transition-colors duration-200">
+                                                    Deactivate
+                                                </button>
+                                                <button class="w-16 py-1 text-xs font-medium text-white bg-red-600 rounded hover:bg-red-700 transition-colors duration-200">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="px-6 py-4 border-t border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <div class="text-sm text-gray-700">
+                                        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">15</span> results
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="px-3 py-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                                            Previous
+                                        </button>
+                                        <button class="px-3 py-1 text-sm font-medium text-white bg-law-blue border border-law-blue rounded-lg hover:bg-blue-700">
+                                            1
+                                        </button>
+                                        <button class="px-3 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                                            2
+                                        </button>
+                                        <button class="px-3 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                                            Next
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Predefined Folders Section -->
+                <section id="folders-section" class="section-content hidden">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Predefined Folders Management</h3>
+                                <p class="text-sm text-gray-500 mt-1">Configure document folders that clients see during uploads. Drag to reorder, edit properties, or delete folders.</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button onclick="resetFolderOrder()" class="px-3 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                    <i class="fa-solid fa-rotate-left mr-2"></i>
+                                    Reset Order
+                                </button>
+                                <button onclick="openFolderModal()" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                    <i class="fa-solid fa-folder-plus mr-2"></i>
+                                    Add Folder
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6">
+                            <!-- Folder Statistics -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                                <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-blue-900">Total Folders</p>
+                                            <p id="total-folders-count" class="text-2xl font-bold text-blue-600">7</p>
+                                        </div>
+                                        <i class="fa-solid fa-folder text-blue-400 text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="bg-red-50 rounded-lg p-4 border border-red-200">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-red-900">Required</p>
+                                            <p id="required-folders-count" class="text-2xl font-bold text-red-600">4</p>
+                                        </div>
+                                        <i class="fa-solid fa-asterisk text-red-400 text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-yellow-900">Optional</p>
+                                            <p id="optional-folders-count" class="text-2xl font-bold text-yellow-600">3</p>
+                                        </div>
+                                        <i class="fa-solid fa-circle-question text-yellow-400 text-xl"></i>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4 border border-green-200">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-green-900">Active</p>
+                                            <p id="active-folders-count" class="text-2xl font-bold text-green-600">7</p>
+                                        </div>
+                                        <i class="fa-solid fa-check-circle text-green-400 text-xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Folders List -->
+                            <div class="mb-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="text-md font-semibold text-gray-900">Document Categories</h4>
+                                    <div class="text-sm text-gray-500 flex items-center">
+                                        <i class="fa-solid fa-arrows-up-down mr-2"></i>
+                                        Drag to reorder folders
+                                    </div>
+                                </div>
+                                
+                                <div id="folders-list" class="space-y-3">
+                                    <!-- Folders will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Forms Section -->
+                <section id="forms-section" class="section-content hidden">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                        <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Form Management</h3>
+                                <p class="text-sm text-gray-500 mt-1">Design and customize forms for leads and clients</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="openFormEditor()" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                    <i class="fa-solid fa-edit mr-2"></i>
+                                    Open Form Editor
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="text-lg font-semibold text-gray-900 mb-2">Bankruptcy Application Form</h4>
+                                            <p class="text-sm text-gray-600 mb-4">Lead intake form for initial bankruptcy consultation</p>
+                                            <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                                <span><i class="fa-solid fa-list mr-1"></i>12 Fields</span>
+                                                <span><i class="fa-solid fa-users mr-1"></i>45 Submissions</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-blue-600">
+                                            <i class="fa-solid fa-file-text text-3xl"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="text-lg font-semibold text-gray-900 mb-2">Financial Questionnaire</h4>
+                                            <p class="text-sm text-gray-600 mb-4">Detailed financial assessment for existing clients</p>
+                                            <div class="flex items-center space-x-4 text-sm text-gray-500">
+                                                <span><i class="fa-solid fa-list mr-1"></i>28 Fields</span>
+                                                <span><i class="fa-solid fa-users mr-1"></i>23 Submissions</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-green-600">
+                                            <i class="fa-solid fa-chart-bar text-3xl"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Document Viewer Modal -->
+    <div id="document-viewer-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
+        <div class="relative top-4 mx-auto p-5 border w-11/12 md:w-4/5 lg:w-3/4 shadow-lg rounded-md bg-white max-h-screen">
+            <div class="flex items-center justify-between pb-3 border-b">
+                <h3 id="document-viewer-title" class="text-lg font-semibold text-gray-900">Document Viewer</h3>
+                <button onclick="closeDocumentViewer()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            <div id="document-viewer-content" class="mt-4 overflow-auto max-h-96">
+                <!-- Document content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="flex items-center justify-between pb-3 border-b">
+                <h3 id="upload-modal-title" class="text-lg font-semibold text-gray-900">Upload Documents</h3>
+                <button onclick="closeUploadModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="mt-4">
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <i class="fa-solid fa-cloud-upload-alt text-gray-400 text-3xl mb-4"></i>
+                    <p class="text-sm text-gray-600 mb-4">Drag and drop files here or click to browse</p>
+                    <input type="file" id="admin-file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" class="hidden">
+                    <button onclick="document.getElementById('admin-file-input').click()" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors">
+                        Choose Files
+                    </button>
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button onclick="closeUploadModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                        Cancel
+                    </button>
+                    <button onclick="performUpload()" class="px-4 py-2 text-sm font-medium text-white bg-law-blue hover:bg-blue-700 rounded-lg transition-colors">
+                        Upload Files
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Folder Management Modal -->
+    <div id="folder-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
+        <div class="relative top-10 mx-auto p-5 border w-11/12 max-w-lg shadow-lg rounded-md bg-white">
+            <div class="flex items-center justify-between pb-3 border-b">
+                <h3 id="folder-modal-title" class="text-lg font-semibold text-gray-900">Add New Folder</h3>
+                <button onclick="closeFolderModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <form id="folder-form" class="mt-4 space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Folder Name</label>
+                    <input type="text" id="folder-name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent" placeholder="Enter folder name">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                    <textarea id="folder-description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent" placeholder="Brief description of what documents belong in this folder"></textarea>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Icon</label>
+                        <select id="folder-icon" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                            <option value="fa-user">User (fa-user)</option>
+                            <option value="fa-chart-line">Financial (fa-chart-line)</option>
+                            <option value="fa-credit-card">Credit/Debt (fa-credit-card)</option>
+                            <option value="fa-home">Property (fa-home)</option>
+                            <option value="fa-dollar-sign">Income (fa-dollar-sign)</option>
+                            <option value="fa-gavel">Legal (fa-gavel)</option>
+                            <option value="fa-folder">General (fa-folder)</option>
+                            <option value="fa-file-alt">Documents (fa-file-alt)</option>
+                            <option value="fa-shield-alt">Insurance (fa-shield-alt)</option>
+                            <option value="fa-car">Vehicle (fa-car)</option>
+                            <option value="fa-briefcase">Business (fa-briefcase)</option>
+                            <option value="fa-university">Bank/Financial (fa-university)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                        <select id="folder-required" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                            <option value="true">Required</option>
+                            <option value="false">Optional</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-2">
+                    <input type="checkbox" id="folder-active" checked class="rounded border-gray-300 text-law-blue focus:ring-law-blue">
+                    <label for="folder-active" class="text-sm text-gray-700">Active (visible to clients)</label>
+                </div>
+                
+                <div class="flex justify-end space-x-3 pt-4 border-t">
+                    <button type="button" onclick="closeFolderModal()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-law-blue hover:bg-blue-700 rounded-lg transition-colors">
+                        <span id="folder-submit-text">Add Folder</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="adminDashboard.js"></script>
+    <script src="adminApplicationData.js"></script>
+</body>
+</html>

@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Questionnaire - Section 1 | Cohen & Cohen P.C.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-blue': '#1e3a8a',
+                        'law-gold': '#fbbf24',
+                        'law-gray': '#6b7280',
+                        'law-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-law-light min-h-screen">
+    <div id="app" class="flex h-screen">
+        <aside id="sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300">
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-xl font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                <p class="text-sm text-law-gray mt-1">Client Portal</p>
+            </div>
+            
+            <nav class="mt-6">
+                <div class="px-6 mb-4">
+                    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Navigation</h2>
+                </div>
+                <ul class="space-y-1 px-3">
+                    <li>
+                        <a href="clientDashboard.html" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-home mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-folder mr-3"></i>
+                            My Documents
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-blue bg-blue-50 rounded-lg">
+                            <i class="fa-solid fa-clipboard-list mr-3"></i>
+                            Financial Questionnaire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-cog mr-3"></i>
+                            Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-question-circle mr-3"></i>
+                            Help Centre
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="px-3 mt-8">
+                    <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200">
+                        <i class="fa-solid fa-sign-out-alt mr-3"></i>
+                        Sign Out
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 overflow-auto">
+            <header id="header" class="bg-white border-b border-gray-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Financial Questionnaire</h1>
+                        <p class="text-law-gray">Section 1 - Basic Information</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-sm text-law-gray">
+                            Progress: Section 1 of 7
+                        </div>
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                        <div class="mb-8">
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <p class="text-sm text-blue-800">
+                                    <i class="fa-solid fa-info-circle mr-2"></i>
+                                    Please provide accurate personal information. All fields marked with (*) are required.
+                                </p>
+                            </div>
+                        </div>
+
+                        <form id="section1Form">
+                            <!-- Part A: Name and Address -->
+                            <div id="partA" class="mb-12">
+                                <div class="p-6 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-user mr-2 text-law-blue"></i>
+                                        Part A. Name and Address
+                                    </h2>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                            <input type="text" name="fullName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" required>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Have you used any other names in the past eight years?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="otherNames" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="otherNames" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div id="otherNamesDetail" style="display: none;">
+                                                <textarea name="otherNamesDetail" class="w-full mt-2 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="If yes, please list other names used..."></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Have you used any business names or Employer Identification Numbers (EIN) in the last 8 years?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="businessNames" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="businessNames" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div id="businessNamesDetail" style="display: none;">
+                                                <textarea name="businessNamesDetail" class="w-full mt-2 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="If yes, please list business names and/or EINs used..."></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Home Phone</label>
+                                            <input type="tel" name="homePhone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Work Phone</label>
+                                            <input type="tel" name="workPhone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Cell Phone</label>
+                                            <input type="tel" name="cellPhone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                            <input type="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" required>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Social Security Number *</label>
+                                            <div class="flex space-x-2">
+                                                <input type="text" name="ssn1" maxlength="3" class="w-16 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue text-center" placeholder="XXX" required>
+                                                <span class="self-center">-</span>
+                                                <input type="text" name="ssn2" maxlength="2" class="w-12 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue text-center" placeholder="XX" required>
+                                                <span class="self-center">-</span>
+                                                <input type="text" name="ssn3" maxlength="4" class="w-16 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue text-center" placeholder="XXXX" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Date of Birth *</label>
+                                            <input type="date" name="dateOfBirth" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" required>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Driver's License Number</label>
+                                            <input type="text" name="licenseNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">License Expiration Date</label>
+                                            <input type="date" name="licenseExpiration" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">License State</label>
+                                            <select name="licenseState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                <option value="">Select State</option>
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                                <option value="CT">Connecticut</option>
+                                                <option value="DE">Delaware</option>
+                                                <option value="FL">Florida</option>
+                                                <option value="GA">Georgia</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Current Address *</label>
+                                            <input type="text" name="currentAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address" required>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">City *</label>
+                                            <input type="text" name="city" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" required>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">State *</label>
+                                            <select name="state" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" required>
+                                                <option value="">Select State</option>
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code *</label>
+                                            <input type="text" name="zipCode" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" required>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">County</label>
+                                            <input type="text" name="county" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Have you lived at this address for at least 180 days?</label>
+                                                    <div class="flex space-x-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="lived180Days" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="lived180Days" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Have you lived at this address for at least 730 days (2 years)?</label>
+                                                    <div class="flex space-x-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="lived730Days" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="lived730Days" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2" id="previousAddressSection" style="display: none;">
+                                            <h4 class="text-md font-medium text-gray-800 mb-4">Previous Address</h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Previous Address</label>
+                                                    <input type="text" name="previousAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                                    <input type="text" name="previousCity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                                    <input type="text" name="previousState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+                                                    <input type="text" name="previousZip" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">County</label>
+                                                    <input type="text" name="previousCounty" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <h4 class="text-md font-medium text-gray-800 mb-4">Mailing Address (if different)</h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Mailing Address</label>
+                                                    <input type="text" name="mailingAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                                    <input type="text" name="mailingCity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                                    <input type="text" name="mailingState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+                                                    <input type="text" name="mailingZip" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">County</label>
+                                                    <input type="text" name="mailingCounty" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Marital Status *</label>
+                                            <div class="flex flex-wrap gap-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="maritalStatus" value="never_married" class="mr-2 text-law-blue focus:ring-law-blue" required>
+                                                    Never Married
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="maritalStatus" value="married_together" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Married and living together
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="maritalStatus" value="widowed" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Widowed
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="maritalStatus" value="married_apart" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Married and living apart
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="maritalStatus" value="divorced" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Divorced
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part B: Name and Address of Spouse -->
+                            <div id="partB" class="mb-12" style="display: none;">
+                                <div class="p-6 bg-green-50 rounded-lg border border-green-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-heart mr-2 text-law-blue"></i>
+                                        Part B. Name and Address of Spouse
+                                    </h2>
+                                    
+                                    <div class="bg-green-100 border border-green-300 rounded-lg p-4 mb-6">
+                                        <p class="text-sm text-green-800">
+                                            <i class="fa-solid fa-info-circle mr-2"></i>
+                                            If you are filing jointly with your spouse, fill in the following information about your spouse:
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's Full Name</label>
+                                            <input type="text" name="spouseFullName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Has your spouse used any other names in the past 8 years?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="spouseOtherNames" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="spouseOtherNames" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div id="spouseOtherNamesDetail" style="display: none;">
+                                                <textarea name="spouseOtherNamesDetail" class="w-full mt-2 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="If yes, please list other names used..."></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Has your spouse used any business names or Employer Identification Numbers (EIN) in the last 8 years?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="spouseBusinessNames" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="spouseBusinessNames" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div id="spouseBusinessNamesDetail" style="display: none;">
+                                                <textarea name="spouseBusinessNamesDetail" class="w-full mt-2 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="If yes, please list business names and/or EINs used..."></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's Home Phone</label>
+                                            <input type="tel" name="spouseHomePhone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's Work Phone</label>
+                                            <input type="tel" name="spouseWorkPhone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's Cell Phone</label>
+                                            <input type="tel" name="spouseCellPhone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's Email Address</label>
+                                            <input type="email" name="spouseEmail" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's Social Security Number</label>
+                                            <div class="flex space-x-2">
+                                                <input type="text" name="spouseSsn1" maxlength="3" class="w-16 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue text-center" placeholder="XXX">
+                                                <span class="self-center">-</span>
+                                                <input type="text" name="spouseSsn2" maxlength="2" class="w-12 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue text-center" placeholder="XX">
+                                                <span class="self-center">-</span>
+                                                <input type="text" name="spouseSsn3" maxlength="4" class="w-16 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue text-center" placeholder="XXXX">
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's Date of Birth</label>
+                                            <input type="date" name="spouseDateOfBirth" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's Driver's License Number</label>
+                                            <input type="text" name="spouseLicenseNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's License Expiration Date</label>
+                                            <input type="date" name="spouseLicenseExpiration" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Spouse's License State</label>
+                                            <select name="spouseLicenseState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                <option value="">Select State</option>
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">If your spouse lives at a different address, please list:</label>
+                                            <input type="text" name="spouseDifferentAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                            <input type="text" name="spouseAddressCity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                            <input type="text" name="spouseAddressState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+                                            <input type="text" name="spouseAddressZip" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">County</label>
+                                            <input type="text" name="spouseAddressCounty" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <div class="space-y-3">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Has your spouse lived at this address for at least 180 days?</label>
+                                                    <div class="flex space-x-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseLived180Days" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseLived180Days" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Has your spouse lived at this address for at least 730 days (2 years)?</label>
+                                                    <div class="flex space-x-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseLived730Days" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseLived730Days" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2" id="spousePreviousAddressSection" style="display: none;">
+                                            <h4 class="text-md font-medium text-gray-800 mb-4">Spouse's Previous Address</h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Previous Address</label>
+                                                    <input type="text" name="spousePreviousAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                                    <input type="text" name="spousePreviousCity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                                    <input type="text" name="spousePreviousState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+                                                    <input type="text" name="spousePreviousZip" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">County</label>
+                                                    <input type="text" name="spousePreviousCounty" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="md:col-span-2">
+                                            <h4 class="text-md font-medium text-gray-800 mb-4">Spouse's Mailing Address (if different)</h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Mailing Address</label>
+                                                    <input type="text" name="spouseMailingAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                                    <input type="text" name="spouseMailingCity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                                    <input type="text" name="spouseMailingState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+                                                    <input type="text" name="spouseMailingZip" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">County</label>
+                                                    <input type="text" name="spouseMailingCounty" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part C: Prior and/or Pending Bankruptcy Cases -->
+                            <div id="partC" class="mb-12">
+                                <div class="p-6 bg-yellow-50 rounded-lg border border-yellow-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-gavel mr-2 text-law-blue"></i>
+                                        Part C. Prior and/or Pending Bankruptcy Cases
+                                    </h2>
+                                    
+                                    <div class="space-y-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Have you filed a bankruptcy case in the last 8 years?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="bankruptcyLast8Years" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="bankruptcyLast8Years" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="bankruptcyLast8Details" style="display: none;">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">In which district of which state was the case filed?</label>
+                                                    <input type="text" name="bankruptcyDistrict" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="District and State">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Case Number</label>
+                                                    <input type="text" name="bankruptcyCaseNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Date Filed</label>
+                                                    <input type="date" name="bankruptcyDateFiled" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Date Discharged</label>
+                                                    <input type="date" name="bankruptcyDateDischarged" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Was the case dismissed (you did not complete the bankruptcy)?</label>
+                                                    <div class="flex space-x-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="bankruptcyDismissed" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="bankruptcyDismissed" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div id="dismissalDateSection" style="display: none;">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">If so, what date was it dismissed?</label>
+                                                    <input type="date" name="bankruptcyDismissalDate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Are any bankruptcy cases pending or being filed by your spouse, a business partner, or an affiliate?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="relatedBankruptcyCases" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="relatedBankruptcyCases" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="relatedBankruptcyDetails" style="display: none;">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Name of debtor</label>
+                                                    <input type="text" name="relatedDebtorName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Relationship to you</label>
+                                                    <input type="text" name="relatedDebtorRelationship" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Case Number</label>
+                                                    <input type="text" name="relatedCaseNumber" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Date Filed</label>
+                                                    <input type="date" name="relatedDateFiled" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">District (If known)</label>
+                                                    <input type="text" name="relatedDistrict" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part D: Debtors Who Reside as Tenants of Residential Property -->
+                            <div id="partD" class="mb-12">
+                                <div class="p-6 bg-red-50 rounded-lg border border-red-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-home mr-2 text-law-blue"></i>
+                                        Part D. Debtors Who Reside as Tenants of Residential Property
+                                    </h2>
+                                    
+                                    <div class="space-y-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Do you have an eviction pending against you?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="evictionPending" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="evictionPending" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="evictionDetails" style="display: none;">
+                                            <h4 class="text-md font-medium text-gray-800 mb-4">Landlord's Information</h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Landlord's Name</label>
+                                                    <input type="text" name="landlordName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Landlord's Address</label>
+                                                    <input type="text" name="landlordAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                                    <input type="text" name="landlordCity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                                    <input type="text" name="landlordState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+                                                    <input type="text" name="landlordZip" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part E: Business Owned as a Sole Proprietor -->
+                            <div id="partE" class="mb-12">
+                                <div class="p-6 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-briefcase mr-2 text-law-blue"></i>
+                                        Part E. Business Owned as a Sole Proprietor
+                                    </h2>
+                                    
+                                    <div class="space-y-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Are you the sole proprietor of a full- or part-time business?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="soleProprietor" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="soleProprietor" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="businessDetails" style="display: none;">
+                                            <h4 class="text-md font-medium text-gray-800 mb-4">Business Information</h4>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Name of business</label>
+                                                    <input type="text" name="businessName" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Business Address</label>
+                                                    <input type="text" name="businessAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                                    <input type="text" name="businessCity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                                    <input type="text" name="businessState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+                                                    <input type="text" name="businessZip" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                </div>
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Description of business</label>
+                                                    <textarea name="businessDescription" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Please describe the nature of your business..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part F: Hazardous Property or Property That Needs Immediate Attention -->
+                            <div id="partF" class="mb-12">
+                                <div class="p-6 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-exclamation-triangle mr-2 text-law-blue"></i>
+                                        Part F. Hazardous Property or Property That Needs Immediate Attention
+                                    </h2>
+                                    
+                                    <div class="space-y-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Do you own or have any property that needs immediate attention or that poses or is alleged to pose a threat of imminent and identifiable harm to public health or safety?</label>
+                                            <div class="flex space-x-4">
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="hazardousProperty" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    No
+                                                </label>
+                                                <label class="flex items-center">
+                                                    <input type="radio" name="hazardousProperty" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="hazardousPropertyDetails" style="display: none;">
+                                            <div class="space-y-4">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">If yes, please describe the hazard:</label>
+                                                    <textarea name="hazardDescription" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Please describe the nature of the hazard..."></textarea>
+                                                </div>
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">If immediate attention is needed, why is it needed?</label>
+                                                    <textarea name="immediateAttentionReason" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Please explain why immediate attention is needed..."></textarea>
+                                                </div>
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div class="md:col-span-2">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">Where is the property? Address:</label>
+                                                        <input type="text" name="hazardousPropertyAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Street Address">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                                        <input type="text" name="hazardousPropertyCity" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                                                        <input type="text" name="hazardousPropertyState" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">ZIP Code</label>
+                                                        <input type="text" name="hazardousPropertyZip" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Prior Bankruptcy Filings Section -->
+                            <div id="priorBankruptcyFilings" class="mb-12">
+                                <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-file-alt mr-2 text-law-blue"></i>
+                                        Prior Bankruptcy Filings
+                                    </h2>
+                                    
+                                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+                                        <p class="text-sm text-amber-800">
+                                            <i class="fa-solid fa-info-circle mr-2"></i>
+                                            * If you do not know we may be able to look it up, but please advise, this is important.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="space-y-4">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-2">Case No.</label>
+                                                <input type="text" name="priorCaseNo1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                                                <input type="date" name="priorCaseDate1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-2">Case No.</label>
+                                                <input type="text" name="priorCaseNo2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                                                <input type="date" name="priorCaseDate2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="flex justify-between pt-6 border-t border-gray-200">
+                                <button type="button" onclick="window.location.href='clientDashboard.html'" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                                    Back to Dashboard
+                                </button>
+                                
+                                <div class="flex space-x-3">
+                                    <button type="button" id="saveProgress" class="px-6 py-2 border border-law-blue text-law-blue rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                                        <i class="fa-solid fa-save mr-2"></i>
+                                        Save Progress
+                                    </button>
+                                    <button type="submit" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                        Continue to Section 2
+                                        <i class="fa-solid fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup conditional visibility
+            function setupConditionalField(radioName, targetId) {
+                const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+                const target = document.getElementById(targetId);
+                
+                radios.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        if (this.value === 'yes') {
+                            target.style.display = 'block';
+                        } else {
+                            target.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Setup conditional sections
+            setupConditionalField('otherNames', 'otherNamesDetail');
+            setupConditionalField('businessNames', 'businessNamesDetail');
+            setupConditionalField('spouseOtherNames', 'spouseOtherNamesDetail');
+            setupConditionalField('spouseBusinessNames', 'spouseBusinessNamesDetail');
+            setupConditionalField('bankruptcyLast8Years', 'bankruptcyLast8Details');
+            setupConditionalField('bankruptcyDismissed', 'dismissalDateSection');
+            setupConditionalField('relatedBankruptcyCases', 'relatedBankruptcyDetails');
+            setupConditionalField('evictionPending', 'evictionDetails');
+            setupConditionalField('soleProprietor', 'businessDetails');
+            setupConditionalField('hazardousProperty', 'hazardousPropertyDetails');
+
+            // Show/hide spouse section based on marital status
+            const maritalStatusInputs = document.querySelectorAll('input[name="maritalStatus"]');
+            const partB = document.getElementById('partB');
+            
+            maritalStatusInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.value === 'married_together' || this.value === 'married_apart') {
+                        partB.style.display = 'block';
+                    } else {
+                        partB.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Show/hide previous address section
+            const lived180Inputs = document.querySelectorAll('input[name="lived180Days"]');
+            const lived730Inputs = document.querySelectorAll('input[name="lived730Days"]');
+            const previousAddressSection = document.getElementById('previousAddressSection');
+            
+            function checkAddressHistory() {
+                const lived180No = document.querySelector('input[name="lived180Days"][value="no"]')?.checked;
+                const lived730No = document.querySelector('input[name="lived730Days"][value="no"]')?.checked;
+                
+                if (lived180No || lived730No) {
+                    previousAddressSection.style.display = 'block';
+                } else {
+                    previousAddressSection.style.display = 'none';
+                }
+            }
+            
+            lived180Inputs.forEach(input => {
+                input.addEventListener('change', checkAddressHistory);
+            });
+            
+            lived730Inputs.forEach(input => {
+                input.addEventListener('change', checkAddressHistory);
+            });
+            
+            // Show/hide spouse previous address section
+            const spouseLived180Inputs = document.querySelectorAll('input[name="spouseLived180Days"]');
+            const spouseLived730Inputs = document.querySelectorAll('input[name="spouseLived730Days"]');
+            const spousePreviousAddressSection = document.getElementById('spousePreviousAddressSection');
+            
+            function checkSpouseAddressHistory() {
+                const spouseLived180No = document.querySelector('input[name="spouseLived180Days"][value="no"]')?.checked;
+                const spouseLived730No = document.querySelector('input[name="spouseLived730Days"][value="no"]')?.checked;
+                
+                if (spouseLived180No || spouseLived730No) {
+                    spousePreviousAddressSection.style.display = 'block';
+                } else {
+                    spousePreviousAddressSection.style.display = 'none';
+                }
+            }
+            
+            spouseLived180Inputs.forEach(input => {
+                input.addEventListener('change', checkSpouseAddressHistory);
+            });
+            
+            spouseLived730Inputs.forEach(input => {
+                input.addEventListener('change', checkSpouseAddressHistory);
+            });
+            
+            // Form submission
+            document.getElementById('section1Form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveFormData();
+                showSaveNotification('Section 1 completed successfully! Proceeding to Section 2...');
+                setTimeout(() => {
+                    window.location.href = 'clientFinancialQuestionnaireSection2.html';
+                }, 1500);
+            });
+            
+            // Save progress functionality
+            document.getElementById('saveProgress').addEventListener('click', function() {
+                saveFormData();
+                showSaveNotification('Progress saved successfully!');
+            });
+            
+            function saveFormData() {
+                const formData = new FormData(document.getElementById('section1Form'));
+                const data = Object.fromEntries(formData);
+                localStorage.setItem('section1Data', JSON.stringify(data));
+                console.log('Section 1 data saved:', data);
+            }
+            
+            function showSaveNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-opacity duration-300';
+                notification.innerHTML = `<i class="fa-solid fa-check mr-2"></i>${message}`;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            // Auto-save functionality
+            let saveTimeout;
+            
+            function autoSave() {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    saveFormData();
+                    console.log('Auto-saved form data...');
+                }, 2000);
+            }
+
+            // Add auto-save for all inputs
+            document.addEventListener('input', function(e) {
+                if (e.target.matches('input, select, textarea')) {
+                    autoSave();
+                }
+            });
+
+            document.addEventListener('change', function(e) {
+                if (e.target.matches('input[type="radio"], input[type="checkbox"]')) {
+                    autoSave();
+                }
+            });
+
+            // Load saved data on page load
+            const savedData = localStorage.getItem('section1Data');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                Object.keys(data).forEach(key => {
+                    const field = document.querySelector(`[name="${key}"]`);
+                    if (field) {
+                        if (field.type === 'radio') {
+                            const radio = document.querySelector(`[name="${key}"][value="${data[key]}"]`);
+                            if (radio) radio.checked = true;
+                        } else {
+                            field.value = data[key];
+                        }
+                    }
+                });
+                // Trigger change events to show conditional sections
+                document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                    radio.dispatchEvent(new Event('change'));
+                });
+            }
+        });
+    </script>
+</body>
+</html>

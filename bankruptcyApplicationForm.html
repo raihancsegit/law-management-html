@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bankruptcy Application - Cohen & Cohen P.C.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-blue': '#1e3a8a',
+                        'law-gold': '#fbbf24',
+                        'law-gray': '#6b7280',
+                        'law-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-law-light min-h-screen">
+    <header id="header" class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <button onclick="goBack()" class="mr-4 text-law-gray hover:text-law-blue">
+                        <i class="fa-solid fa-arrow-left text-lg"></i>
+                    </button>
+                    <h1 class="text-xl font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button onclick="openManualApplication()" class="flex items-center px-3 py-2 text-sm font-medium text-green-700 bg-green-50 rounded-lg hover:bg-green-100 transition-colors duration-200">
+                        <i class="fa-solid fa-download mr-2"></i>
+                        Manual Application
+                    </button>
+                    <button onclick="saveProgress()" class="flex items-center px-3 py-2 text-sm font-medium text-law-blue bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors duration-200">
+                        <i class="fa-solid fa-save mr-2"></i>
+                        Save Progress
+                    </button>
+                    <div class="flex items-center space-x-2">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                        <span class="text-sm font-medium text-gray-700">John Smith</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-form" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div id="progress-indicator" class="mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Bankruptcy Application</h2>
+                <span class="text-sm text-law-gray">Step <span id="current-step">1</span> of 4</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div id="progress-bar" class="bg-law-blue h-2 rounded-full transition-all duration-300 w-1/4"></div>
+            </div>
+            <div class="flex justify-between mt-2 text-xs text-law-gray">
+                <span>Basic Information</span>
+                <span>Legal Notices</span>
+                <span>Acknowledgment</span>
+                <span>Detailed Questions</span>
+            </div>
+        </div>
+
+        <form id="bankruptcy-form" class="space-y-8">
+            <section id="section-1" class="form-section">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Basic Information</h3>
+                        <p class="text-law-gray">Please provide your basic contact and referral information.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div id="client-1-info" class="space-y-4">
+                                <h4 class="font-medium text-gray-900">Primary Client</h4>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                                        <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">MI</label>
+                                        <input type="text" maxlength="1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="client-2-info" class="space-y-4">
+                                <div class="flex items-center space-x-2">
+                                    <h4 class="font-medium text-gray-900">Second Client</h4>
+                                    <span class="text-xs text-law-gray">(Optional)</span>
+                                </div>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">MI</label>
+                                        <input type="text" maxlength="1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="address-info" class="space-y-4">
+                            <h4 class="font-medium text-gray-900">Address Information</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">City *</label>
+                                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">State *</label>
+                                    <select required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                        <option value="">Select State</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CA">California</option>
+                                        <option value="NY">New York</option>
+                                        <option value="TX">Texas</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">ZIP Code *</label>
+                                    <input type="text" required pattern="[0-9]{5}(-[0-9]{4})?" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="contact-info" class="space-y-4">
+                            <h4 class="font-medium text-gray-900">Contact Information</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Cell Phone</label>
+                                    <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Home Phone</label>
+                                    <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Work Phone</label>
+                                    <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Best Phone to Reach You</label>
+                                    <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                        <option value="">Select Option</option>
+                                        <option value="cell">Cell Phone</option>
+                                        <option value="home">Home Phone</option>
+                                        <option value="work">Work Phone</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">FAX</label>
+                                    <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                                    <input type="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="referral-info" class="space-y-4">
+                            <h4 class="font-medium text-gray-900">How were you referred to our office?</h4>
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="radio" name="referral" value="past-client" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                    <span class="ml-2 text-sm text-gray-700">I am a past client</span>
+                                </label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="radio" name="referral" value="referred-by-client" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                    <span class="text-sm text-gray-700">Referred by your client:</span>
+                                    <input type="text" placeholder="Type name here" class="flex-1 px-3 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <label class="flex items-center">
+                                    <input type="radio" name="referral" value="friend" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                    <span class="ml-2 text-sm text-gray-700">My friend</span>
+                                </label>
+                                <div class="flex items-center space-x-2">
+                                    <input type="radio" name="referral" value="internet" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                    <span class="text-sm text-gray-700">Internet (Specify):</span>
+                                    <input type="text" placeholder="Type source here" class="flex-1 px-3 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="radio" name="referral" value="other-attorney" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                    <span class="text-sm text-gray-700">Other attorney:</span>
+                                    <input type="text" placeholder="Type name here" class="flex-1 px-3 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="radio" name="referral" value="other" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                    <span class="text-sm text-gray-700">Other (Specify):</span>
+                                    <input type="text" placeholder="Type source here" class="flex-1 px-3 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="legal-problem-info">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Please provide a brief description of your legal problem and what you need accomplished: *</label>
+                            <textarea required rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent resize-vertical" placeholder="Describe your situation and what you hope to achieve..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-2" class="form-section hidden">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Legal Notices</h3>
+                        <p class="text-law-gray">Please review the following important legal information carefully.</p>
+                    </div>
+
+                    <div id="legal-notices" class="prose max-w-none space-y-6">
+                        <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                            <h4 class="font-semibold text-amber-800 mb-2">Important Notice Regarding Bankruptcy Proceedings</h4>
+                            <p class="text-sm text-amber-700">
+                                Filing for bankruptcy is a significant legal decision that will affect your financial future. This process involves the disclosure of all assets, debts, income, and expenses. Providing false or incomplete information in bankruptcy proceedings is a federal crime punishable by fine and imprisonment.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-gray-700 leading-relaxed">
+                            <p>
+                                <strong>Attorney-Client Privilege:</strong> Communications between you and Cohen & Cohen P.C. are protected by attorney-client privilege. This means that information you provide to us is confidential and cannot be disclosed without your consent, except in limited circumstances required by law.
+                            </p>
+
+                            <p>
+                                <strong>Fees and Costs:</strong> Legal representation involves fees and costs. We will provide you with a clear fee agreement before beginning work on your case. Bankruptcy cases may involve court filing fees, credit counseling fees, and other associated costs that will be explained to you in detail.
+                            </p>
+
+                            <p>
+                                <strong>No Guarantee of Results:</strong> While we will work diligently on your behalf, we cannot guarantee specific outcomes in your bankruptcy case. The success of your case depends on many factors, including the specific facts of your situation, applicable law, and court decisions.
+                            </p>
+
+                            <p>
+                                <strong>Debt Management and Credit Counseling:</strong> Before filing for bankruptcy, you may be required to complete credit counseling from an approved agency. We can provide you with information about approved agencies and help you understand this requirement.
+                            </p>
+
+                            <p>
+                                <strong>Alternatives to Bankruptcy:</strong> Bankruptcy may not be the best solution for everyone. We will discuss with you all available options, including debt consolidation, negotiation with creditors, and other alternatives that may be appropriate for your situation.
+                            </p>
+
+                            <p>
+                                <strong>Impact on Credit:</strong> Filing for bankruptcy will have a significant impact on your credit score and credit report. A bankruptcy filing may remain on your credit report for up to 10 years, though its impact on your ability to obtain credit typically diminishes over time.
+                            </p>
+
+                            <p>
+                                <strong>Asset Protection:</strong> While bankruptcy can provide relief from overwhelming debt, it may also require the liquidation of certain assets. We will help you understand which assets may be protected under applicable exemption laws and which assets may be at risk.
+                            </p>
+
+                            <p>
+                                <strong>Ongoing Obligations:</strong> Even after a successful bankruptcy discharge, you may have ongoing obligations, including the payment of certain types of debt that are not dischargeable, such as most student loans, recent tax obligations, and domestic support obligations.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 mb-2">Your Rights and Responsibilities</h4>
+                            <p class="text-sm text-blue-700">
+                                You have the right to competent legal representation and to be informed about all significant developments in your case. You are responsible for providing complete and accurate information, responding promptly to requests for information, and keeping us informed of any changes in your circumstances.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex items-start space-x-3">
+                        <input type="checkbox" id="legal-notices-read" class="mt-1 h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                        <label for="legal-notices-read" class="text-sm text-gray-700">
+                            I have read and understand the legal notices above. I acknowledge that I have been informed of my rights and responsibilities in this matter.
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-3" class="form-section hidden">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Acknowledgment of Receipt</h3>
+                        <p class="text-law-gray">Choose your preferred method to provide signatures and acknowledge receipt of this information.</p>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div id="signature-1" class="space-y-6">
+                            <h4 class="font-medium text-gray-900">Primary Client Signature</h4>
+                            
+                            <div class="mb-4">
+                                <h5 class="text-sm font-medium text-gray-700 mb-3">Signature Method</h5>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-law-blue transition-colors duration-200">
+                                        <input type="radio" name="signature-method-1" value="draw" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300" checked>
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-gray-900">Draw Signature</div>
+                                            <div class="text-xs text-law-gray">Use signature pad to draw</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-law-blue transition-colors duration-200">
+                                        <input type="radio" name="signature-method-1" value="upload" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-gray-900">Upload Image</div>
+                                            <div class="text-xs text-law-gray">Upload signature image</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="draw-section-1" class="signature-method-section">
+                                <div class="text-center mb-4">
+                                    <button type="button" onclick="openSignaturePad(1)" class="flex items-center px-6 py-3 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200 mx-auto">
+                                        <i class="fa-solid fa-pen mr-2"></i>
+                                        Draw Signature
+                                    </button>
+                                </div>
+                                <div id="signature-preview-1" class="hidden mb-4">
+                                    <div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                                        <canvas id="signature-display-1" class="w-full h-20 bg-white rounded"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="upload-section-1" class="signature-method-section hidden">
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-law-blue transition-colors duration-200 mb-4">
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-image text-3xl text-gray-400 mb-2"></i>
+                                        <div class="text-sm text-gray-600 mb-2">
+                                            <label for="signature-upload-1" class="cursor-pointer text-law-blue hover:text-blue-800">
+                                                Click to upload signature image
+                                            </label>
+                                            or drag and drop
+                                        </div>
+                                        <p class="text-xs text-gray-500">PNG, JPG, GIF files only (Max 5MB)</p>
+                                        <input type="file" id="signature-upload-1" accept="image/*" class="hidden" onchange="handleSignatureUpload(event, 1)">
+                                    </div>
+                                </div>
+                                <div id="uploaded-signature-1" class="hidden">
+                                    <div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                                        <img id="signature-image-1" class="w-full h-20 object-contain bg-white rounded" alt="Uploaded signature">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Date *</label>
+                                    <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Printed Name *</label>
+                                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="signature-2" class="space-y-6">
+                            <div class="flex items-center space-x-2">
+                                <h4 class="font-medium text-gray-900">Second Client Signature</h4>
+                                <span class="text-xs text-law-gray">(If applicable)</span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h5 class="text-sm font-medium text-gray-700 mb-3">Signature Method</h5>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-law-blue transition-colors duration-200">
+                                        <input type="radio" name="signature-method-2" value="draw" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300" checked>
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-gray-900">Draw Signature</div>
+                                            <div class="text-xs text-law-gray">Use signature pad to draw</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-law-blue transition-colors duration-200">
+                                        <input type="radio" name="signature-method-2" value="upload" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-gray-900">Upload Image</div>
+                                            <div class="text-xs text-law-gray">Upload signature image</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div id="draw-section-2" class="signature-method-section">
+                                <div class="text-center mb-4">
+                                    <button type="button" onclick="openSignaturePad(2)" class="flex items-center px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200 mx-auto">
+                                        <i class="fa-solid fa-pen mr-2"></i>
+                                        Draw Signature
+                                    </button>
+                                </div>
+                                <div id="signature-preview-2" class="hidden mb-4">
+                                    <div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                                        <canvas id="signature-display-2" class="w-full h-20 bg-white rounded"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="upload-section-2" class="signature-method-section hidden">
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-law-blue transition-colors duration-200 mb-4">
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-image text-3xl text-gray-400 mb-2"></i>
+                                        <div class="text-sm text-gray-600 mb-2">
+                                            <label for="signature-upload-2" class="cursor-pointer text-law-blue hover:text-blue-800">
+                                                Click to upload signature image
+                                            </label>
+                                            or drag and drop
+                                        </div>
+                                        <p class="text-xs text-gray-500">PNG, JPG, GIF files only (Max 5MB)</p>
+                                        <input type="file" id="signature-upload-2" accept="image/*" class="hidden" onchange="handleSignatureUpload(event, 2)">
+                                    </div>
+                                </div>
+                                <div id="uploaded-signature-2" class="hidden">
+                                    <div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                                        <img id="signature-image-2" class="w-full h-20 object-contain bg-white rounded" alt="Uploaded signature">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                                    <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Printed Name</label>
+                                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                        <p class="text-sm text-gray-600">
+                            <i class="fa-solid fa-info-circle text-law-blue mr-2"></i>
+                            By providing your signature above, you acknowledge that you have received and reviewed the legal notices provided in the previous section and agree to proceed with the bankruptcy application process.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-4" class="form-section hidden">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Detailed Questions</h3>
+                        <p class="text-law-gray">Please answer the following questions to help us better understand your situation.</p>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div id="bankruptcy-reason">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">What prompted you to look into bankruptcy? *</label>
+                            <textarea required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent resize-vertical" placeholder="Please explain the circumstances that led you to consider bankruptcy..."></textarea>
+                        </div>
+
+                        <div id="residence-history" class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <label class="text-sm font-medium text-gray-700">Have you lived anywhere OTHER than Colorado for the past 2 years? *</label>
+                                <div class="flex space-x-4">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="lived-elsewhere" value="yes" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                        <span class="ml-1 text-sm text-gray-700">Yes</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="lived-elsewhere" value="no" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                        <span class="ml-1 text-sm text-gray-700">No</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="residence-details" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 ml-4 p-4 bg-gray-50 rounded-lg">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Where did you live?</label>
+                                    <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">When did you live there?</label>
+                                    <input type="text" placeholder="e.g., January 2022 - June 2023" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="creditor-payments" class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <label class="text-sm font-medium text-gray-700">Have you paid any creditors more than $600 in the last 90 days? *</label>
+                                <div class="flex space-x-4">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="paid-creditors" value="yes" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                        <span class="ml-1 text-sm text-gray-700">Yes</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="paid-creditors" value="no" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                        <span class="ml-1 text-sm text-gray-700">No</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="creditor-details" class="hidden ml-4 p-4 bg-gray-50 rounded-lg">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Please provide details about these payments:</label>
+                                <textarea rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent resize-vertical" placeholder="List creditors, amounts, and dates of payments..."></textarea>
+                            </div>
+                        </div>
+
+                        <div id="housing-payments" class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <label class="text-sm font-medium text-gray-700">Are you behind on mortgage or rent payments? *</label>
+                                <div class="flex space-x-4">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="behind-payments" value="yes" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                        <span class="ml-1 text-sm text-gray-700">Yes</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="behind-payments" value="no" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300">
+                                        <span class="ml-1 text-sm text-gray-700">No</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="housing-details" class="hidden ml-4 p-4 bg-gray-50 rounded-lg space-y-4">
+                                <textarea rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent resize-vertical" placeholder="Please provide details about missed payments..."></textarea>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-2">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                                            <span class="ml-2 text-sm text-gray-700">In foreclosure?</span>
+                                        </label>
+                                        <div class="ml-6">
+                                            <label class="block text-xs text-gray-600 mb-1">Court date:</label>
+                                            <input type="date" class="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="space-y-2">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                                            <span class="ml-2 text-sm text-gray-700">Eviction?</span>
+                                        </label>
+                                        <div class="ml-6">
+                                            <label class="block text-xs text-gray-600 mb-1">Court date:</label>
+                                            <input type="date" class="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="assets-ownership" class="space-y-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Do you own any of the following? (Check all that apply)</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                                    <span class="ml-2 text-sm text-gray-700">Real estate property</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                                    <span class="ml-2 text-sm text-gray-700">Vehicle(s)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                                    <span class="ml-2 text-sm text-gray-700">Business interests</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                                    <span class="ml-2 text-sm text-gray-700">Investment accounts</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                                    <span class="ml-2 text-sm text-gray-700">Retirement accounts</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="h-4 w-4 text-law-blue focus:ring-law-blue border-gray-300 rounded">
+                                    <span class="ml-2 text-sm text-gray-700">Valuable collections</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="form-navigation" class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 pt-8 border-t border-gray-200">
+                <button type="button" id="prev-btn" onclick="previousSection()" class="w-full sm:w-auto px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200 hidden">
+                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                    Previous
+                </button>
+                
+                <div class="flex space-x-4">
+                    <button type="button" onclick="saveProgress()" class="px-4 py-2 border border-law-blue text-law-blue rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
+                        <i class="fa-solid fa-save mr-2"></i>
+                        Save Progress
+                    </button>
+                    <button type="button" id="next-btn" onclick="nextSection()" class="px-8 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
+                        Next
+                        <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <div id="signature-pad-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-lg w-full">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900" id="signature-modal-title">Digital Signature</h3>
+                        <button type="button" onclick="closeSignaturePad()" class="text-gray-400 hover:text-gray-600">
+                            <i class="fa-solid fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border border-gray-300 rounded-lg">
+                            <canvas id="signature-canvas" width="400" height="200" class="w-full cursor-crosshair bg-white rounded-lg"></canvas>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <button type="button" onclick="clearSignaturePad()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                <i class="fa-solid fa-eraser mr-2"></i>
+                                Clear
+                            </button>
+                            <div class="space-x-2">
+                                <button type="button" onclick="closeSignaturePad()" class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50">
+                                    Cancel
+                                </button>
+                                <button type="button" onclick="saveSignature()" class="px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800">
+                                    <i class="fa-solid fa-check mr-2"></i>
+                                    Save Signature
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-xs text-gray-500 text-center">
+                            Use your mouse, trackpad, or touch screen to draw your signature above
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+                <div class="p-6 text-center">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                        <i class="fa-solid fa-check text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2" id="success-title">Application Submitted Successfully!</h3>
+                    <p class="text-gray-600 mb-6" id="success-message">We will review your information and contact you within 48 hours.</p>
+                    <button type="button" onclick="redirectToHomepage()" class="w-full px-6 py-3 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                        Return to Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="manual-application-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-semibold text-gray-900">Manual Application Process</h3>
+                        <button type="button" onclick="closeManualApplication()" class="text-gray-400 hover:text-gray-600">
+                            <i class="fa-solid fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h4 class="font-semibold text-blue-900 mb-3">Complete Your Application Manually</h4>
+                            <p class="text-sm text-blue-800 mb-4">
+                                If you prefer to fill out the bankruptcy application by hand, you can download the complete form, 
+                                fill it out manually, and upload it back to us.
+                            </p>
+                            <ol class="list-decimal list-inside space-y-2 text-sm text-blue-800">
+                                <li>Download the complete bankruptcy application form as a PDF</li>
+                                <li>Print the document and fill it out completely by hand</li>
+                                <li>Sign all required signature fields</li>
+                                <li>Scan or photograph all pages clearly</li>
+                                <li>Upload the completed application below</li>
+                            </ol>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="button" onclick="downloadFullApplicationPDF()" class="inline-flex items-center px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 text-lg font-medium mb-6">
+                                <i class="fa-solid fa-download mr-3"></i>
+                                Download Complete Application Form
+                            </button>
+                        </div>
+
+                        <div class="border-t border-gray-200 pt-6">
+                            <h5 class="font-medium text-gray-900 mb-4">Upload Completed Application</h5>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-law-blue transition-colors duration-200">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                                    <div class="text-lg text-gray-600 mb-2">
+                                        <label for="manual-application-upload" class="cursor-pointer text-law-blue hover:text-blue-800 font-medium">
+                                            Click to upload completed application
+                                        </label>
+                                        or drag and drop
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-4">PDF files only (Max 25MB)</p>
+                                    <p class="text-xs text-gray-400">Make sure all pages are clear and readable</p>
+                                    <input type="file" id="manual-application-upload" accept=".pdf" class="hidden" onchange="handleManualApplicationUpload(event)">
+                                </div>
+                            </div>
+                            
+                            <div id="uploaded-application-info" class="hidden mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <i class="fa-solid fa-file-pdf text-green-600 mr-3 text-xl"></i>
+                                        <div>
+                                            <p class="font-medium text-green-800" id="uploaded-application-name"></p>
+                                            <p class="text-sm text-green-600" id="uploaded-application-size"></p>
+                                        </div>
+                                    </div>
+                                    <button type="button" onclick="removeManualApplicationUpload()" class="text-red-600 hover:text-red-800">
+                                        <i class="fa-solid fa-times text-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-exclamation-triangle text-amber-600 mr-3 mt-1"></i>
+                                <div class="text-sm text-amber-800">
+                                    <p class="font-medium mb-1">Important:</p>
+                                    <p>Once you upload your completed manual application, our team will review it and contact you within 48 hours. Please ensure all information is complete and legible.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end space-x-4">
+                            <button type="button" onclick="closeManualApplication()" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+                                Cancel
+                            </button>
+                            <button type="button" onclick="submitManualApplication()" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed" id="submit-manual-btn" disabled>
+                                <i class="fa-solid fa-check mr-2"></i>
+                                Submit Application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center">
+                <p class="text-sm text-law-gray">© 2024 Cohen & Cohen P.C. All rights reserved.</p>
+                <p class="text-xs text-gray-400 mt-2">All information provided is confidential and protected by attorney-client privilege.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentSection = 1;
+        const totalSections = 4;
+        let currentSignatureClient = null;
+        let canvas = null;
+        let ctx = null;
+        let isDrawing = false;
+        let signatures = { 1: null, 2: null };
+
+        function updateProgressIndicator() {
+            document.getElementById('current-step').textContent = currentSection;
+            document.getElementById('progress-bar').style.width = `${(currentSection / totalSections) * 100}%`;
+        }
+
+        function showSection(sectionNumber) {
+            // Hide all sections
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show current section
+            document.getElementById(`section-${sectionNumber}`).classList.remove('hidden');
+            
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            if (sectionNumber === 1) {
+                prevBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+            }
+            
+            if (sectionNumber === totalSections) {
+                nextBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>Submit Application';
+                nextBtn.onclick = submitForm;
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fa-solid fa-arrow-right ml-2"></i>';
+                nextBtn.onclick = nextSection;
+            }
+            
+            updateProgressIndicator();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextSection() {
+            if (validateCurrentSection()) {
+                if (currentSection < totalSections) {
+                    currentSection++;
+                    showSection(currentSection);
+                }
+            }
+        }
+
+        function previousSection() {
+            if (currentSection > 1) {
+                currentSection--;
+                showSection(currentSection);
+            }
+        }
+
+        function validateCurrentSection() {
+            const currentSectionElement = document.getElementById(`section-${currentSection}`);
+            const requiredFields = currentSectionElement.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+
+            if (!isValid) {
+                alert('Please fill in all required fields before proceeding.');
+            }
+
+            return isValid;
+        }
+
+        function saveProgress() {
+            // Simulate saving progress
+            const saveBtn = event.target;
+            const originalText = saveBtn.innerHTML;
+            
+            saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Saving...';
+            saveBtn.disabled = true;
+            
+            setTimeout(() => {
+                saveBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>Saved!';
+                setTimeout(() => {
+                    saveBtn.innerHTML = originalText;
+                    saveBtn.disabled = false;
+                }, 1000);
+            }, 1500);
+        }
+
+        function submitForm() {
+            if (validateCurrentSection()) {
+                showSuccessModal('Application Submitted Successfully!', 'We will review your information and contact you within 48 hours.');
+                // Here you would normally submit the form data
+            }
+        }
+
+        function goBack() {
+            if (confirm('Are you sure you want to go back? Any unsaved changes will be lost.')) {
+                window.history.back();
+            }
+        }
+
+        // Signature Pad Functions
+        function openSignaturePad(clientNumber) {
+            currentSignatureClient = clientNumber;
+            const modal = document.getElementById('signature-pad-modal');
+            const title = document.getElementById('signature-modal-title');
+            
+            title.textContent = clientNumber === 1 ? 'Primary Client Signature' : 'Second Client Signature';
+            modal.classList.remove('hidden');
+            
+            // Initialize canvas
+            canvas = document.getElementById('signature-canvas');
+            ctx = canvas.getContext('2d');
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Add event listeners
+            setupCanvasEvents();
+        }
+
+        function closeSignaturePad() {
+            document.getElementById('signature-pad-modal').classList.add('hidden');
+            currentSignatureClient = null;
+        }
+
+        function clearSignaturePad() {
+            if (ctx && canvas) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function saveSignature() {
+            if (canvas && currentSignatureClient) {
+                // Convert canvas to data URL
+                const signatureData = canvas.toDataURL();
+                signatures[currentSignatureClient] = signatureData;
+                
+                // Update preview canvas
+                const previewCanvas = document.getElementById(`signature-display-${currentSignatureClient}`);
+                const previewDiv = document.getElementById(`signature-preview-${currentSignatureClient}`);
+                
+                if (previewCanvas) {
+                    const previewCtx = previewCanvas.getContext('2d');
+                    const img = new Image();
+                    img.onload = function() {
+                        previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+                        previewCtx.drawImage(img, 0, 0, previewCanvas.width, previewCanvas.height);
+                    };
+                    img.src = signatureData;
+                    previewDiv.classList.remove('hidden');
+                }
+                
+                closeSignaturePad();
+                alert('Signature saved successfully!');
+            }
+        }
+
+        function setupCanvasEvents() {
+            if (!canvas) return;
+            
+            // Mouse events
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            
+            // Touch events
+            canvas.addEventListener('touchstart', handleTouch);
+            canvas.addEventListener('touchmove', handleTouch);
+            canvas.addEventListener('touchend', stopDrawing);
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.stroke();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function handleTouch(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent(e.type === 'touchstart' ? 'mousedown' : 
+                                            e.type === 'touchmove' ? 'mousemove' : 'mouseup', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
+        }
+
+        // Signature Image Upload Functions
+        function handleSignatureUpload(event, clientNumber) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                    alert('File size exceeds 5MB limit. Please choose a smaller file.');
+                    event.target.value = '';
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById(`signature-image-${clientNumber}`);
+                    img.src = e.target.result;
+                    document.getElementById(`uploaded-signature-${clientNumber}`).classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a valid image file.');
+                event.target.value = '';
+            }
+        }
+
+        // Manual Application Functions
+        function openManualApplication() {
+            document.getElementById('manual-application-modal').classList.remove('hidden');
+        }
+
+        function closeManualApplication() {
+            document.getElementById('manual-application-modal').classList.add('hidden');
+        }
+
+        function downloadFullApplicationPDF() {
+            // Simulate PDF download
+            alert('Full application PDF download functionality will be implemented. This would generate a complete PDF form with all the bankruptcy application fields.');
+            // In real implementation, this would generate and download a complete PDF form
+        }
+
+        function handleManualApplicationUpload(event) {
+            const file = event.target.files[0];
+            if (file && file.type === 'application/pdf') {
+                if (file.size > 25 * 1024 * 1024) { // 25MB limit
+                    alert('File size exceeds 25MB limit. Please choose a smaller file.');
+                    event.target.value = '';
+                    return;
+                }
+                
+                document.getElementById('uploaded-application-name').textContent = file.name;
+                document.getElementById('uploaded-application-size').textContent = `${(file.size / (1024 * 1024)).toFixed(2)} MB`;
+                document.getElementById('uploaded-application-info').classList.remove('hidden');
+                document.getElementById('submit-manual-btn').disabled = false;
+            } else {
+                alert('Please select a valid PDF file.');
+                event.target.value = '';
+            }
+        }
+
+        function removeManualApplicationUpload() {
+            document.getElementById('manual-application-upload').value = '';
+            document.getElementById('uploaded-application-info').classList.add('hidden');
+            document.getElementById('submit-manual-btn').disabled = true;
+        }
+
+        function submitManualApplication() {
+            const fileName = document.getElementById('uploaded-application-name').textContent;
+            if (fileName) {
+                closeManualApplication();
+                showSuccessModal('Manual Application Submitted Successfully!', 'Our team will review your application and contact you within 48 hours.');
+                // In real implementation, this would submit the file to the server
+            }
+        }
+
+        // Show/hide conditional fields based on user input
+        document.addEventListener('change', function(e) {
+            if (e.target.name === 'lived-elsewhere') {
+                const details = document.getElementById('residence-details');
+                if (e.target.value === 'yes') {
+                    details.classList.remove('hidden');
+                } else {
+                    details.classList.add('hidden');
+                }
+            }
+            
+            if (e.target.name === 'paid-creditors') {
+                const details = document.getElementById('creditor-details');
+                if (e.target.value === 'yes') {
+                    details.classList.remove('hidden');
+                } else {
+                    details.classList.add('hidden');
+                }
+            }
+            
+            if (e.target.name === 'behind-payments') {
+                const details = document.getElementById('housing-details');
+                if (e.target.value === 'yes') {
+                    details.classList.remove('hidden');
+                } else {
+                    details.classList.add('hidden');
+                }
+            }
+            
+            // Handle signature method changes for both clients
+            if (e.target.name === 'signature-method-1' || e.target.name === 'signature-method-2') {
+                const clientNumber = e.target.name.split('-')[2];
+                const selectedMethod = e.target.value;
+                
+                // Hide all sections for this client
+                document.getElementById(`draw-section-${clientNumber}`).classList.add('hidden');
+                document.getElementById(`upload-section-${clientNumber}`).classList.add('hidden');
+                
+                // Show selected section
+                document.getElementById(`${selectedMethod}-section-${clientNumber}`).classList.remove('hidden');
+                
+                // Update border colors for selected method
+                document.querySelectorAll(`input[name="signature-method-${clientNumber}"]`).forEach(radio => {
+                    const label = radio.closest('label');
+                    if (radio.checked) {
+                        label.classList.add('border-law-blue', 'bg-blue-50');
+                        label.classList.remove('border-gray-200');
+                    } else {
+                        label.classList.remove('border-law-blue', 'bg-blue-50');
+                        label.classList.add('border-gray-200');
+                    }
+                });
+            }
+        });
+
+        // Initialize form
+        showSection(1);
+
+        // Auto-save form data periodically (simulation)
+        setInterval(() => {
+            // In a real application, you would save form data to localStorage or server
+            console.log('Auto-saving form data...');
+        }, 30000); // Auto-save every 30 seconds
+
+        // Success Modal Functions
+        function showSuccessModal(title, message) {
+            document.getElementById('success-title').textContent = title;
+            document.getElementById('success-message').textContent = message;
+            document.getElementById('success-modal').classList.remove('hidden');
+        }
+
+        function redirectToHomepage() {
+            window.location.href = 'leadDashboard1.html';
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('signature-pad-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSignaturePad();
+            }
+        });
+
+        document.getElementById('manual-application-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeManualApplication();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Questionnaire - Section 3 | Cohen & Cohen P.C.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-blue': '#1e3a8a',
+                        'law-gold': '#fbbf24',
+                        'law-gray': '#6b7280',
+                        'law-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-law-light min-h-screen">
+    <div id="app" class="flex h-screen">
+        <aside id="sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300">
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-xl font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                <p class="text-sm text-law-gray mt-1">Client Portal</p>
+            </div>
+            
+            <nav class="mt-6">
+                <div class="px-6 mb-4">
+                    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Navigation</h2>
+                </div>
+                <ul class="space-y-1 px-3">
+                    <li>
+                        <a href="clientDashboard.html" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-home mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-folder mr-3"></i>
+                            My Documents
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-blue bg-blue-50 rounded-lg">
+                            <i class="fa-solid fa-clipboard-list mr-3"></i>
+                            Financial Questionnaire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-cog mr-3"></i>
+                            Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-question-circle mr-3"></i>
+                            Help Centre
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="px-3 mt-8">
+                    <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200">
+                        <i class="fa-solid fa-sign-out-alt mr-3"></i>
+                        Sign Out
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 overflow-auto">
+            <header id="header" class="bg-white border-b border-gray-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Financial Questionnaire</h1>
+                        <p class="text-law-gray">Section 3 - Debts (Schedule D, E, F)</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-sm text-law-gray">
+                            Progress: Section 3 of 7
+                        </div>
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-6">
+                <div class="max-w-5xl mx-auto">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                        <div class="mb-8">
+                            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                                <p class="text-sm text-red-800">
+                                    <i class="fa-solid fa-exclamation-triangle mr-2"></i>
+                                    List all debts and obligations. Include secured debts (mortgages, car loans), unsecured debts (credit cards), and any other financial obligations.
+                                </p>
+                            </div>
+                        </div>
+
+                        <form id="section3Form">
+                            <!-- Part A: Debts Secured by Property -->
+                            <div id="partASection" class="mb-12">
+                                <div class="bg-blue-100 border-l-4 border-blue-500 p-6 mb-6">
+                                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                        <i class="fa-solid fa-shield-alt mr-2 text-blue-600"></i>
+                                        Part A. Debts Secured by Property
+                                    </h2>
+                                    <p class="text-gray-700 text-sm">Please list below all debts that you owe OR that creditors claim you owe that are secured by property.</p>
+                                </div>
+                                
+                                <!-- Home Loans/Mortgages Section -->
+                                <div id="homeLoansSection" class="mb-8">
+                                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-home mr-2 text-blue-600"></i>
+                                            Home Loans and/or Mortgages
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noHomeLoanDebts" name="noHomeLoanDebts" class="mr-2 text-blue-600 focus:ring-blue-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any home loan or mortgage debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="homeLoansContainer" class="space-y-6">
+                                            <div class="home-loan-entry bg-white border border-blue-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="homeLoanAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="homeLoanCreditor[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Full name and address"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="homeLoanAccount[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="homeLoanDate[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="MM/YYYY - MM/YYYY">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="homeLoanContact[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Property Information Column -->
+                                                    <div class="lg:col-span-1 bg-green-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Property Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Describe property</label>
+                                                                <textarea name="homeLoanProperty[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="Property address and description"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Monthly payment amount</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="homeLoanMonthly[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Number of payments remaining</label>
+                                                                <input type="number" name="homeLoanPaymentsLeft[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who owes the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="homeLoanResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="homeLoanResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="homeLoanResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="homeLoanResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'homeLoanOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="homeLoanOtherResponsible0" name="homeLoanOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="homeLoanCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'homeLoanCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="homeLoanCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'homeLoanCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="homeLoanCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="homeLoanCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="homeLoanDispute[0]" value="no" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="homeLoanDispute[0]" value="yes" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Home Loan Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addHomeLoan" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>
+                                            Add Another Home Loan/Mortgage
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Car Loans Section -->
+                                <div id="carLoansSection" class="mb-8">
+                                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-car mr-2 text-purple-600"></i>
+                                            Car Loans
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noCarLoanDebts" name="noCarLoanDebts" class="mr-2 text-purple-600 focus:ring-purple-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any car loan debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="carLoansContainer" class="space-y-6">
+                                            <div class="car-loan-entry bg-white border border-purple-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="carLoanAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="carLoanCreditor[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500" placeholder="Full name and address"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="carLoanAccount[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="carLoanDate[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500" placeholder="MM/YYYY - MM/YYYY">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="carLoanContact[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Property Information Column -->
+                                                    <div class="lg:col-span-1 bg-green-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Property Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Describe property</label>
+                                                                <textarea name="carLoanProperty[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="Year, Make, Model, VIN"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Monthly payment amount</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="carLoanMonthly[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Number of payments remaining</label>
+                                                                <input type="number" name="carLoanPaymentsLeft[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who owes the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="carLoanResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="carLoanResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="carLoanResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="carLoanResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherFieldCar(this, 'carLoanOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="carLoanOtherResponsible0" name="carLoanOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="carLoanCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfoCar(this, 'carLoanCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="carLoanCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfoCar(this, 'carLoanCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="carLoanCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="carLoanCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="carLoanDispute[0]" value="no" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="carLoanDispute[0]" value="yes" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeCarLoanEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Car Loan Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addCarLoan" class="mt-4 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>
+                                            Add Another Car Loan
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Other Secured Property Loans Section -->
+                                <div id="otherSecuredSection" class="mb-8">
+                                    <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-building mr-2 text-indigo-600"></i>
+                                            Other Property Loans That Are Secured
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noOtherSecuredDebts" name="noOtherSecuredDebts" class="mr-2 text-indigo-600 focus:ring-indigo-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any other secured property loan debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="otherSecuredContainer" class="space-y-6">
+                                            <div class="other-secured-entry bg-white border border-indigo-300 rounded-lg p-6">
+                                                <!-- Loan Type Field -->
+                                                <div class="mb-4 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                                                    <label class="block text-xs font-medium text-gray-700 mb-1">Type of Loan/Property</label>
+                                                    <input type="text" name="otherSecuredType[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="e.g., Equipment loan, Jewelry loan, Boat loan, etc.">
+                                                </div>
+                                                
+                                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="otherSecuredAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="otherSecuredCreditor[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Full name and address"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="otherSecuredAccount[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="otherSecuredDate[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="MM/YYYY - MM/YYYY">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="otherSecuredContact[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Property Information Column -->
+                                                    <div class="lg:col-span-1 bg-green-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Property Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Describe property</label>
+                                                                <textarea name="otherSecuredProperty[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="Equipment, jewelry, boat, etc."></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Monthly payment amount</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="otherSecuredMonthly[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Number of payments remaining</label>
+                                                                <input type="number" name="otherSecuredPaymentsLeft[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who owes the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherSecuredOwner[0]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherSecuredOwner[0]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherSecuredOwner[0]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-start space-x-2">
+                                                                        <input type="radio" name="otherSecuredOwner[0]" value="other" class="mr-2 mt-1 text-orange-600 focus:ring-orange-500" onchange="toggleOtherOwnerOtherSecured(this, 'otherOwnerOtherSecured0')">
+                                                                        <div class="flex-1">
+                                                                            <span class="text-sm">Other:</span>
+                                                                            <div id="otherOwnerOtherSecured0" class="mt-2" style="display: none;">
+                                                                                <input type="text" name="otherSecuredOwnerOther[]" class="w-full px-2 py-1 text-xs border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500" placeholder="Specify other">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherSecuredCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherSecuredCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfoOtherSecured(this, 'otherSecuredCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="otherSecuredCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="otherSecuredCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherSecuredDispute[0]" value="no" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherSecuredDispute[0]" value="yes" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeOtherSecuredEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Other Secured Loan Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addOtherSecured" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Other Secured Loan
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part B: Credit Card Debts -->
+                            <div id="partBSection" class="mb-12">
+                                <div class="bg-red-100 border-l-4 border-red-500 p-6 mb-6">
+                                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                        <i class="fa-solid fa-credit-card mr-2 text-red-600"></i>
+                                        Part B. Credit Card Debts
+                                    </h2>
+                                    <p class="text-gray-700 text-sm">Please list below all credit card debts that you owe OR that creditors claim you owe.</p>
+                                </div>
+
+                                <!-- Major Credit Cards Section -->
+                                <div id="majorCreditCardsSection" class="mb-8">
+                                    <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-credit-card mr-2 text-red-600"></i>
+                                            Major Credit Card Debts (Visa, American Express, Master Card, Discover)
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noMajorCreditCards" name="noMajorCreditCards" class="mr-2 text-red-600 focus:ring-red-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any major credit card debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="majorCreditCardsContainer" class="space-y-6">
+                                            <div class="major-credit-entry bg-white border border-red-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="majorCreditAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="majorCreditCreditor[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Full name and address"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="majorCreditAccount[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="majorCreditDate[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="MM/YYYY - MM/YYYY">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="majorCreditContact[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who incurred the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="majorCreditResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="majorCreditResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="majorCreditResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="majorCreditResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'majorCreditOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="majorCreditOtherResponsible0" name="majorCreditOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="majorCreditCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'majorCreditCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="majorCreditCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'majorCreditCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="majorCreditCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="majorCreditCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="majorCreditDispute[0]" value="no" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="majorCreditDispute[0]" value="yes" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Major Credit Card Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addMajorCredit" class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Major Credit Card
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Department Store Credit Cards Section -->
+                                <div id="departmentStoreSection" class="mb-8">
+                                    <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-store mr-2 text-red-600"></i>
+                                            Department Store Credit Card Debts
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noDepartmentStore" name="noDepartmentStore" class="mr-2 text-red-600 focus:ring-red-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any department store credit card debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="departmentStoreContainer" class="space-y-6">
+                                            <div class="department-store-entry bg-white border border-red-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="departmentStoreAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="departmentStoreCreditor[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Full name and address"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="departmentStoreAccount[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="departmentStoreDate[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="MM/YYYY - MM/YYYY">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="departmentStoreContact[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who incurred the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="departmentStoreResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="departmentStoreResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="departmentStoreResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="departmentStoreResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'departmentStoreOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="departmentStoreOtherResponsible0" name="departmentStoreOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="departmentStoreCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'departmentStoreCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="departmentStoreCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'departmentStoreCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="departmentStoreCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="departmentStoreCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="departmentStoreDispute[0]" value="no" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="departmentStoreDispute[0]" value="yes" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Department Store Credit Card Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addDepartmentStore" class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Department Store Credit Card
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Other Credit Cards Section -->
+                                <div id="otherCreditCardsSection" class="mb-8">
+                                    <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-gas-pump mr-2 text-red-600"></i>
+                                            Other Credit Card Debts (gas cards, phone cards, etc.)
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noOtherCreditCards" name="noOtherCreditCards" class="mr-2 text-red-600 focus:ring-red-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any other credit card debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="otherCreditCardsContainer" class="space-y-6">
+                                            <div class="other-credit-entry bg-white border border-red-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="otherCreditAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="otherCreditCreditor[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Full name and address"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="otherCreditAccount[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="otherCreditDate[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="MM/YYYY - MM/YYYY">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="otherCreditContact[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who incurred the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="otherCreditResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="otherCreditResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="otherCreditResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="otherCreditResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'otherCreditOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="otherCreditOtherResponsible0" name="otherCreditOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherCreditCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'otherCreditCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherCreditCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'otherCreditCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="otherCreditCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="otherCreditCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherCreditDispute[0]" value="no" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherCreditDispute[0]" value="yes" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Other Credit Card Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addOtherCreditCard" class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Other Credit Card
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Cash Advances Section -->
+                                <div id="cashAdvancesSection" class="mb-8">
+                                    <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-money-bill-wave mr-2 text-red-600"></i>
+                                            Cash Advances
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noCashAdvances" name="noCashAdvances" class="mr-2 text-red-600 focus:ring-red-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any cash advances</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="cashAdvancesContainer" class="space-y-6">
+                                            <div class="cash-advance-entry bg-white border border-red-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="cashAdvanceAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="cashAdvanceCreditor[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Full name and address"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="cashAdvanceAccount[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="cashAdvanceDate[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="MM/YYYY - MM/YYYY">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="cashAdvanceContact[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-red-500 focus:border-red-500"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who incurred the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="cashAdvanceResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="cashAdvanceResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="cashAdvanceResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="cashAdvanceResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'cashAdvanceOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="cashAdvanceOtherResponsible0" name="cashAdvanceOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="cashAdvanceCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'cashAdvanceCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="cashAdvanceCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'cashAdvanceCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="cashAdvanceCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="cashAdvanceCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="cashAdvanceDispute[0]" value="no" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="cashAdvanceDispute[0]" value="yes" class="mr-2 text-red-600 focus:ring-red-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Cash Advance Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addCashAdvance" class="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Cash Advance
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part C: Medical Debts -->
+                            <div id="partCSection" class="mb-12">
+                                <div class="bg-blue-100 border-l-4 border-blue-500 p-6 mb-6">
+                                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                        <i class="fa-solid fa-user-doctor mr-2 text-blue-600"></i>
+                                        Part C. Medical Debts
+                                    </h2>
+                                    <p class="text-gray-700 text-sm">Please list below all unpaid medical bill debts that you owe OR that creditors claim you owe.</p>
+                                </div>
+
+                                <!-- Medical Debts Section -->
+                                <div id="medicalDebtsSection" class="mb-8">
+                                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-stethoscope mr-2 text-blue-600"></i>
+                                            Unpaid Medical Bills
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noMedicalDebts" name="noMedicalDebts" class="mr-2 text-blue-600 focus:ring-blue-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any unpaid medical bill debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="medicalDebtsContainer" class="space-y-6">
+                                            <div class="medical-debt-entry bg-white border border-blue-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="medicalAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="medicalCreditorName[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., General Hospital, 123 Health St, City, State"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="medicalAccountNumber[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Account number">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="medicalDateIncurred[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., January 2023 - March 2023">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="medicalContactPerson[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Contact person details"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">6. Any additional information about the debt</label>
+                                                                <textarea name="medicalAdditionalInfo[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Additional information"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who incurred the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="medicalResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="medicalResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="medicalResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="medicalResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'medicalOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="medicalOtherResponsible0" name="medicalOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="medicalCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'medicalCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="medicalCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'medicalCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="medicalCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="medicalCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="medicalDispute[0]" value="no" class="mr-2 text-blue-600 focus:ring-blue-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="medicalDispute[0]" value="yes" class="mr-2 text-blue-600 focus:ring-blue-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Medical Debt Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addMedicalDebt" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Medical Debt
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part D: Tax Debts -->
+                            <div id="partDSection" class="mb-12">
+                                <div class="bg-green-100 border-l-4 border-green-500 p-6 mb-6">
+                                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                        <i class="fa-solid fa-file-invoice-dollar mr-2 text-green-600"></i>
+                                        Part D. Tax Debts
+                                    </h2>
+                                    <p class="text-gray-700 text-sm">Please list below all unpaid tax debts that you owe OR that creditors claim you owe.</p>
+                                </div>
+
+                                <!-- Tax Debts Section -->
+                                <div id="taxDebtsSection" class="mb-8">
+                                    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-calculator mr-2 text-green-600"></i>
+                                            Unpaid Taxes
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noTaxDebts" name="noTaxDebts" class="mr-2 text-green-600 focus:ring-green-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any unpaid tax debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="taxDebtsContainer" class="space-y-6">
+                                            <div class="tax-debt-entry bg-white border border-green-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="taxAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="taxCreditorName[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g., IRS, State Tax Authority, etc."></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="taxAccountNumber[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="Tax ID or account number">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="taxDateIncurred[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="e.g., Tax Year 2022, 2021-2022">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="taxContactPerson[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="Contact person details"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">6. Any additional information about the debt</label>
+                                                                <textarea name="taxAdditionalInfo[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500" placeholder="Additional information"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who incurred the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="taxResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="taxResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="taxResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="taxResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'taxOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="taxOtherResponsible0" name="taxOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="taxCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'taxCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="taxCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'taxCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="taxCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="taxCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="taxDispute[0]" value="no" class="mr-2 text-green-600 focus:ring-green-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="taxDispute[0]" value="yes" class="mr-2 text-green-600 focus:ring-green-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Tax Debt Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addTaxDebt" class="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Tax Debt
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part E: Student Loan Debts -->
+                            <div id="partESection" class="mb-12">
+                                <div class="bg-purple-100 border-l-4 border-purple-500 p-6 mb-6">
+                                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                        <i class="fa-solid fa-graduation-cap mr-2 text-purple-600"></i>
+                                        Part E. Student Loan Debts
+                                    </h2>
+                                    <p class="text-gray-700 text-sm">Please list below all Student Loan debts that you owe OR that creditors claim you owe.</p>
+                                </div>
+
+                                <!-- Student Loan Debts Section -->
+                                <div id="studentLoanDebtsSection" class="mb-8">
+                                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-school mr-2 text-purple-600"></i>
+                                            Student Loans
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noStudentLoanDebts" name="noStudentLoanDebts" class="mr-2 text-purple-600 focus:ring-purple-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any student loan debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="studentLoanDebtsContainer" class="space-y-6">
+                                            <div class="student-loan-debt-entry bg-white border border-purple-300 rounded-lg p-6">
+                                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="studentLoanAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="studentLoanCreditorName[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., Sallie Mae, Federal Student Aid, etc."></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="studentLoanAccountNumber[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500" placeholder="Loan account number">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="studentLoanDateIncurred[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., 2018-2022, Fall 2020">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="studentLoanContactPerson[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500" placeholder="Contact person details"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">6. Any additional information about the debt</label>
+                                                                <textarea name="studentLoanAdditionalInfo[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:border-purple-500" placeholder="Additional information"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who incurred the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="studentLoanResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="studentLoanResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="studentLoanResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="studentLoanResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'studentLoanOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="studentLoanOtherResponsible0" name="studentLoanOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="studentLoanCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'studentLoanCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="studentLoanCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'studentLoanCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="studentLoanCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="studentLoanCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="studentLoanDispute[0]" value="no" class="mr-2 text-purple-600 focus:ring-purple-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="studentLoanDispute[0]" value="yes" class="mr-2 text-purple-600 focus:ring-purple-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Student Loan Debt Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addStudentLoanDebt" class="mt-4 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Student Loan Debt
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part F: Other Debts -->
+                            <div id="partFSection" class="mb-12">
+                                <div class="bg-amber-100 border-l-4 border-amber-500 p-6 mb-6">
+                                    <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                                        <i class="fa-solid fa-list mr-2 text-amber-600"></i>
+                                        Part F. Other Debts
+                                    </h2>
+                                    <p class="text-gray-700 text-sm">Please list below all debts not listed above that you owe OR that creditors claim you owe.</p>
+                                </div>
+
+                                <!-- Other Debts Section -->
+                                <div id="otherDebtsSection" class="mb-8">
+                                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                            <i class="fa-solid fa-clipboard-list mr-2 text-amber-600"></i>
+                                            Other Debts (e.g. unpaid rent, alimony or child support, service fees, other bank loans, or personal loans.)
+                                        </h3>
+                                        
+                                        <div class="mb-4">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" id="noOtherDebts" name="noOtherDebts" class="mr-2 text-amber-600 focus:ring-amber-500">
+                                                <span class="text-sm font-medium text-gray-700">I do not have any other debts</span>
+                                            </label>
+                                        </div>
+
+                                        <div id="otherDebtsContainer" class="space-y-6">
+                                            <div class="other-debt-entry bg-white border border-amber-300 rounded-lg p-6">
+                                                <!-- Debt Type Description - Full Width -->
+                                                <div class="mb-6 bg-amber-50 p-4 rounded-lg border border-amber-200">
+                                                    <label class="block text-sm font-medium text-gray-800 mb-2">
+                                                        <i class="fa-solid fa-tag mr-2 text-amber-600"></i>
+                                                        Please Describe the Type of Debt
+                                                    </label>
+                                                    <p class="text-xs text-gray-600 mb-3">(e.g. unpaid rent, alimony or child support, service fees, other bank loans, or personal loans)</p>
+                                                    <input type="text" name="otherDebtType[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500" placeholder="Describe the type of debt...">
+                                                </div>
+                                                
+                                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                    <!-- Creditor Information Column -->
+                                                    <div class="lg:col-span-1 bg-gray-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Creditor Information</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">1. Amount Owed (amount of claim)</label>
+                                                                <div class="relative">
+                                                                    <span class="absolute left-3 top-2 text-gray-500 text-sm">$</span>
+                                                                    <input type="number" name="otherDebtAmount[]" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">2. Creditor Name and Address</label>
+                                                                <textarea name="otherDebtCreditorName[]" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500" placeholder="Full creditor name and address"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">3. Account Number, if any</label>
+                                                                <input type="text" name="otherDebtAccountNumber[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500" placeholder="Account number">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">4. Date/range of dates when debt was incurred</label>
+                                                                <input type="text" name="otherDebtDateIncurred[]" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500" placeholder="Date or date range">
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">5. Contact person's name and address if different</label>
+                                                                <textarea name="otherDebtContactPerson[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500" placeholder="Contact person details"></textarea>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-1">6. Any additional information about the debt</label>
+                                                                <textarea name="otherDebtAdditionalInfo[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500" placeholder="Additional information"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- Person(s) Responsible/Codebtor Column -->
+                                                    <div class="lg:col-span-1 bg-orange-50 p-4 rounded-lg">
+                                                        <h4 class="font-semibold text-gray-800 mb-3 text-sm">Person(s) Responsible/Codebtor</h4>
+                                                        
+                                                        <div class="space-y-4">
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Who incurred the debt?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="otherDebtResponsible[0][]" value="self" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Self
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="otherDebtResponsible[0][]" value="spouse" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Spouse
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="otherDebtResponsible[0][]" value="joint" class="mr-2 text-orange-600 focus:ring-orange-500">
+                                                                        Joint
+                                                                    </label>
+                                                                    <div class="flex items-center text-sm">
+                                                                        <input type="checkbox" name="otherDebtResponsible[0][]" value="other" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleOtherField(this, 'otherDebtOtherResponsible0')">
+                                                                        <span class="mr-2">Other:</span>
+                                                                        <input type="text" id="otherDebtOtherResponsible0" name="otherDebtOtherResponsible[]" class="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-orange-500" style="display: none;">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div>
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Is there a codebtor or cosigner on this loan?</label>
+                                                                <div class="space-y-2">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherDebtCodebtor[0]" value="no" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'otherDebtCodebtorInfo0')">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherDebtCodebtor[0]" value="yes" class="mr-2 text-orange-600 focus:ring-orange-500" onchange="toggleCodebtorInfo(this, 'otherDebtCodebtorInfo0')">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                <div id="otherDebtCodebtorInfo0" class="mt-3" style="display: none;">
+                                                                    <label class="block text-xs font-medium text-gray-700 mb-1">If yes, please provide name and address:</label>
+                                                                    <textarea name="otherDebtCodebtorDetails[]" rows="2" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="border-t pt-3 mt-4">
+                                                                <label class="block text-xs font-medium text-gray-700 mb-2">Do you dispute the debt?</label>
+                                                                <div class="flex space-x-4">
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherDebtDispute[0]" value="no" class="mr-2 text-amber-600 focus:ring-amber-500">
+                                                                        No
+                                                                    </label>
+                                                                    <label class="flex items-center text-sm">
+                                                                        <input type="radio" name="otherDebtDispute[0]" value="yes" class="mr-2 text-amber-600 focus:ring-amber-500">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="mt-4 pt-4 border-t border-gray-200">
+                                                    <button type="button" class="text-red-600 hover:text-red-800 text-sm font-medium" onclick="removeDebtEntry(this)">
+                                                        <i class="fa-solid fa-trash mr-2"></i>
+                                                        Remove Other Debt Entry
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" id="addOtherDebt" class="mt-4 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 text-sm">
+                                            <i class="fa-solid fa-plus mr-2"></i>Add Other Debt
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Navigation Buttons -->
+                            <div class="flex justify-between pt-6 border-t border-gray-200">
+                                <button type="button" onclick="window.location.href='clientFinancialQuestionnaireSection2.html'" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                                    Back to Section 2
+                                </button>
+                                
+                                <div class="flex space-x-3">
+                                    <button type="button" id="saveProgress" class="px-6 py-2 border border-law-blue text-law-blue rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                                        <i class="fa-solid fa-save mr-2"></i>
+                                        Save Progress
+                                    </button>
+                                    <button type="submit" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                        Continue to Section 4
+                                        <i class="fa-solid fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Helper functions for conditional field expansion
+            function toggleOtherField(checkbox, targetId) {
+                const targetField = document.getElementById(targetId);
+                if (checkbox.checked) {
+                    targetField.style.display = 'block';
+                    targetField.focus();
+                } else {
+                    targetField.style.display = 'none';
+                    targetField.value = '';
+                }
+            }
+
+            function toggleCodebtorInfo(radio, targetId) {
+                const targetDiv = document.getElementById(targetId);
+                if (radio.value === 'yes' && radio.checked) {
+                    targetDiv.style.display = 'block';
+                } else if (radio.value === 'no' && radio.checked) {
+                    targetDiv.style.display = 'none';
+                    const textarea = targetDiv.querySelector('textarea');
+                    if (textarea) textarea.value = '';
+                }
+            }
+
+            function removeDebtEntry(button) {
+                const entry = button.closest('.home-loan-entry, .car-loan-entry, .other-secured-entry, .major-credit-entry, .department-store-entry, .other-credit-entry, .cash-advance-entry, .medical-debt-entry, .tax-debt-entry, .student-loan-debt-entry, .other-debt-entry');
+                const container = entry.closest('[id*="Container"]');
+                if (container.children.length > 1) {
+                    // Add visual feedback before removing
+                    entry.style.transform = 'scale(0.95)';
+                    entry.style.opacity = '0.5';
+                    entry.style.transition = 'all 0.3s ease';
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        entry.remove();
+                        // Show notification
+                        showDeleteNotification('Entry removed successfully');
+                    }, 300);
+                } else {
+                    alert('At least one entry must remain. Use the checkbox above to indicate no debts.');
+                }
+            }
+
+            function showDeleteNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+                notification.innerHTML = `<i class="fa-solid fa-trash mr-2"></i>${message}`;
+                document.body.appendChild(notification);
+                
+                // Auto remove after 3 seconds
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+
+            // Car loan specific functions
+            function toggleOtherFieldCar(checkbox, targetId) {
+                toggleOtherField(checkbox, targetId);
+            }
+
+            function toggleCodebtorInfoCar(radio, targetId) {
+                toggleCodebtorInfo(radio, targetId);
+            }
+
+            function removeCarLoanEntry(button) {
+                const entry = button.closest('.car-loan-entry');
+                const container = entry.closest('#carLoansContainer');
+                if (container.children.length > 1) {
+                    entry.remove();
+                } else {
+                    alert('At least one entry must remain. Use the checkbox above to indicate no debts.');
+                }
+            }
+
+            // Other secured loan specific functions
+            function toggleOtherOwnerOtherSecured(radio, targetId) {
+                const targetDiv = document.getElementById(targetId);
+                if (radio.value === 'other' && radio.checked) {
+                    targetDiv.style.display = 'block';
+                    const input = targetDiv.querySelector('input');
+                    if (input) input.focus();
+                } else {
+                    targetDiv.style.display = 'none';
+                    const input = targetDiv.querySelector('input');
+                    if (input) input.value = '';
+                }
+            }
+
+            function toggleCodebtorInfoOtherSecured(radio, targetId) {
+                const targetDiv = document.getElementById(targetId);
+                if (radio.value === 'yes' && radio.checked) {
+                    targetDiv.style.display = 'block';
+                } else if (radio.value === 'no' && radio.checked) {
+                    targetDiv.style.display = 'none';
+                    const textarea = targetDiv.querySelector('textarea');
+                    if (textarea) textarea.value = '';
+                }
+            }
+
+            function removeOtherSecuredEntry(button) {
+                const entry = button.closest('.other-secured-entry');
+                const container = entry.closest('#otherSecuredContainer');
+                if (container.children.length > 1) {
+                    entry.remove();
+                } else {
+                    alert('At least one entry must remain. Use the checkbox above to indicate no debts.');
+                }
+            }
+
+            // Department Store Credit Card specific functions
+            function toggleOtherFieldDepartmentStore(checkbox, targetId) {
+                toggleOtherField(checkbox, targetId);
+            }
+
+            function toggleCodebtorInfoDepartmentStore(radio, targetId) {
+                toggleCodebtorInfo(radio, targetId);
+            }
+
+            // Other Credit Card specific functions
+            function toggleOtherFieldOtherCredit(checkbox, targetId) {
+                toggleOtherField(checkbox, targetId);
+            }
+
+            function toggleCodebtorInfoOtherCredit(radio, targetId) {
+                toggleCodebtorInfo(radio, targetId);
+            }
+
+            // Cash Advance specific functions
+            function toggleOtherFieldCashAdvance(checkbox, targetId) {
+                toggleOtherField(checkbox, targetId);
+            }
+
+            function toggleCodebtorInfoCashAdvance(radio, targetId) {
+                toggleCodebtorInfo(radio, targetId);
+            }
+
+            // Major Credit Card specific functions
+            function toggleOtherFieldMajorCredit(checkbox, targetId) {
+                toggleOtherField(checkbox, targetId);
+            }
+
+            function toggleCodebtorInfoMajorCredit(radio, targetId) {
+                toggleCodebtorInfo(radio, targetId);
+            }
+
+            // Add home loan functionality
+            document.getElementById('addHomeLoan').addEventListener('click', function() {
+                const container = document.getElementById('homeLoansContainer');
+                const entryCount = container.children.length;
+                
+                const newEntry = container.children[0].cloneNode(true);
+                
+                // Update field names and IDs for uniqueness
+                const inputs = newEntry.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    if (input.name) {
+                        input.name = input.name.replace(/\[\d+\]/, `[${entryCount}]`);
+                    }
+                    if (input.id) {
+                        input.id = input.id.replace(/\d+$/, entryCount);
+                    }
+                    if (input.type !== 'radio' && input.type !== 'checkbox') {
+                        input.value = '';
+                    } else {
+                        input.checked = false;
+                    }
+                });
+                
+                container.appendChild(newEntry);
+            });
+
+            // Add car loan functionality
+            document.getElementById('addCarLoan').addEventListener('click', function() {
+                const container = document.getElementById('carLoansContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => {
+                    if (input.type !== 'radio' && input.type !== 'checkbox') {
+                        input.value = '';
+                    } else {
+                        input.checked = false;
+                    }
+                });
+                container.appendChild(newEntry);
+            });
+
+            // Add other secured loan functionality
+            document.getElementById('addOtherSecured').addEventListener('click', function() {
+                const container = document.getElementById('otherSecuredContainer');
+                const entryCount = container.children.length;
+                
+                const newEntry = container.children[0].cloneNode(true);
+                
+                // Update field names and IDs for uniqueness
+                const inputs = newEntry.querySelectorAll('input, textarea, select');
+                inputs.forEach(input => {
+                    if (input.name) {
+                        input.name = input.name.replace(/\[\d+\]/, `[${entryCount}]`);
+                    }
+                    if (input.id) {
+                        input.id = input.id.replace(/\d+$/, entryCount);
+                    }
+                    // Update onclick handlers with new indices
+                    if (input.hasAttribute('onchange')) {
+                        let onchangeValue = input.getAttribute('onchange');
+                        onchangeValue = onchangeValue.replace(/\d+/g, entryCount);
+                        input.setAttribute('onchange', onchangeValue);
+                    }
+                    if (input.type !== 'radio' && input.type !== 'checkbox') {
+                        input.value = '';
+                    } else {
+                        input.checked = false;
+                    }
+                });
+                
+                // Update all conditional field target IDs
+                const conditionalDivs = newEntry.querySelectorAll('[id*="otherOwnerOtherSecured"], [id*="otherSecuredCodebtorInfo"]');
+                conditionalDivs.forEach(div => {
+                    if (div.id) {
+                        div.id = div.id.replace(/\d+$/, entryCount);
+                        div.style.display = 'none';
+                    }
+                });
+                
+                container.appendChild(newEntry);
+            });
+
+            document.getElementById('addMajorCredit').addEventListener('click', function() {
+                const container = document.getElementById('majorCreditCardsContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => input.value = '');
+                container.appendChild(newEntry);
+            });
+
+            document.getElementById('addDepartmentStore').addEventListener('click', function() {
+                const container = document.getElementById('departmentStoreContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => input.value = '');
+                container.appendChild(newEntry);
+            });
+
+            document.getElementById('addOtherCreditCard').addEventListener('click', function() {
+                const container = document.getElementById('otherCreditCardsContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => input.value = '');
+                container.appendChild(newEntry);
+            });
+
+            document.getElementById('addCashAdvance').addEventListener('click', function() {
+                const container = document.getElementById('cashAdvancesContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => input.value = '');
+                container.appendChild(newEntry);
+            });
+
+            // Add medical debt functionality
+            document.getElementById('addMedicalDebt').addEventListener('click', function() {
+                const container = document.getElementById('medicalDebtsContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => {
+                    if (input.type !== 'radio' && input.type !== 'checkbox') {
+                        input.value = '';
+                    } else {
+                        input.checked = false;
+                    }
+                });
+                container.appendChild(newEntry);
+            });
+
+            // Add tax debt functionality
+            document.getElementById('addTaxDebt').addEventListener('click', function() {
+                const container = document.getElementById('taxDebtsContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => {
+                    if (input.type !== 'radio' && input.type !== 'checkbox') {
+                        input.value = '';
+                    } else {
+                        input.checked = false;
+                    }
+                });
+                container.appendChild(newEntry);
+            });
+
+            // Add student loan debt functionality
+            document.getElementById('addStudentLoanDebt').addEventListener('click', function() {
+                const container = document.getElementById('studentLoanDebtsContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => {
+                    if (input.type !== 'radio' && input.type !== 'checkbox') {
+                        input.value = '';
+                    } else {
+                        input.checked = false;
+                    }
+                });
+                container.appendChild(newEntry);
+            });
+
+            // Add other debt functionality
+            document.getElementById('addOtherDebt').addEventListener('click', function() {
+                const container = document.getElementById('otherDebtsContainer');
+                const newEntry = container.children[0].cloneNode(true);
+                newEntry.querySelectorAll('input, textarea').forEach(input => {
+                    if (input.type !== 'radio' && input.type !== 'checkbox') {
+                        input.value = '';
+                    } else {
+                        input.checked = false;
+                    }
+                });
+                container.appendChild(newEntry);
+            });
+
+
+            // Handle no debts checkboxes
+            const noDebtCheckboxes = [
+                { checkbox: 'noHomeLoanDebts', container: 'homeLoansContainer', button: 'addHomeLoan' },
+                { checkbox: 'noCarLoanDebts', container: 'carLoansContainer', button: 'addCarLoan' },
+                { checkbox: 'noOtherSecuredDebts', container: 'otherSecuredContainer', button: 'addOtherSecured' },
+                { checkbox: 'noMajorCreditCards', container: 'majorCreditCardsContainer', button: 'addMajorCredit' },
+                { checkbox: 'noDepartmentStore', container: 'departmentStoreContainer', button: 'addDepartmentStore' },
+                { checkbox: 'noOtherCreditCards', container: 'otherCreditCardsContainer', button: 'addOtherCreditCard' },
+                { checkbox: 'noCashAdvances', container: 'cashAdvancesContainer', button: 'addCashAdvance' },
+                { checkbox: 'noMedicalDebts', container: 'medicalDebtsContainer', button: 'addMedicalDebt' },
+                { checkbox: 'noTaxDebts', container: 'taxDebtsContainer', button: 'addTaxDebt' },
+                { checkbox: 'noStudentLoanDebts', container: 'studentLoanDebtsContainer', button: 'addStudentLoanDebt' },
+                { checkbox: 'noOtherDebts', container: 'otherDebtsContainer', button: 'addOtherDebt' }
+            ];
+
+            noDebtCheckboxes.forEach(({ checkbox, container, button }) => {
+                document.getElementById(checkbox).addEventListener('change', function() {
+                    const containerEl = document.getElementById(container);
+                    const buttonEl = document.getElementById(button);
+                    
+                    if (this.checked) {
+                        containerEl.style.display = 'none';
+                        buttonEl.style.display = 'none';
+                    } else {
+                        containerEl.style.display = 'block';
+                        buttonEl.style.display = 'inline-flex';
+                    }
+                });
+            });
+
+            // Make functions global for onclick handlers
+            window.toggleOtherField = toggleOtherField;
+            window.toggleCodebtorInfo = toggleCodebtorInfo;
+            window.removeDebtEntry = removeDebtEntry;
+            window.toggleOtherFieldCar = toggleOtherFieldCar;
+            window.toggleCodebtorInfoCar = toggleCodebtorInfoCar;
+            window.removeCarLoanEntry = removeCarLoanEntry;
+            window.toggleOtherOwnerOtherSecured = toggleOtherOwnerOtherSecured;
+            window.toggleCodebtorInfoOtherSecured = toggleCodebtorInfoOtherSecured;
+            window.removeOtherSecuredEntry = removeOtherSecuredEntry;
+            window.toggleOtherFieldDepartmentStore = toggleOtherFieldDepartmentStore;
+            window.toggleCodebtorInfoDepartmentStore = toggleCodebtorInfoDepartmentStore;
+            window.toggleOtherFieldOtherCredit = toggleOtherFieldOtherCredit;
+            window.toggleCodebtorInfoOtherCredit = toggleCodebtorInfoOtherCredit;
+            window.toggleOtherFieldCashAdvance = toggleOtherFieldCashAdvance;
+            window.toggleCodebtorInfoCashAdvance = toggleCodebtorInfoCashAdvance;
+            window.toggleOtherFieldMajorCredit = toggleOtherFieldMajorCredit;
+            window.toggleCodebtorInfoMajorCredit = toggleCodebtorInfoMajorCredit;
+
+            // Form submission
+            document.getElementById('section3Form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveFormData();
+                showSaveNotification('Section 3 completed successfully! Proceeding to Section 4...');
+                setTimeout(() => {
+                    window.location.href = 'clientFinancialQuestionnaireSection4.html';
+                }, 1500);
+            });
+            
+            // Save progress functionality
+            document.getElementById('saveProgress').addEventListener('click', function() {
+                saveFormData();
+                showSaveNotification('Progress saved successfully!');
+            });
+            
+            function saveFormData() {
+                const formData = new FormData(document.getElementById('section3Form'));
+                const data = Object.fromEntries(formData);
+                localStorage.setItem('section3Data', JSON.stringify(data));
+                console.log('Section 3 data saved:', data);
+            }
+            
+            function showSaveNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-opacity duration-300';
+                notification.innerHTML = `<i class="fa-solid fa-check mr-2"></i>${message}`;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            // Auto-save functionality
+            let saveTimeout;
+            
+            function autoSave() {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    saveFormData();
+                    console.log('Auto-saved form data...');
+                }, 2000);
+            }
+
+            // Add auto-save for all inputs
+            document.addEventListener('input', function(e) {
+                if (e.target.matches('input, select, textarea')) {
+                    autoSave();
+                }
+            });
+
+            document.addEventListener('change', function(e) {
+                if (e.target.matches('input[type="radio"], input[type="checkbox"]')) {
+                    autoSave();
+                }
+            });
+
+            // Load saved data on page load
+            const savedData = localStorage.getItem('section3Data');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                Object.keys(data).forEach(key => {
+                    const field = document.querySelector(`[name="${key}"]`);
+                    if (field) {
+                        if (field.type === 'radio') {
+                            const radio = document.querySelector(`[name="${key}"][value="${data[key]}"]`);
+                            if (radio) radio.checked = true;
+                        } else if (field.type === 'checkbox') {
+                            field.checked = data[key] === 'on';
+                        } else {
+                            field.value = data[key];
+                        }
+                    }
+                });
+                // Trigger change events for checkboxes and radios
+                document.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked').forEach(input => {
+                    input.dispatchEvent(new Event('change'));
+                });
+            }
+        });
+    </script>
+</body>
+</html>

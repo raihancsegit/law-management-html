@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Questionnaire - Section 5 | Cohen & Cohen P.C.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-blue': '#1e3a8a',
+                        'law-gold': '#fbbf24',
+                        'law-gray': '#6b7280',
+                        'law-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-law-light min-h-screen">
+    <div id="app" class="flex h-screen">
+        <aside id="sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300">
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-xl font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                <p class="text-sm text-law-gray mt-1">Client Portal</p>
+            </div>
+            
+            <nav class="mt-6">
+                <div class="px-6 mb-4">
+                    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Navigation</h2>
+                </div>
+                <ul class="space-y-1 px-3">
+                    <li>
+                        <a href="clientDashboard.html" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-home mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-folder mr-3"></i>
+                            My Documents
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-blue bg-blue-50 rounded-lg">
+                            <i class="fa-solid fa-clipboard-list mr-3"></i>
+                            Financial Questionnaire
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-cog mr-3"></i>
+                            Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+                            <i class="fa-solid fa-question-circle mr-3"></i>
+                            Help Centre
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="px-3 mt-8">
+                    <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200">
+                        <i class="fa-solid fa-sign-out-alt mr-3"></i>
+                        Sign Out
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <main class="flex-1 overflow-auto">
+            <header id="header" class="bg-white border-b border-gray-200 px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Financial Questionnaire</h1>
+                        <p class="text-law-gray">Section 5 - Current Income (Schedule I)</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="text-sm text-law-gray">
+                            Progress: Section 5 of 7
+                        </div>
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-6">
+                <div class="max-w-5xl mx-auto">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                        <div class="mb-8">
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <p class="text-sm text-blue-800">
+                                    <i class="fa-solid fa-info-circle mr-2"></i>
+                                    Complete this section with your current employment and income information. Please be as accurate as possible with all amounts.
+                                </p>
+                            </div>
+                        </div>
+
+                        <form id="section5Form">
+                            <!-- Employment Status Check -->
+                            <div class="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                                <h3 class="text-lg font-medium text-gray-800 mb-4">Employment Status</h3>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" id="currentlyEmployed" name="currentlyEmployed" class="mr-2">
+                                        <span class="text-sm font-medium text-gray-700">I am currently employed</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" id="spouseEmployed" name="spouseEmployed" class="mr-2">
+                                        <span class="text-sm font-medium text-gray-700">My spouse is currently employed</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Part A: Debtor's Employer Information -->
+                            <div id="partA" class="mb-12" style="display: none;">
+                                <div class="p-6 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-briefcase mr-2 text-law-blue"></i>
+                                        Part A. Your Employer Information
+                                    </h2>
+                                    
+                                    <div class="space-y-6">
+                                        <!-- Primary Employer -->
+                                        <div class="p-6 bg-white rounded-lg border border-blue-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-building mr-2 text-law-blue"></i>
+                                                Primary Employer
+                                            </h3>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Name and Address of your employer</label>
+                                                    <textarea name="primaryEmployerAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Company name and full address"></textarea>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How long have you been employed at this job?</label>
+                                                    <input type="text" name="primaryEmploymentDuration" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., 2 years, 6 months">
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Occupation (job title or description)</label>
+                                                    <input type="text" name="primaryOccupation" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., Software Engineer, Manager">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Second Employer -->
+                                        <div class="p-6 bg-white rounded-lg border border-blue-300">
+                                            <div class="flex items-center justify-between mb-4">
+                                                <h3 class="text-lg font-medium text-gray-800 flex items-center">
+                                                    <i class="fa-solid fa-building-user mr-2 text-law-blue"></i>
+                                                    Second Employer
+                                                </h3>
+                                                <label class="flex items-center text-sm">
+                                                    <input type="checkbox" id="hasSecondJob" name="hasSecondJob" class="mr-2">
+                                                    <span class="text-gray-600">I have a second job</span>
+                                                </label>
+                                            </div>
+                                            <div id="secondEmployerSection" style="display: none;">
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    <div class="md:col-span-2">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">Name and Address of your second employer</label>
+                                                        <textarea name="secondEmployerAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Company name and full address"></textarea>
+                                                    </div>
+                                                    
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">How long have you been employed at this second job?</label>
+                                                        <input type="text" name="secondEmploymentDuration" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., 1 year">
+                                                    </div>
+                                                    
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">Occupation (job title or description)</label>
+                                                        <input type="text" name="secondOccupation" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Job title or description">
+                                                    </div>
+                                                    
+                                                    <div class="md:col-span-2">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">Notes</label>
+                                                        <textarea name="secondEmploymentNotes" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="2" placeholder="Any additional notes about employment"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part B: Spouse's Employer Information -->
+                            <div id="partB" class="mb-12" style="display: none;">
+                                <div class="p-6 bg-green-50 rounded-lg border border-green-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-heart mr-2 text-law-blue"></i>
+                                        Part B. Spouse's Employer Information
+                                    </h2>
+                                    
+                                    <div class="space-y-6">
+                                        <!-- Spouse Primary Employer -->
+                                        <div class="p-6 bg-white rounded-lg border border-green-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-building mr-2 text-law-blue"></i>
+                                                Spouse's Primary Employer
+                                            </h3>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div class="md:col-span-2">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Name and Address of your spouse's employer</label>
+                                                    <textarea name="spousePrimaryEmployerAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Company name and full address"></textarea>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How long has spouse been employed at this job?</label>
+                                                    <input type="text" name="spousePrimaryEmploymentDuration" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., 3 years, 8 months">
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Occupation (job title or description)</label>
+                                                    <input type="text" name="spousePrimaryOccupation" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., Teacher, Accountant">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Spouse Second Employer -->
+                                        <div class="p-6 bg-white rounded-lg border border-green-300">
+                                            <div class="flex items-center justify-between mb-4">
+                                                <h3 class="text-lg font-medium text-gray-800 flex items-center">
+                                                    <i class="fa-solid fa-building-user mr-2 text-law-blue"></i>
+                                                    Spouse's Second Employer
+                                                </h3>
+                                                <label class="flex items-center text-sm">
+                                                    <input type="checkbox" id="spouseHasSecondJob" name="spouseHasSecondJob" class="mr-2">
+                                                    <span class="text-gray-600">Spouse has a second job</span>
+                                                </label>
+                                            </div>
+                                            <div id="spouseSecondEmployerSection" style="display: none;">
+                                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                    <div class="md:col-span-2">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">Name and Address of your spouse's second employer</label>
+                                                        <textarea name="spouseSecondEmployerAddress" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Company name and full address"></textarea>
+                                                    </div>
+                                                    
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">How long has spouse been employed at this second job?</label>
+                                                        <input type="text" name="spouseSecondEmploymentDuration" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., 6 months">
+                                                    </div>
+                                                    
+                                                    <div>
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">Occupation (job title or description)</label>
+                                                        <input type="text" name="spouseSecondOccupation" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="Job title or description">
+                                                    </div>
+                                                    
+                                                    <div class="md:col-span-2">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">Notes</label>
+                                                        <textarea name="spouseSecondEmploymentNotes" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="2" placeholder="Any additional notes about spouse's employment"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part C: Your Wage Information -->
+                            <div id="partC" class="mb-12" style="display: none;">
+                                <div class="p-6 bg-yellow-50 rounded-lg border border-yellow-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-dollar-sign mr-2 text-law-blue"></i>
+                                        Part C. Your Wage Information
+                                    </h2>
+                                    
+                                    <div class="space-y-8">
+                                        <!-- Paycheck Information -->
+                                        <div class="p-6 bg-white rounded-lg border border-yellow-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-money-check mr-2 text-law-blue"></i>
+                                                Paycheck Information
+                                            </h3>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">What is the gross amount of your paycheck, before taxes/other deductions are taken out?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="grossPaycheck" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How often do you get paid?</label>
+                                                    <div class="space-y-2">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="payFrequency" value="weekly" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Once a week
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="payFrequency" value="biweekly" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Every two weeks
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="payFrequency" value="semimonthly" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Twice a month
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="payFrequency" value="monthly" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Once a month
+                                                        </label>
+                                                        <div class="flex items-center">
+                                                            <input type="radio" name="payFrequency" value="other" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            <span class="mr-2">Other:</span>
+                                                            <input type="text" name="payFrequencyOther" class="flex-1 px-2 py-1 border border-gray-300 rounded text-sm">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">What is your estimated overtime pay per month?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="overtimePay" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Deductions -->
+                                        <div class="p-6 bg-white rounded-lg border border-yellow-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-calculator mr-2 text-law-blue"></i>
+                                                Paycheck Deductions
+                                            </h3>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out of each paycheck for taxes, Medicare, and social security? (combined total)</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="taxDeductions" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out of each paycheck for Mandatory Contributions to Retirement?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="mandatoryRetirement" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out of each paycheck for Voluntary Contributions to Retirement?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="voluntaryRetirement" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out of each paycheck for Required Repayments of Retirement fund Loans?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="retirementLoans" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is automatically deducted for insurance?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="insuranceDeductions" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out for Domestic Support Obligations?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="domesticSupport" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is deducted for union dues?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="unionDues" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Other Deductions -->
+                                            <div class="mt-6">
+                                                <h4 class="text-md font-medium text-gray-700 mb-4">Other Deductions</h4>
+                                                <div id="otherDeductionsContainer" class="space-y-4">
+                                                    <div class="other-deduction grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                        <div>
+                                                            <label class="block text-sm font-medium text-gray-700 mb-2">Other Deduction (describe)</label>
+                                                            <input type="text" name="otherDeductionDesc[]" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., Parking, Transportation">
+                                                        </div>
+                                                        <div>
+                                                            <label class="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                                                            <div class="relative">
+                                                                <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                                <input type="number" step="0.01" name="otherDeductionAmount[]" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" id="addDeductionBtn" class="mt-4 px-4 py-2 border border-yellow-600 text-yellow-600 rounded-lg hover:bg-yellow-50 transition-colors duration-200">
+                                                    <i class="fa-solid fa-plus mr-2"></i>
+                                                    Add Another Deduction
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Additional Income Sources for Debtor -->
+                                        <div class="p-6 bg-white rounded-lg border border-yellow-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-coins mr-2 text-law-blue"></i>
+                                                Additional Income Sources
+                                            </h3>
+                                            
+                                            <div class="space-y-6">
+                                                <!-- Business Operations Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you receive income from business operations outside of your regular paycheck listed above?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="businessIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="businessIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="businessIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much do you receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="businessIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Interest/Dividends Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you receive income from interest or dividends outside of your regular paycheck listed above?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="interestIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="interestIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="interestIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much do you receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="interestIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Alimony/Support Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you receive income from alimony or family support payments for your use or for the care of your dependents?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="alimonyIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="alimonyIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="alimonyIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much do you receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="alimonyIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Unemployment Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you receive income from Unemployment?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="unemploymentIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="unemploymentIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="unemploymentIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much do you receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="unemploymentIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Social Security Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you receive income from Social Security?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="socialSecurityIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="socialSecurityIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="socialSecurityIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much do you receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="socialSecurityIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Government Assistance -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you receive monetary government assistance?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="governmentAssistance" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="governmentAssistance" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="governmentAssistanceDetails" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, please describe:</label>
+                                                        <input type="text" name="governmentAssistanceDesc" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue mb-4" placeholder="e.g., Food stamps, Housing assistance">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">How much do you receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="governmentAssistanceAmount" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Retirement/Pension Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you receive retirement or pension money?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="retirementIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="retirementIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="retirementIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much do you receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="retirementIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Other Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Do you have any other source of income not listed?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="otherIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="otherIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="otherIncomeDetails" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, please describe:</label>
+                                                        <input type="text" name="otherIncomeDesc" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue mb-4" placeholder="e.g., Rental income, Side business">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">How much do you receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="otherIncomeAmount" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Salary Changes -->
+                                        <div class="p-6 bg-white rounded-lg border border-yellow-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-chart-line mr-2 text-law-blue"></i>
+                                                Expected Income Changes
+                                            </h3>
+                                            <div class="space-y-4">
+                                                <label class="block text-sm font-medium text-gray-700 mb-2">Are you expecting any increase or decrease in salary next year?</label>
+                                                <div class="flex space-x-4 mb-4">
+                                                    <label class="flex items-center">
+                                                        <input type="radio" name="salaryChange" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                        No
+                                                    </label>
+                                                    <label class="flex items-center">
+                                                        <input type="radio" name="salaryChange" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div id="salaryChangeDetails" style="display: none;">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">If yes, please describe:</label>
+                                                    <textarea name="salaryChangeDescription" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Describe the expected change in salary"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Part D: Spouse's Wage Information -->
+                            <div id="partD" class="mb-12" style="display: none;">
+                                <div class="p-6 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h2 class="text-xl font-semibold text-gray-900 mb-6">
+                                        <i class="fa-solid fa-heart mr-2 text-law-blue"></i>
+                                        Part D. Spouse's Wage Information
+                                    </h2>
+                                    
+                                    <div class="space-y-8">
+                                        <!-- Spouse Paycheck Information -->
+                                        <div class="p-6 bg-white rounded-lg border border-purple-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-money-check mr-2 text-law-blue"></i>
+                                                Spouse's Paycheck Information
+                                            </h3>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">What is the gross amount of your spouse's paycheck, before taxes/other deductions are taken out?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseGrossPaycheck" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How often does your spouse get paid?</label>
+                                                    <div class="space-y-2">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spousePayFrequency" value="weekly" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Once a week
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spousePayFrequency" value="biweekly" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Every two weeks
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spousePayFrequency" value="semimonthly" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Twice a month
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spousePayFrequency" value="monthly" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Once a month
+                                                        </label>
+                                                        <div class="flex items-center">
+                                                            <input type="radio" name="spousePayFrequency" value="other" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            <span class="mr-2">Other:</span>
+                                                            <input type="text" name="spousePayFrequencyOther" class="flex-1 px-2 py-1 border border-gray-300 rounded text-sm">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">What is your spouse's estimated overtime pay per month?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseOvertimePay" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Spouse Deductions -->
+                                        <div class="p-6 bg-white rounded-lg border border-purple-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-calculator mr-2 text-law-blue"></i>
+                                                Spouse's Paycheck Deductions
+                                            </h3>
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out of each paycheck for taxes, Medicare, and social security? (combined total)</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseTaxDeductions" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out of each paycheck for Mandatory Contributions to Retirement?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseMandatoryRetirement" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out of each paycheck for Voluntary Contributions to Retirement?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseVoluntaryRetirement" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out of each paycheck for Required Repayments of Retirement fund Loans?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseRetirementLoans" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is automatically deducted for insurance?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseInsuranceDeductions" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is taken out for alimony or family support for the care of your dependents?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseFamilySupport" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div>
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">How much is deducted for union dues?</label>
+                                                    <div class="relative">
+                                                        <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                        <input type="number" step="0.01" name="spouseUnionDues" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Spouse Other Deductions -->
+                                            <div class="mt-6">
+                                                <h4 class="text-md font-medium text-gray-700 mb-4">Other Deductions</h4>
+                                                <div id="spouseOtherDeductionsContainer" class="space-y-4">
+                                                    <div class="other-deduction grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                        <div>
+                                                            <label class="block text-sm font-medium text-gray-700 mb-2">Other Deduction (describe)</label>
+                                                            <input type="text" name="spouseOtherDeductionDesc[]" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., Parking, Transportation">
+                                                        </div>
+                                                        <div>
+                                                            <label class="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                                                            <div class="relative">
+                                                                <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                                <input type="number" step="0.01" name="spouseOtherDeductionAmount[]" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" id="addSpouseDeductionBtn" class="mt-4 px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 transition-colors duration-200">
+                                                    <i class="fa-solid fa-plus mr-2"></i>
+                                                    Add Another Deduction
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Spouse Additional Income Sources -->
+                                        <div class="p-6 bg-white rounded-lg border border-purple-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-coins mr-2 text-law-blue"></i>
+                                                Spouse's Additional Income Sources
+                                            </h3>
+                                            
+                                            <div class="space-y-6">
+                                                <!-- Spouse Business Operations Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Does your spouse receive income from business operations outside of their regular paycheck listed above?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseBusinessIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseBusinessIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="spouseBusinessIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much does your spouse receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="spouseBusinessIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Spouse Interest/Dividends Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Does your spouse receive income from interest or dividends outside of their regular paycheck listed above?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseInterestIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseInterestIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="spouseInterestIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much does your spouse receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="spouseInterestIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Continue with all other income sources for spouse... -->
+                                                <!-- Spouse Alimony/Support Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Does your spouse receive income from alimony or family support payments for their use or for the care of your dependents?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseAlimonyIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseAlimonyIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="spouseAlimonyIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much does your spouse receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="spouseAlimonyIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Spouse Unemployment Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Does your spouse receive income from Unemployment?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseUnemploymentIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseUnemploymentIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="spouseUnemploymentIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much does your spouse receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="spouseUnemploymentIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Spouse Social Security Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Does your spouse receive income from Social Security?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseSocialSecurityIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseSocialSecurityIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="spouseSocialSecurityIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much does your spouse receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="spouseSocialSecurityIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Spouse Government Assistance -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Does your spouse receive monetary government assistance?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseGovernmentAssistance" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseGovernmentAssistance" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="spouseGovernmentAssistanceDetails" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, please describe:</label>
+                                                        <input type="text" name="spouseGovernmentAssistanceDesc" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue mb-4" placeholder="e.g., Food stamps, Housing assistance">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">How much does your spouse receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="spouseGovernmentAssistanceAmount" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Spouse Retirement/Pension Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Does your spouse receive retirement or pension money?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseRetirementIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseRetirementIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="spouseRetirementIncomeAmount" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, how much does your spouse receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="spouseRetirementIncomeAmountValue" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Spouse Other Income -->
+                                                <div class="income-source p-4 bg-gray-50 rounded-lg border">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">Does your spouse have any other source of income not listed?</label>
+                                                    <div class="flex space-x-4 mb-4">
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseOtherIncome" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            No
+                                                        </label>
+                                                        <label class="flex items-center">
+                                                            <input type="radio" name="spouseOtherIncome" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div id="spouseOtherIncomeDetails" style="display: none;">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">If yes, please describe:</label>
+                                                        <input type="text" name="spouseOtherIncomeDesc" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue mb-4" placeholder="e.g., Rental income, Side business">
+                                                        <label class="block text-sm font-medium text-gray-700 mb-2">How much does your spouse receive per month?</label>
+                                                        <div class="relative">
+                                                            <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                                            <input type="number" step="0.01" name="spouseOtherIncomeAmount" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Spouse Salary Changes -->
+                                        <div class="p-6 bg-white rounded-lg border border-purple-300">
+                                            <h3 class="text-lg font-medium text-gray-800 mb-4 flex items-center">
+                                                <i class="fa-solid fa-chart-line mr-2 text-law-blue"></i>
+                                                Expected Income Changes
+                                            </h3>
+                                            <div class="space-y-4">
+                                                <label class="block text-sm font-medium text-gray-700 mb-2">Is your spouse expecting any increase or decrease in salary next year?</label>
+                                                <div class="flex space-x-4 mb-4">
+                                                    <label class="flex items-center">
+                                                        <input type="radio" name="spouseSalaryChange" value="no" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                        No
+                                                    </label>
+                                                    <label class="flex items-center">
+                                                        <input type="radio" name="spouseSalaryChange" value="yes" class="mr-2 text-law-blue focus:ring-law-blue">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div id="spouseSalaryChangeDetails" style="display: none;">
+                                                    <label class="block text-sm font-medium text-gray-700 mb-2">If yes, please describe:</label>
+                                                    <textarea name="spouseSalaryChangeDescription" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" rows="3" placeholder="Describe the expected change in spouse's salary"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="flex justify-between pt-6 border-t border-gray-200">
+                                <button type="button" onclick="window.location.href='clientFinancialQuestionnaireSection4.html'" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                    <i class="fa-solid fa-arrow-left mr-2"></i>
+                                    Back to Section 4
+                                </button>
+                                
+                                <div class="flex space-x-3">
+                                    <button type="button" id="saveProgress" class="px-6 py-2 border border-law-blue text-law-blue rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                                        <i class="fa-solid fa-save mr-2"></i>
+                                        Save Progress
+                                    </button>
+                                    <button type="submit" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
+                                        Continue to Section 6
+                                        <i class="fa-solid fa-arrow-right ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Employment status checkboxes
+            const currentlyEmployed = document.getElementById('currentlyEmployed');
+            const spouseEmployed = document.getElementById('spouseEmployed');
+            const partA = document.getElementById('partA');
+            const partB = document.getElementById('partB');
+            const partC = document.getElementById('partC');
+
+            currentlyEmployed.addEventListener('change', function() {
+                if (this.checked) {
+                    partA.style.display = 'block';
+                    partC.style.display = 'block';
+                } else {
+                    partA.style.display = 'none';
+                    partC.style.display = 'none';
+                }
+            });
+
+            spouseEmployed.addEventListener('change', function() {
+                const partD = document.getElementById('partD');
+                if (this.checked) {
+                    partB.style.display = 'block';
+                    partD.style.display = 'block';
+                } else {
+                    partB.style.display = 'none';
+                    partD.style.display = 'none';
+                }
+            });
+
+            // Second job checkboxes
+            document.getElementById('hasSecondJob').addEventListener('change', function() {
+                const section = document.getElementById('secondEmployerSection');
+                section.style.display = this.checked ? 'block' : 'none';
+            });
+
+            document.getElementById('spouseHasSecondJob').addEventListener('change', function() {
+                const section = document.getElementById('spouseSecondEmployerSection');
+                section.style.display = this.checked ? 'block' : 'none';
+            });
+
+            // Add spouse deduction functionality
+            document.getElementById('addSpouseDeductionBtn').addEventListener('click', function() {
+                const container = document.getElementById('spouseOtherDeductionsContainer');
+                const newDeduction = createSpouseDeductionEntry();
+                container.appendChild(newDeduction);
+            });
+
+            function createSpouseDeductionEntry() {
+                const div = document.createElement('div');
+                div.className = 'other-deduction grid grid-cols-1 md:grid-cols-2 gap-4';
+                div.innerHTML = `
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Other Deduction (describe)</label>
+                        <input type="text" name="spouseOtherDeductionDesc[]" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., Parking, Transportation">
+                    </div>
+                    <div class="flex items-end gap-2">
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                <input type="number" step="0.01" name="spouseOtherDeductionAmount[]" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                            </div>
+                        </div>
+                        <button type="button" class="px-3 py-2 text-red-600 hover:text-red-800" onclick="this.closest('.other-deduction').remove()">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                return div;
+            }
+
+            // Function to setup conditional income sections
+            function setupIncomeSection(radioName, targetId) {
+                const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+                const targetSection = document.getElementById(targetId);
+                
+                radios.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        if (this.value === 'yes') {
+                            targetSection.style.display = 'block';
+                        } else {
+                            targetSection.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Setup all conditional income sections for debtor
+            setupIncomeSection('businessIncome', 'businessIncomeAmount');
+            setupIncomeSection('interestIncome', 'interestIncomeAmount');
+            setupIncomeSection('alimonyIncome', 'alimonyIncomeAmount');
+            setupIncomeSection('unemploymentIncome', 'unemploymentIncomeAmount');
+            setupIncomeSection('socialSecurityIncome', 'socialSecurityIncomeAmount');
+            setupIncomeSection('governmentAssistance', 'governmentAssistanceDetails');
+            setupIncomeSection('retirementIncome', 'retirementIncomeAmount');
+            setupIncomeSection('otherIncome', 'otherIncomeDetails');
+            setupIncomeSection('salaryChange', 'salaryChangeDetails');
+            
+            // Setup all conditional income sections for spouse
+            setupIncomeSection('spouseBusinessIncome', 'spouseBusinessIncomeAmount');
+            setupIncomeSection('spouseInterestIncome', 'spouseInterestIncomeAmount');
+            setupIncomeSection('spouseAlimonyIncome', 'spouseAlimonyIncomeAmount');
+            setupIncomeSection('spouseUnemploymentIncome', 'spouseUnemploymentIncomeAmount');
+            setupIncomeSection('spouseSocialSecurityIncome', 'spouseSocialSecurityIncomeAmount');
+            setupIncomeSection('spouseGovernmentAssistance', 'spouseGovernmentAssistanceDetails');
+            setupIncomeSection('spouseRetirementIncome', 'spouseRetirementIncomeAmount');
+            setupIncomeSection('spouseOtherIncome', 'spouseOtherIncomeDetails');
+            setupIncomeSection('spouseSalaryChange', 'spouseSalaryChangeDetails');
+
+            // Add other deduction functionality
+            document.getElementById('addDeductionBtn').addEventListener('click', function() {
+                const container = document.getElementById('otherDeductionsContainer');
+                const newDeduction = createDeductionEntry();
+                container.appendChild(newDeduction);
+            });
+
+            function createDeductionEntry() {
+                const div = document.createElement('div');
+                div.className = 'other-deduction grid grid-cols-1 md:grid-cols-2 gap-4';
+                div.innerHTML = `
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Other Deduction (describe)</label>
+                        <input type="text" name="otherDeductionDesc[]" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue" placeholder="e.g., Parking, Transportation">
+                    </div>
+                    <div class="flex items-end gap-2">
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">$</span>
+                                <input type="number" step="0.01" name="otherDeductionAmount[]" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-law-blue">
+                            </div>
+                        </div>
+                        <button type="button" class="px-3 py-2 text-red-600 hover:text-red-800" onclick="this.closest('.other-deduction').remove()">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                return div;
+            }
+
+            // Form submission
+            document.getElementById('section5Form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveFormData();
+                showSaveNotification('Section 5 completed successfully! Proceeding to Section 6...');
+                setTimeout(() => {
+                    window.location.href = 'clientFinancialQuestionnaireSection6.html';
+                }, 1500);
+            });
+            
+            // Save progress functionality
+            document.getElementById('saveProgress').addEventListener('click', function() {
+                saveFormData();
+                showSaveNotification('Progress saved successfully!');
+            });
+            
+            function saveFormData() {
+                const formData = new FormData(document.getElementById('section5Form'));
+                const data = Object.fromEntries(formData);
+                localStorage.setItem('section5Data', JSON.stringify(data));
+                console.log('Section 5 data saved:', data);
+            }
+            
+            function showSaveNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-opacity duration-300';
+                notification.innerHTML = `<i class="fa-solid fa-check mr-2"></i>${message}`;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            // Auto-save functionality
+            let saveTimeout;
+            
+            function autoSave() {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    saveFormData();
+                    console.log('Auto-saved form data...');
+                }, 2000);
+            }
+
+            // Add auto-save for all inputs
+            document.addEventListener('input', function(e) {
+                if (e.target.matches('input, select, textarea')) {
+                    autoSave();
+                }
+            });
+
+            document.addEventListener('change', function(e) {
+                if (e.target.matches('input[type="radio"], input[type="checkbox"]')) {
+                    autoSave();
+                }
+            });
+
+            // Load saved data on page load
+            const savedData = localStorage.getItem('section5Data');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                Object.keys(data).forEach(key => {
+                    const field = document.querySelector(`[name="${key}"]`);
+                    if (field) {
+                        if (field.type === 'radio') {
+                            const radio = document.querySelector(`[name="${key}"][value="${data[key]}"]`);
+                            if (radio) radio.checked = true;
+                        } else if (field.type === 'checkbox') {
+                            field.checked = data[key] === 'on';
+                        } else {
+                            field.value = data[key];
+                        }
+                    }
+                });
+                // Trigger change events for checkboxes
+                document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                    checkbox.dispatchEvent(new Event('change'));
+                });
+            }
+        });
+    </script>
+</body>
+</html>

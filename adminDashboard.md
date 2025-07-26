@@ -1,0 +1,12 @@
+- A left side panel, exactly the same design as implemented in clientDashboard.html, just with different items.
+- One tab to show all the high level details of all the customers and leads and proper filter and pagination. Their names, images, emails, phones, status (case), whether they agreed for the newsletter, an option to view their full profile. When their full profile is viewed:
+    - change the left navigation bar to match this exact user so that the admin can interest with this person only.
+    - A tab for profile details. This will show basic informatin about this specific user. With additional options like deleting this user adding custom notes and tags, updating user status from Lead to Client, updating case status, choosing case type, etc.
+    - A tab to show all the documents uploaded by this user. Maybe the exact same design as in the clientDashboard.html so that if the attorneys upload any documents, it would be synced with the client side.
+    - A tab to show the form fill up information the lead provided in bankruptcyApplicationForm.html
+    - A tab showing the form fill up information the client provided in clientFinancialQuestionnaire step.
+    - An option to go back to view details about other clients/leads
+- One tab for user management. only the basic details of users, but must include user name, and an option to deactivate the profile or delete it entirely. the user role should also be displayed. Attorneys should be able to change the user status from lead to customer here. 
+- Predefined folder tab. this is where the attorneys/admin can create the folders that are shown in the document upload screen for the clients. The admin can create folders, delete or even organize their order by drag and drop from this tab. the title, details, icon, required/optional, edit any folder or delete it, all can be managed from here. 
+- A tab to manage the forms. we have two forms, one for the leads (bankruptcyApplicationForm.html), another for the clients (clientFinancialQuestionnaire...html). but we need a way to edit them. the attorneys are not developers, so a visual editor is needed for them. we need to think here to find out proper solution.
+- A tab for editing details for the admin profile. 

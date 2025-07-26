@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cohen & Cohen P.C. - Client Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-blue': '#1e3a8a',
+                        'law-gold': '#fbbf24',
+                        'law-gray': '#6b7280',
+                        'law-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-law-light min-h-screen">
+    <header id="header" class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                        <span class="text-sm font-medium text-gray-700">John Smith</span>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-dashboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-2">Welcome to Your Dashboard</h2>
+            <p class="text-law-gray">Manage your bankruptcy case with Cohen & Cohen P.C.</p>
+        </div>
+
+        <section id="initial-state-section" class="mb-12">
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Initial Application State</h3>
+                <p class="text-sm text-law-gray">Dashboard view when client first visits</p>
+            </div>
+            <div class="space-y-6">
+                <div id="bankruptcy-application-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                    <div class="text-center max-w-2xl mx-auto">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-law-blue/10 mb-6">
+                            <i class="fa-solid fa-file-contract text-2xl text-law-blue"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Start Your Bankruptcy Application</h3>
+                        <p class="text-law-gray mb-8 leading-relaxed">
+                            Ready to take the next step toward financial freedom? Our experienced attorneys at Cohen & Cohen P.C. 
+                            are here to guide you through the bankruptcy process with compassion and expertise.
+                        </p>
+                        <a href="bankruptcyApplicationForm.html" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-law-blue hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-play mr-2"></i>
+                            Start Bankruptcy Application
+                        </a>
+                    </div>
+                </div>
+
+                <div id="info-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div id="contact-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex items-center justify-center h-10 w-10 rounded-full bg-law-gold/10">
+                                <i class="fa-solid fa-phone text-law-gold"></i>
+                            </div>
+                            <h4 class="ml-3 text-lg font-medium text-gray-900">Contact Us</h4>
+                        </div>
+                        <p class="text-law-gray text-sm mb-3">Need assistance? Our team is here to help.</p>
+                        <button class="text-law-blue hover:text-blue-800 text-sm font-medium">
+                            Call (555) 123-4567
+                        </button>
+                    </div>
+
+                    <div id="resources-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex items-center justify-center h-10 w-10 rounded-full bg-green-100">
+                                <i class="fa-solid fa-book text-green-600"></i>
+                            </div>
+                            <h4 class="ml-3 text-lg font-medium text-gray-900">Resources</h4>
+                        </div>
+                        <p class="text-law-gray text-sm mb-3">Learn more about the bankruptcy process.</p>
+                        <button class="text-law-blue hover:text-blue-800 text-sm font-medium">
+                            View Resources
+                        </button>
+                    </div>
+
+                    <div id="faq-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="flex items-center justify-center h-10 w-10 rounded-full bg-purple-100">
+                                <i class="fa-solid fa-question-circle text-purple-600"></i>
+                            </div>
+                            <h4 class="ml-3 text-lg font-medium text-gray-900">FAQ</h4>
+                        </div>
+                        <p class="text-law-gray text-sm mb-3">Find answers to common questions.</p>
+                        <button class="text-law-blue hover:text-blue-800 text-sm font-medium">
+                            View FAQ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="in-progress-state-section" class="mb-12">
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Application In Progress State</h3>
+                <p class="text-sm text-law-gray">Dashboard view when application is being processed</p>
+            </div>
+            <div class="space-y-6">
+                <div id="progress-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-amber-100 flex-shrink-0">
+                            <i class="fa-solid fa-clock text-amber-600 text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Application in Progress</h3>
+                            <p class="text-law-gray mb-6">
+                                Your bankruptcy application is currently being reviewed by our legal team. 
+                                We're working diligently to process your case.
+                            </p>
+                            <div class="bg-gray-200 rounded-full h-2 mb-4">
+                                <div class="bg-law-blue h-2 rounded-full w-3/4"></div>
+                            </div>
+                            <p class="text-sm text-law-gray mb-6">Progress: 75% Complete</p>
+                            <button class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-law-blue hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
+                                <i class="fa-solid fa-arrow-right mr-2"></i>
+                                Continue Application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="status-updates-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <h4 class="text-lg font-medium text-gray-900 mb-4">Recent Updates</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+                            <p class="text-sm text-law-gray">Documents received and under review</p>
+                            <span class="text-xs text-gray-400">2 days ago</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+                            <p class="text-sm text-law-gray">Initial consultation completed</p>
+                            <span class="text-xs text-gray-400">5 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="submitted-state-section" class="mb-12">
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Application Submitted State</h3>
+                <p class="text-sm text-law-gray">Dashboard view when application has been received</p>
+            </div>
+            <div class="space-y-6">
+                <div id="submitted-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                    <div class="text-center max-w-2xl mx-auto">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                            <i class="fa-solid fa-check text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Application Received</h3>
+                        <p class="text-law-gray mb-6 leading-relaxed">
+                            We have received your bankruptcy application and all required documents. 
+                            Our legal team will review your case and contact you within 48 hours.
+                        </p>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                            <p class="text-sm text-blue-800">
+                                <i class="fa-solid fa-info-circle mr-2"></i>
+                                If you don't hear from us within 48 hours, please don't hesitate to contact our office.
+                            </p>
+                        </div>
+                        <button class="inline-flex items-center px-6 py-2 border border-law-blue text-sm font-medium rounded-lg text-law-blue bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-phone mr-2"></i>
+                            Contact Us
+                        </button>
+                    </div>
+                </div>
+
+                <div id="next-steps-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <h4 class="text-lg font-medium text-gray-900 mb-4">What Happens Next?</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">1</div>
+                            <p class="text-sm text-law-gray">Our attorneys will review your application and documents</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">2</div>
+                            <p class="text-sm text-law-gray">We'll contact you to discuss your case and next steps</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">3</div>
+                            <p class="text-sm text-law-gray">We'll guide you through the bankruptcy filing process</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center">
+                <p class="text-sm text-law-gray">© 2025 Cohen & Cohen P.C. All rights reserved.</p>
+                <p class="text-xs text-gray-400 mt-2">Licensed to practice law in [State]. This website is for informational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
