@@ -26,59 +26,117 @@
             }
         }
     </script>
+    <style>
+        .nav-item.active {
+            background-color: #1e3a8a !important;
+            color: white !important;
+        }
+        
+        .nav-item.active i {
+            color: white !important;
+        }
+
+        /* Sidebar collapsed state styles */
+        #sidebar.w-16 .nav-item {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        #sidebar.w-16 .nav-item i {
+            margin-right: 0 !important;
+        }
+
+        #sidebar.w-16 #sidebar-header {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    </style>
 </head>
 <body class="font-inter bg-law-light min-h-screen">
     <div id="app" class="flex h-screen">
         <aside id="sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300">
-            <div class="p-6 border-b border-gray-200">
-                <h1 class="text-xl font-bold text-law-blue">Cohen & Cohen P.C.</h1>
-                <p class="text-sm text-law-gray mt-1">Client Portal</p>
+            <div id="sidebar-header" class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h1 class="text-lg font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                <button id="sidebar-toggle" onclick="toggleSidebar()" class="p-1 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                    <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-gray-600"></i>
+                </button>
             </div>
             
-            <nav class="mt-6">
-                <div class="px-6 mb-4">
-                    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wide">Navigation</h2>
-                </div>
-                <ul class="space-y-1 px-3">
+            <nav id="sidebar-nav" class="flex-1 p-4">
+                <ul class="space-y-2">
                     <li>
-                        <a href="clientDashboard.html" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
-                            <i class="fa-solid fa-home mr-3"></i>
-                            Dashboard
-                        </a>
+                        <button onclick="showSection('dashboard')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-home mr-3 text-gray-400"></i>
+                            <span>Dashboard</span>
+                        </button>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
-                            <i class="fa-solid fa-folder mr-3"></i>
-                            My Documents
-                        </a>
+                        <button onclick="showSection('documents')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-folder mr-3 text-gray-400"></i>
+                            <span>My Documents</span>
+                        </button>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-blue bg-blue-50 rounded-lg">
-                            <i class="fa-solid fa-clipboard-list mr-3"></i>
-                            Financial Questionnaire
-                        </a>
+                        <button onclick="showSection('questionnaire')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200 active">
+                            <i class="fa-solid fa-clipboard-list mr-3 text-gray-400"></i>
+                            <span>Financial Questionnaire</span>
+                        </button>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
-                            <i class="fa-solid fa-cog mr-3"></i>
-                            Settings
-                        </a>
+                        <button onclick="showSection('case-status')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-gavel mr-3 text-gray-400"></i>
+                            <span>Case Status</span>
+                        </button>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-law-gray hover:text-law-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
-                            <i class="fa-solid fa-question-circle mr-3"></i>
-                            Help Centre
-                        </a>
+                        <button onclick="showSection('messages')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-envelope mr-3 text-gray-400"></i>
+                            <span>Messages</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('appointments')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-calendar mr-3 text-gray-400"></i>
+                            <span>Appointments</span>
+                        </button>
                     </li>
                 </ul>
                 
-                <div class="px-3 mt-8">
-                    <a href="#" class="flex items-center px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200">
-                        <i class="fa-solid fa-sign-out-alt mr-3"></i>
-                        Sign Out
-                    </a>
+                <div class="border-t border-gray-200 mt-6 pt-6">
+                    <ul class="space-y-2">
+                        <li>
+                            <button onclick="showSection('settings')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                                <i class="fa-solid fa-cog mr-3 text-gray-400"></i>
+                                <span>Settings</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="showSection('help')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                                <i class="fa-solid fa-question-circle mr-3 text-gray-400"></i>
+                                <span>Help Centre</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-200">
+                                <i class="fa-solid fa-sign-out-alt mr-3 text-red-500"></i>
+                                <span>Sign Out</span>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </nav>
+            
+            <div class="border-t border-gray-200 p-4">
+                <div class="flex items-center space-x-3">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 truncate">John Smith</p>
+                        <p class="text-xs text-gray-500 truncate">Client ID: #12345</p>
+                    </div>
+                </div>
+            </div>
         </aside>
 
         <main class="flex-1 overflow-auto">
@@ -1962,13 +2020,13 @@
 
                             <!-- Form Actions -->
                             <div class="flex justify-between items-center pt-8 border-t border-gray-200">
-                                <button type="button" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                <button type="button" onclick="window.location.href='clientFinancialQuestionnaireSection6.html'" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200 inline-flex items-center">
                                     <i class="fa-solid fa-arrow-left mr-2"></i>
-                                    Previous Section
+                                    Back to Section 6
                                 </button>
                                 
                                 <div class="flex space-x-4">
-                                    <button type="button" class="px-6 py-3 border border-law-blue text-law-blue rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                                    <button type="button" id="saveProgress" class="px-6 py-3 border border-law-blue text-law-blue rounded-lg hover:bg-blue-50 transition-colors duration-200">
                                         <i class="fa-solid fa-save mr-2"></i>
                                         Save Draft
                                     </button>
@@ -1983,6 +2041,70 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 hidden z-50 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 ease-out">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-law-blue to-blue-600 rounded-t-2xl p-6 text-center">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-white shadow-lg mb-4">
+                    <i class="fa-solid fa-paper-plane text-law-blue text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Submit Application</h3>
+                <p class="text-blue-100 text-sm mt-1">Final Review Confirmation</p>
+            </div>
+            
+            <!-- Content -->
+            <div class="p-6">
+                <div class="mb-6">
+                    <div class="flex items-start space-x-3 mb-4">
+                        <div class="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-0.5">
+                            <i class="fa-solid fa-check text-green-600 text-sm"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Your complete financial questionnaire will be submitted to your attorneys for review.
+                        </p>
+                    </div>
+                    
+                    <div class="flex items-start space-x-3 mb-4">
+                        <div class="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mt-0.5">
+                            <i class="fa-solid fa-bell text-law-blue text-sm"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            Your legal team will be automatically notified of your submission.
+                        </p>
+                    </div>
+                    
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0 w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mt-0.5">
+                            <i class="fa-solid fa-clock text-yellow-600 text-sm"></i>
+                        </div>
+                        <p class="text-gray-700 text-sm leading-relaxed">
+                            You'll receive confirmation once your application has been reviewed.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 border-l-4 border-law-blue p-4 rounded-r-lg mb-6">
+                    <p class="text-law-blue font-semibold text-sm">
+                        Ready to proceed with submission?
+                    </p>
+                </div>
+                
+                <!-- Buttons -->
+                <div class="flex space-x-3">
+                    <button id="cancelSubmit" class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors duration-200 border border-gray-200">
+                        <i class="fa-solid fa-times mr-2"></i>
+                        Cancel
+                    </button>
+                    <button id="confirmSubmit" class="flex-1 px-4 py-3 bg-gradient-to-r from-law-blue to-blue-600 text-white text-sm font-semibold rounded-lg hover:from-blue-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all duration-200 shadow-lg">
+                        <i class="fa-solid fa-paper-plane mr-2"></i>
+                        Submit Application
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -2040,7 +2162,140 @@
         }
 
         // Initialize all toggle functionality
+        // Global sidebar functionality
+        function showSection(sectionName) {
+            // Check if there are section content divs (like in dashboard)
+            const sections = document.querySelectorAll('.section-content');
+            if (sections.length > 0) {
+                // Hide all sections
+                sections.forEach(section => section.classList.add('hidden'));
+                
+                // Show selected section
+                const targetSection = document.getElementById(sectionName + '-section');
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                }
+                
+                // Update page title if element exists
+                const pageTitleElement = document.getElementById('page-title');
+                if (pageTitleElement) {
+                    const titles = {
+                        'dashboard': 'Dashboard',
+                        'documents': 'My Documents',
+                        'questionnaire': 'Financial Questionnaire',
+                        'case-status': 'Case Status',
+                        'messages': 'Messages',
+                        'appointments': 'Appointments',
+                        'settings': 'Settings',
+                        'help': 'Help Centre'
+                    };
+                    pageTitleElement.textContent = titles[sectionName];
+                }
+            } else {
+                // For separate pages, redirect to different pages
+                const urls = {
+                    'dashboard': 'clientDashboard.html',
+                    'documents': 'clientDashboard.html', // Redirect to dashboard and show documents section
+                    'questionnaire': 'clientFinancialQuestionnaireSection7.html',
+                    'case-status': 'clientDashboard.html', // Redirect to dashboard and show case-status section
+                    'messages': 'clientDashboard.html', // Redirect to dashboard and show messages section
+                    'appointments': 'clientDashboard.html', // Redirect to dashboard and show appointments section
+                    'settings': 'clientDashboard.html', // Redirect to dashboard and show settings section
+                    'help': 'clientDashboard.html' // Redirect to dashboard and show help section
+                };
+                
+                if (urls[sectionName]) {
+                    if (sectionName === 'dashboard') {
+                        window.location.href = urls[sectionName];
+                    } else if (sectionName === 'questionnaire') {
+                        // Stay on current questionnaire page
+                        window.location.href = urls[sectionName];
+                    } else {
+                        // Redirect to dashboard with hash to show specific section
+                        window.location.href = urls[sectionName] + '#' + sectionName;
+                    }
+                }
+            }
+            
+            // Update active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active', 'bg-law-blue', 'text-white'));
+            
+            // Find and activate current nav item
+            const currentNavButton = Array.from(navItems).find(button => 
+                button.getAttribute('onclick') && button.getAttribute('onclick').includes(sectionName)
+            );
+            if (currentNavButton) {
+                currentNavButton.classList.add('active', 'bg-law-blue', 'text-white');
+            }
+        }
+
+        // Sidebar toggle functionality
+        let sidebarCollapsed = false;
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleIcon = document.getElementById('sidebar-toggle-icon');
+            
+            if (!sidebarCollapsed) {
+                // Collapse sidebar
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-16');
+                
+                // Hide text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.add('hidden'));
+                
+                // Hide sidebar header text
+                const headerTitle = document.getElementById('sidebar-header').querySelector('h1');
+                if (headerTitle) {
+                    headerTitle.classList.add('hidden');
+                }
+                
+                // Hide client info at bottom
+                const clientInfo = sidebar.querySelector('.border-t.border-gray-200.p-4');
+                if (clientInfo) {
+                    clientInfo.classList.add('hidden');
+                }
+                
+                // Change toggle icon to expand arrow
+                toggleIcon.className = 'fa-solid fa-chevron-right text-gray-600';
+                
+                sidebarCollapsed = true;
+            } else {
+                // Expand sidebar
+                sidebar.classList.remove('w-16');
+                sidebar.classList.add('w-64');
+                
+                // Show text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.remove('hidden'));
+                
+                // Show sidebar header text
+                const headerTitle = document.getElementById('sidebar-header').querySelector('h1');
+                if (headerTitle) {
+                    headerTitle.classList.remove('hidden');
+                }
+                
+                // Show client info at bottom
+                const clientInfo = sidebar.querySelector('.border-t.border-gray-200.p-4');
+                if (clientInfo) {
+                    clientInfo.classList.remove('hidden');
+                }
+                
+                // Change toggle icon back to hamburger
+                toggleIcon.className = 'fa-solid fa-bars text-gray-600';
+                
+                sidebarCollapsed = false;
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile sidebar toggle
+            document.getElementById('mobile-sidebar-toggle')?.addEventListener('click', function() {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('-translate-x-full');
+            });
             // Previous Addresses
             toggleEntryFields('noPreviousAddresses', 'addressContainer', 'addAddress', 'address-entry');
             
@@ -2234,6 +2489,66 @@
         setupDeleteButtons('environmentalProceedingsContainer', 'environmental-proceedings-entry');
         setupDeleteButtons('businessConnectionsContainer', 'business-connections-entry');
         setupDeleteButtons('financialStatementsContainer', 'financial-statements-entry');
+        
+        // Form submission
+        document.getElementById('section7Form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showConfirmationModal();
+        });
+        
+        // Save progress functionality
+        document.getElementById('saveProgress').addEventListener('click', function() {
+            saveFormData();
+            showSaveNotification('Progress saved successfully!');
+        });
+        
+        function saveFormData() {
+            const formData = new FormData(document.getElementById('section7Form'));
+            const data = Object.fromEntries(formData);
+            localStorage.setItem('section7Data', JSON.stringify(data));
+            console.log('Section 7 data saved:', data);
+        }
+        
+        function showSaveNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-opacity duration-300';
+            notification.innerHTML = `<i class="fa-solid fa-check mr-2"></i>${message}`;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        function showConfirmationModal() {
+            document.getElementById('confirmationModal').classList.remove('hidden');
+        }
+        
+        function hideConfirmationModal() {
+            document.getElementById('confirmationModal').classList.add('hidden');
+        }
+        
+        // Modal event listeners
+        document.getElementById('cancelSubmit').addEventListener('click', function() {
+            hideConfirmationModal();
+        });
+        
+        document.getElementById('confirmSubmit').addEventListener('click', function() {
+            hideConfirmationModal();
+            saveFormData();
+            showSaveNotification('Questionnaire submitted successfully! Your attorneys have been notified and will review your complete application.');
+            setTimeout(() => {
+                window.location.href = 'clientDashboard.html';
+            }, 3000);
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('confirmationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideConfirmationModal();
+            }
+        });
+        
     </script>
 </body>
 </html>

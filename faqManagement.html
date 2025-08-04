@@ -1,0 +1,188 @@
+<!-- FAQ Management Section -->
+<div id="faq-management-section" class="section-content hidden">
+    <div class="p-6">
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">FAQ Management</h1>
+            <p class="text-gray-600">Create and manage frequently asked questions for clients and leads</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="mb-8">
+            <nav class="flex space-x-8 border-b border-gray-200">
+                <button id="client-faq-tab" class="py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 border-law-blue text-law-blue">
+                    <i class="fa-solid fa-users mr-2"></i>
+                    Client FAQs
+                </button>
+                <button id="lead-faq-tab" class="py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                    <i class="fa-solid fa-user-plus mr-2"></i>
+                    Lead FAQs
+                </button>
+            </nav>
+        </div>
+
+        <!-- FAQ Form Section -->
+        <div id="faq-form-section" class="bg-white rounded-lg border border-gray-200 p-6 mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 id="form-title" class="text-xl font-semibold text-gray-900">Add New FAQ</h2>
+                <span id="section-label" class="px-3 py-1 bg-law-blue text-white text-sm font-medium rounded-full">Client</span>
+            </div>
+            
+            <form id="faq-form" class="space-y-6">
+                <div>
+                    <label for="faq-question" class="block text-sm font-medium text-gray-700 mb-2">
+                        Question <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="faq-question" 
+                        name="question" 
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent transition-colors duration-200"
+                        placeholder="Enter the frequently asked question..."
+                    >
+                </div>
+                
+                <div>
+                    <label for="faq-answer" class="block text-sm font-medium text-gray-700 mb-2">
+                        Answer <span class="text-red-500">*</span>
+                    </label>
+                    <textarea 
+                        id="faq-answer" 
+                        name="answer" 
+                        rows="6"
+                        required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent transition-colors duration-200 resize-vertical"
+                        placeholder="Provide a comprehensive answer to the question..."
+                    ></textarea>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button 
+                        type="submit" 
+                        id="submit-btn"
+                        class="px-6 py-3 bg-law-blue text-white font-medium rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-law-blue focus:ring-offset-2 transition-colors duration-200"
+                    >
+                        Add FAQ
+                    </button>
+                    <button 
+                        type="button" 
+                        id="cancel-edit-btn"
+                        class="hidden px-6 py-3 bg-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-blue-100 rounded-lg">
+                        <i class="fa-solid fa-users text-2xl text-law-blue"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Client FAQs</h3>
+                        <p id="client-faq-count" class="text-3xl font-bold text-law-blue">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-green-100 rounded-lg">
+                        <i class="fa-solid fa-user-plus text-2xl text-green-600"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Lead FAQs</h3>
+                        <p id="lead-faq-count" class="text-3xl font-bold text-green-600">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ List -->
+        <div class="bg-white rounded-lg border border-gray-200">
+            <div class="p-6 border-b border-gray-200">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-gray-900">
+                        <span id="current-section-title">Client</span> FAQs
+                    </h2>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2 text-sm text-gray-500">
+                            <i class="fa-solid fa-info-circle"></i>
+                            <span>Click on any FAQ to edit or delete</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="faq-list" class="p-6 space-y-4">
+                <!-- FAQ items will be dynamically inserted here -->
+                <div class="text-center py-12">
+                    <i class="fa-solid fa-question-circle text-4xl text-gray-400 mb-4"></i>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">No FAQs yet</h3>
+                    <p class="text-gray-500">Create your first FAQ for clients using the form above.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Management Styles -->
+<style>
+    #faq-management-section .section-content {
+        background-color: #f8fafc;
+        min-height: calc(100vh - 140px);
+    }
+    
+    #faq-management-section .bg-white {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+    
+    #faq-management-section .hover\:shadow-md:hover {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    #faq-management-section textarea {
+        min-height: 120px;
+    }
+    
+    #faq-management-section .transition-colors {
+        transition-property: color, background-color, border-color;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 200ms;
+    }
+    
+    #faq-management-section .transition-shadow {
+        transition-property: box-shadow;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 200ms;
+    }
+    
+    /* Custom scrollbar for FAQ list */
+    #faq-list {
+        max-height: 600px;
+        overflow-y: auto;
+    }
+    
+    #faq-list::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    #faq-list::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+    
+    #faq-list::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+    }
+    
+    #faq-list::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+</style>

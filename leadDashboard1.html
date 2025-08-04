@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cohen & Cohen P.C. - Client Dashboard</title>
+    <title>Cohen & Cohen P.C. - Lead Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,206 +26,893 @@
             }
         }
     </script>
+    <style>
+        /* Sidebar collapsed state styles */
+        #sidebar.w-16 .nav-item {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        #sidebar.w-16 .nav-item i {
+            margin-right: 0 !important;
+        }
+
+        #sidebar.w-16 #sidebar-header {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        /* Fix for active nav item hover state */
+        .nav-item.active:hover {
+            background-color: #1e3a8a !important; /* Keep law-blue background on hover */
+            color: white !important; /* Keep white text on hover */
+        }
+
+        .nav-item.active {
+            background-color: #1e3a8a !important;
+            color: white !important;
+        }
+    </style>
 </head>
-<body class="font-inter bg-law-light min-h-screen">
-    <header id="header" class="bg-white shadow-sm border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <h1 class="text-xl font-bold text-law-blue">Cohen & Cohen P.C.</h1>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-2">
-                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
-                        <span class="text-sm font-medium text-gray-700">John Smith</span>
-                    </div>
-                    <button class="text-gray-400 hover:text-gray-600">
-                        <i class="fa-solid fa-sign-out-alt"></i>
-                    </button>
-                </div>
+<body class="font-inter bg-law-light">
+    <div class="flex h-screen">
+        <aside id="sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300">
+            <div id="sidebar-header" class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h1 class="text-lg font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                <button id="sidebar-toggle" onclick="toggleSidebar()" class="p-1 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                    <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-gray-600"></i>
+                </button>
             </div>
-        </div>
-    </header>
-
-    <main id="main-dashboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">Welcome to Your Dashboard</h2>
-            <p class="text-law-gray">Manage your bankruptcy case with Cohen & Cohen P.C.</p>
-        </div>
-
-        <section id="initial-state-section" class="mb-12">
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Initial Application State</h3>
-                <p class="text-sm text-law-gray">Dashboard view when client first visits</p>
-            </div>
-            <div class="space-y-6">
-                <div id="bankruptcy-application-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
-                    <div class="text-center max-w-2xl mx-auto">
-                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-law-blue/10 mb-6">
-                            <i class="fa-solid fa-file-contract text-2xl text-law-blue"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Start Your Bankruptcy Application</h3>
-                        <p class="text-law-gray mb-8 leading-relaxed">
-                            Ready to take the next step toward financial freedom? Our experienced attorneys at Cohen & Cohen P.C. 
-                            are here to guide you through the bankruptcy process with compassion and expertise.
-                        </p>
-                        <a href="bankruptcyApplicationForm.html" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-law-blue hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
-                            <i class="fa-solid fa-play mr-2"></i>
-                            Start Bankruptcy Application
-                        </a>
-                    </div>
-                </div>
-
-                <div id="info-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div id="contact-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="flex items-center justify-center h-10 w-10 rounded-full bg-law-gold/10">
-                                <i class="fa-solid fa-phone text-law-gold"></i>
-                            </div>
-                            <h4 class="ml-3 text-lg font-medium text-gray-900">Contact Us</h4>
-                        </div>
-                        <p class="text-law-gray text-sm mb-3">Need assistance? Our team is here to help.</p>
-                        <button class="text-law-blue hover:text-blue-800 text-sm font-medium">
-                            Call (555) 123-4567
+            
+            <nav id="sidebar-nav" class="flex-1 p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <button onclick="showSection('dashboard')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200 active">
+                            <i class="fa-solid fa-home mr-3 text-gray-400"></i>
+                            <span>Dashboard</span>
                         </button>
-                    </div>
-
-                    <div id="resources-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="flex items-center justify-center h-10 w-10 rounded-full bg-green-100">
-                                <i class="fa-solid fa-book text-green-600"></i>
-                            </div>
-                            <h4 class="ml-3 text-lg font-medium text-gray-900">Resources</h4>
-                        </div>
-                        <p class="text-law-gray text-sm mb-3">Learn more about the bankruptcy process.</p>
-                        <button class="text-law-blue hover:text-blue-800 text-sm font-medium">
-                            View Resources
+                    </li>
+                    <li>
+                        <button onclick="showSection('consultation')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-calendar mr-3 text-gray-400"></i>
+                            <span>Schedule Consultation</span>
                         </button>
-                    </div>
-
-                    <div id="faq-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="flex items-center justify-center h-10 w-10 rounded-full bg-purple-100">
-                                <i class="fa-solid fa-question-circle text-purple-600"></i>
-                            </div>
-                            <h4 class="ml-3 text-lg font-medium text-gray-900">FAQ</h4>
-                        </div>
-                        <p class="text-law-gray text-sm mb-3">Find answers to common questions.</p>
-                        <button class="text-law-blue hover:text-blue-800 text-sm font-medium">
-                            View FAQ
+                    </li>
+                    <li>
+                        <button onclick="showSection('resources')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-book mr-3 text-gray-400"></i>
+                            <span>Resources</span>
                         </button>
+                    </li>
+                </ul>
+                
+                <div class="border-t border-gray-200 mt-6 pt-6">
+                    <ul class="space-y-2">
+                        <li>
+                            <button onclick="showSection('help')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                                <i class="fa-solid fa-question-circle mr-3 text-gray-400"></i>
+                                <span>Help Centre</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="showSection('contact')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                                <i class="fa-solid fa-phone mr-3 text-gray-400"></i>
+                                <span>Contact Us</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-200">
+                                <i class="fa-solid fa-sign-out-alt mr-3 text-red-500"></i>
+                                <span>Sign Out</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="border-t border-gray-200 p-4">
+                <div class="flex items-center space-x-3">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 truncate">John Smith</p>
+                        <p class="text-xs text-gray-500 truncate">Prospective Client</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </aside>
 
-        <section id="in-progress-state-section" class="mb-12">
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Application In Progress State</h3>
-                <p class="text-sm text-law-gray">Dashboard view when application is being processed</p>
-            </div>
-            <div class="space-y-6">
-                <div id="progress-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-amber-100 flex-shrink-0">
-                            <i class="fa-solid fa-clock text-amber-600 text-xl"></i>
+        <main id="main-content" class="flex-1 overflow-auto">
+            <header id="header" class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
+                <div class="px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <button id="mobile-sidebar-toggle" class="p-2 rounded-lg hover:bg-gray-100 lg:hidden">
+                                <i class="fa-solid fa-bars text-gray-600"></i>
+                            </button>
+                            <h2 id="page-title" class="text-xl font-semibold text-gray-900">Dashboard</h2>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Application in Progress</h3>
-                            <p class="text-law-gray mb-6">
-                                Your bankruptcy application is currently being reviewed by our legal team. 
-                                We're working diligently to process your case.
-                            </p>
-                            <div class="bg-gray-200 rounded-full h-2 mb-4">
-                                <div class="bg-law-blue h-2 rounded-full w-3/4"></div>
+                        <div class="flex items-center space-x-4">
+                            <button class="p-2 rounded-lg hover:bg-gray-100 relative">
+                                <i class="fa-solid fa-bell text-gray-600"></i>
+                                <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">1</span>
+                            </button>
+                            <div class="h-6 w-px bg-gray-300"></div>
+                            <div class="flex items-center space-x-2">
+                                <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                                <span class="text-sm font-medium text-gray-700 hidden sm:block">John Smith</span>
                             </div>
-                            <p class="text-sm text-law-gray mb-6">Progress: 75% Complete</p>
-                            <button class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-law-blue hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
-                                <i class="fa-solid fa-arrow-right mr-2"></i>
-                                Continue Application
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard-section" class="section-content p-6">
+                <div class="max-w-6xl mx-auto">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Welcome to Your Dashboard</h3>
+                        <p class="text-law-gray">Manage your bankruptcy case with Cohen & Cohen P.C.</p>
+                    </div>
+
+                    <!-- Initial State -->
+                    <section id="initial-state-section" class="mb-12">
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">Initial Application State</h4>
+                            <p class="text-sm text-law-gray">Dashboard view when client first visits</p>
+                        </div>
+                        <div class="space-y-6">
+                        
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8 mb-6">
+                            <div class="text-center max-w-2xl mx-auto">
+                                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-law-blue/10 mb-6">
+                                    <i class="fa-solid fa-file-contract text-2xl text-law-blue"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-4">Start Your Bankruptcy Application</h3>
+                                <p class="text-law-gray mb-8 leading-relaxed">
+                                    Ready to take the next step toward financial freedom? Our experienced attorneys at Cohen & Cohen P.C. 
+                                    are here to guide you through the bankruptcy process with compassion and expertise.
+                                </p>
+                                <a href="bankruptcyApplicationForm.html" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-law-blue hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
+                                    <i class="fa-solid fa-play mr-2"></i>
+                                    Start Bankruptcy Application
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-law-gold/10">
+                                        <i class="fa-solid fa-phone text-law-gold"></i>
+                                    </div>
+                                    <h4 class="ml-3 text-lg font-medium text-gray-900">Contact Us</h4>
+                                </div>
+                                <p class="text-law-gray text-sm mb-3">Need assistance? Our team is here to help.</p>
+                                <button onclick="showSection('contact')" class="text-law-blue hover:text-blue-800 text-sm font-medium">
+                                    Call (555) 123-4567
+                                </button>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-green-100">
+                                        <i class="fa-solid fa-book text-green-600"></i>
+                                    </div>
+                                    <h4 class="ml-3 text-lg font-medium text-gray-900">Resources</h4>
+                                </div>
+                                <p class="text-law-gray text-sm mb-3">Learn more about the bankruptcy process.</p>
+                                <button onclick="showSection('resources')" class="text-law-blue hover:text-blue-800 text-sm font-medium">
+                                    View Resources
+                                </button>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <div class="flex items-center mb-4">
+                                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-purple-100">
+                                        <i class="fa-solid fa-question-circle text-purple-600"></i>
+                                    </div>
+                                    <h4 class="ml-3 text-lg font-medium text-gray-900">FAQ</h4>
+                                </div>
+                                <p class="text-law-gray text-sm mb-3">Find answers to common questions.</p>
+                                <button onclick="showSection('help')" class="text-law-blue hover:text-blue-800 text-sm font-medium">
+                                    View FAQ
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </section>
+
+                    <!-- In Progress State -->
+                    <section id="in-progress-state-section" class="mb-12">
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">Application In Progress State</h4>
+                            <p class="text-sm text-law-gray">Dashboard view when application is being processed</p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-amber-100 flex-shrink-0">
+                                        <i class="fa-solid fa-clock text-amber-600 text-xl"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Application in Progress</h3>
+                                        <p class="text-law-gray mb-6">
+                                            Your bankruptcy application is currently being reviewed by our legal team. 
+                                            We're working diligently to process your case.
+                                        </p>
+                                        <div class="bg-gray-200 rounded-full h-2 mb-4">
+                                            <div class="bg-law-blue h-2 rounded-full w-3/4"></div>
+                                        </div>
+                                        <p class="text-sm text-law-gray mb-6">Progress: 75% Complete</p>
+                                        <a href="bankruptcyApplicationForm.html" class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-law-blue hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
+                                            <i class="fa-solid fa-arrow-right mr-2"></i>
+                                            Continue Application
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <h4 class="text-lg font-medium text-gray-900 mb-4">Recent Updates</h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+                                        <p class="text-sm text-law-gray">Documents received and under review</p>
+                                        <span class="text-xs text-gray-400">2 days ago</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="h-2 w-2 bg-green-500 rounded-full"></div>
+                                        <p class="text-sm text-law-gray">Initial consultation completed</p>
+                                        <span class="text-xs text-gray-400">5 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Application Submitted State -->
+                    <section id="submitted-state-section" class="mb-12">
+                        <div class="mb-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">Application Submitted State</h4>
+                            <p class="text-sm text-law-gray">Dashboard view when application has been received</p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+                                <div class="text-center max-w-2xl mx-auto">
+                                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+                                        <i class="fa-solid fa-check text-2xl text-green-600"></i>
+                                    </div>
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Application Received</h3>
+                                    <p class="text-law-gray mb-6 leading-relaxed">
+                                        We have received your bankruptcy application and all required documents. 
+                                        Our legal team will review your case and contact you within 48 hours.
+                                    </p>
+                                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                                        <p class="text-sm text-blue-800">
+                                            <i class="fa-solid fa-info-circle mr-2"></i>
+                                            If you don't hear from us within 48 hours, please don't hesitate to contact our office.
+                                        </p>
+                                    </div>
+                                    <button onclick="showSection('contact')" class="inline-flex items-center px-6 py-2 border border-law-blue text-sm font-medium rounded-lg text-law-blue bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
+                                        <i class="fa-solid fa-phone mr-2"></i>
+                                        Contact Us
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                                <h4 class="text-lg font-medium text-gray-900 mb-4">What Happens Next?</h4>
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3">
+                                        <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">1</div>
+                                        <p class="text-sm text-law-gray">Our attorneys will review your application and documents</p>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">2</div>
+                                        <p class="text-sm text-law-gray">We'll contact you to discuss your case and next steps</p>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">3</div>
+                                        <p class="text-sm text-law-gray">We'll guide you through the bankruptcy filing process</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+
+            <!-- Consultation Section -->
+            <div id="consultation-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Schedule Consultation</h3>
+                        <p class="text-law-gray">Book a free consultation with our attorneys</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="text-center py-12">
+                            <i class="fa-solid fa-calendar text-4xl text-law-blue mb-4"></i>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">Free Consultation</h4>
+                            <p class="text-law-gray mb-6">Schedule a free 30-minute consultation to discuss your case</p>
+                            <button class="inline-flex items-center px-6 py-3 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors font-medium">
+                                <i class="fa-solid fa-calendar-plus mr-2"></i>
+                                Schedule Now
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div id="status-updates-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                    <h4 class="text-lg font-medium text-gray-900 mb-4">Recent Updates</h4>
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <div class="h-2 w-2 bg-green-500 rounded-full"></div>
-                            <p class="text-sm text-law-gray">Documents received and under review</p>
-                            <span class="text-xs text-gray-400">2 days ago</span>
+            <!-- Resources Section -->
+            <div id="resources-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Resources</h3>
+                        <p class="text-law-gray">Educational materials about bankruptcy law</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Bankruptcy Basics</h4>
+                            <p class="text-law-gray mb-4">Learn the fundamentals of bankruptcy law and process.</p>
+                            <button class="text-law-blue hover:text-blue-800 font-medium">Read More</button>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="h-2 w-2 bg-green-500 rounded-full"></div>
-                            <p class="text-sm text-law-gray">Initial consultation completed</p>
-                            <span class="text-xs text-gray-400">5 days ago</span>
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-3">Chapter 7 vs Chapter 13</h4>
+                            <p class="text-law-gray mb-4">Understand the differences between bankruptcy chapters.</p>
+                            <button class="text-law-blue hover:text-blue-800 font-medium">Read More</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="submitted-state-section" class="mb-12">
-            <div class="mb-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Application Submitted State</h3>
-                <p class="text-sm text-law-gray">Dashboard view when application has been received</p>
-            </div>
-            <div class="space-y-6">
-                <div id="submitted-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
-                    <div class="text-center max-w-2xl mx-auto">
-                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
-                            <i class="fa-solid fa-check text-2xl text-green-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Application Received</h3>
-                        <p class="text-law-gray mb-6 leading-relaxed">
-                            We have received your bankruptcy application and all required documents. 
-                            Our legal team will review your case and contact you within 48 hours.
-                        </p>
-                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                            <p class="text-sm text-blue-800">
-                                <i class="fa-solid fa-info-circle mr-2"></i>
-                                If you don't hear from us within 48 hours, please don't hesitate to contact our office.
-                            </p>
-                        </div>
-                        <button class="inline-flex items-center px-6 py-2 border border-law-blue text-sm font-medium rounded-lg text-law-blue bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-law-blue transition-colors duration-200">
-                            <i class="fa-solid fa-phone mr-2"></i>
-                            Contact Us
-                        </button>
+            <!-- Contact Section -->
+            <div id="contact-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Contact Us</h3>
+                        <p class="text-law-gray">Get in touch with our legal team</p>
                     </div>
-                </div>
-
-                <div id="next-steps-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                    <h4 class="text-lg font-medium text-gray-900 mb-4">What Happens Next?</h4>
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">1</div>
-                            <p class="text-sm text-law-gray">Our attorneys will review your application and documents</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
+                            <div class="w-12 h-12 bg-law-blue rounded-lg flex items-center justify-center mx-auto mb-3">
+                                <i class="fa-solid fa-phone text-white"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 mb-1">Call Us</h4>
+                            <p class="text-law-gray">(555) 123-4567</p>
                         </div>
-                        <div class="flex items-start space-x-3">
-                            <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">2</div>
-                            <p class="text-sm text-law-gray">We'll contact you to discuss your case and next steps</p>
+                        
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
+                            <div class="w-12 h-12 bg-law-blue rounded-lg flex items-center justify-center mx-auto mb-3">
+                                <i class="fa-solid fa-envelope text-white"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 mb-1">Email Us</h4>
+                            <p class="text-law-gray">info@cohenlaw.com</p>
                         </div>
-                        <div class="flex items-start space-x-3">
-                            <div class="flex items-center justify-center h-6 w-6 rounded-full bg-law-blue text-white text-xs font-medium">3</div>
-                            <p class="text-sm text-law-gray">We'll guide you through the bankruptcy filing process</p>
+                        
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
+                            <div class="w-12 h-12 bg-law-blue rounded-lg flex items-center justify-center mx-auto mb-3">
+                                <i class="fa-solid fa-map-marker-alt text-white"></i>
+                            </div>
+                            <h4 class="font-medium text-gray-900 mb-1">Visit Us</h4>
+                            <p class="text-law-gray">123 Legal Street</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <footer id="footer" class="bg-white border-t border-gray-200 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div class="text-center">
-                <p class="text-sm text-law-gray">© 2025 Cohen & Cohen P.C. All rights reserved.</p>
-                <p class="text-xs text-gray-400 mt-2">Licensed to practice law in [State]. This website is for informational purposes only.</p>
+            <!-- Help Centre Section -->
+            <div id="help-section" class="section-content hidden p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Help Centre</h3>
+                        <p class="text-law-gray">Find answers and get support for your bankruptcy questions</p>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="mb-8">
+                        <div class="relative">
+                            <input type="text" placeholder="Search for help topics..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-search text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Categories -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer" onclick="scrollToSection('general-faq')">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-law-blue rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fa-solid fa-question-circle text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">General Questions</h4>
+                            </div>
+                            <p class="text-sm text-law-gray">Common questions about bankruptcy process</p>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer" onclick="scrollToSection('process-faq')">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fa-solid fa-cogs text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">Application Process</h4>
+                            </div>
+                            <p class="text-sm text-law-gray">Help with application and documentation</p>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer" onclick="scrollToSection('legal-faq')">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fa-solid fa-gavel text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">Legal Information</h4>
+                            </div>
+                            <p class="text-sm text-law-gray">Understanding bankruptcy law and rights</p>
+                        </div>
+                    </div>
+
+                    <!-- General Questions FAQ -->
+                    <section id="general-faq" class="mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-question-circle mr-3 text-law-blue"></i>
+                                    General Questions
+                                </h4>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-4">
+                                    <!-- FAQ Item 1 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-1')">
+                                            <span class="font-medium text-gray-900">What is bankruptcy and how can it help me?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-1-icon"></i>
+                                        </button>
+                                        <div id="faq-1" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Bankruptcy is a legal process that helps individuals and businesses eliminate or repay their debts under court protection. It provides relief from overwhelming debt and a fresh financial start.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 2 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-2')">
+                                            <span class="font-medium text-gray-900">Will bankruptcy stop creditor harassment?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-2-icon"></i>
+                                        </button>
+                                        <div id="faq-2" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Yes, filing for bankruptcy immediately triggers an "automatic stay" that stops most collection activities, including phone calls, letters, and lawsuits from creditors.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 3 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-3')">
+                                            <span class="font-medium text-gray-900">How much does it cost to file for bankruptcy?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-3-icon"></i>
+                                        </button>
+                                        <div id="faq-3" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Court filing fees vary by chapter, but attorney fees are reasonable and often payable in installments. We offer free consultations to discuss costs specific to your situation.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 4 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-4')">
+                                            <span class="font-medium text-gray-900">Will I lose all my possessions?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-4-icon"></i>
+                                        </button>
+                                        <div id="faq-4" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">No, bankruptcy exemptions protect essential assets like your home, car, clothing, and household items. Most people keep all or most of their possessions.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Process FAQ -->
+                    <section id="process-faq" class="mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-cogs mr-3 text-green-500"></i>
+                                    Application Process
+                                </h4>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-4">
+                                    <!-- FAQ Item 5 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-5')">
+                                            <span class="font-medium text-gray-900">What documents do I need to get started?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-5-icon"></i>
+                                        </button>
+                                        <div id="faq-5" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">You'll need recent pay stubs, tax returns, bank statements, a list of debts and creditors, and asset information. We'll provide a complete checklist during your consultation.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 6 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-6')">
+                                            <span class="font-medium text-gray-900">How long does the application process take?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-6-icon"></i>
+                                        </button>
+                                        <div id="faq-6" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">From initial consultation to filing typically takes 2-4 weeks, depending on how quickly you can gather required documents. The entire bankruptcy process takes 3-6 months.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 7 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-7')">
+                                            <span class="font-medium text-gray-900">Do I need to attend court hearings?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-7-icon"></i>
+                                        </button>
+                                        <div id="faq-7" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">You'll attend one brief meeting with the bankruptcy trustee (Meeting of Creditors). We'll prepare you thoroughly and be there with you. It typically lasts 5-10 minutes.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Legal FAQ -->
+                    <section id="legal-faq" class="mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-gavel mr-3 text-orange-500"></i>
+                                    Legal Information
+                                </h4>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-4">
+                                    <!-- FAQ Item 8 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-8')">
+                                            <span class="font-medium text-gray-900">What's the difference between Chapter 7 and Chapter 13?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-8-icon"></i>
+                                        </button>
+                                        <div id="faq-8" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Chapter 7 eliminates most debts in 3-6 months, while Chapter 13 creates a 3-5 year payment plan. We'll help determine which chapter is best for your situation.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 9 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-9')">
+                                            <span class="font-medium text-gray-900">Will bankruptcy affect my credit score?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-9-icon"></i>
+                                        </button>
+                                        <div id="faq-9" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Bankruptcy will initially lower your credit score, but many clients see improvement within 1-2 years. It's often better than continuing to miss payments and accumulate debt.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 10 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-10')">
+                                            <span class="font-medium text-gray-900">Can I file bankruptcy without an attorney?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-10-icon"></i>
+                                        </button>
+                                        <div id="faq-10" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">While legally possible, bankruptcy law is complex and mistakes can be costly. Having an experienced attorney significantly increases your chances of a successful outcome.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contact Form Section -->
+                    <section id="contact-form-section" class="mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-envelope mr-3 text-law-blue"></i>
+                                    Still Need Help?
+                                </h4>
+                                <p class="text-sm text-law-gray mt-1">Can't find what you're looking for? Send us a message and we'll get back to you within 24 hours.</p>
+                            </div>
+                            <div class="p-6">
+                                <form id="help-contact-form" class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                                <option>General Question</option>
+                                                <option>Application Help</option>
+                                                <option>Legal Consultation</option>
+                                                <option>Technical Support</option>
+                                                <option>Appointment Request</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                                <option>Normal</option>
+                                                <option>High</option>
+                                                <option>Urgent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                        <textarea rows="5" placeholder="Please describe your question or issue in detail..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent"></textarea>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="urgent-response" class="rounded border-gray-300 text-law-blue focus:ring-law-blue">
+                                        <label for="urgent-response" class="ml-2 text-sm text-gray-700">This is urgent and requires immediate attention</label>
+                                    </div>
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <div class="text-sm text-law-gray">
+                                            <i class="fa-solid fa-clock mr-1"></i>
+                                            We typically respond within 24 hours
+                                        </div>
+                                        <button type="submit" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors font-medium">
+                                            <i class="fa-solid fa-paper-plane mr-2"></i>
+                                            Send Message
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Quick Contact Options -->
+                    <section id="quick-contact" class="mb-8">
+                        <div class="bg-gradient-to-r from-law-blue to-blue-600 rounded-lg text-white p-6">
+                            <h4 class="text-lg font-semibold mb-4">Need Immediate Assistance?</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <a href="tel:+15551234567" class="flex items-center p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                    <i class="fa-solid fa-phone mr-3 text-xl"></i>
+                                    <div>
+                                        <div class="font-medium">Call Us</div>
+                                        <div class="text-sm opacity-90">(555) 123-4567</div>
+                                    </div>
+                                </a>
+                                
+                                <a href="mailto:info@cohenlaw.com" class="flex items-center p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                    <i class="fa-solid fa-envelope mr-3 text-xl"></i>
+                                    <div>
+                                        <div class="font-medium">Email Us</div>
+                                        <div class="text-sm opacity-90">info@cohenlaw.com</div>
+                                    </div>
+                                </a>
+                                
+                                <button onclick="showSection('consultation')" class="flex items-center p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                    <i class="fa-solid fa-calendar mr-3 text-xl"></i>
+                                    <div>
+                                        <div class="font-medium">Free Consultation</div>
+                                        <div class="text-sm opacity-90">Schedule now</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
-        </div>
-    </footer>
+        </main>
+    </div>
 
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('mobile-sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Sidebar toggle functionality
+        let sidebarCollapsed = false;
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleIcon = document.getElementById('sidebar-toggle-icon');
+            
+            if (!sidebarCollapsed) {
+                // Collapse sidebar
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-16');
+                
+                // Hide text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.add('hidden'));
+                
+                // Hide company name
+                const companyName = sidebar.querySelector('h1');
+                companyName.classList.add('hidden');
+                
+                // Hide user info
+                const userInfo = sidebar.querySelector('.border-t.border-gray-200.p-4 div');
+                if (userInfo) {
+                    const userTexts = userInfo.querySelectorAll('p');
+                    userTexts.forEach(text => text.classList.add('hidden'));
+                }
+                
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-chevron-right');
+                sidebarCollapsed = true;
+            } else {
+                // Expand sidebar
+                sidebar.classList.remove('w-16');
+                sidebar.classList.add('w-64');
+                
+                // Show text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.remove('hidden'));
+                
+                // Show company name
+                const companyName = sidebar.querySelector('h1');
+                companyName.classList.remove('hidden');
+                
+                // Show user info
+                const userInfo = sidebar.querySelector('.border-t.border-gray-200.p-4 div');
+                if (userInfo) {
+                    const userTexts = userInfo.querySelectorAll('p');
+                    userTexts.forEach(text => text.classList.remove('hidden'));
+                }
+                
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-bars');
+                sidebarCollapsed = false;
+            }
+        }
+
+        // Section navigation functionality
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.remove('hidden');
+            
+            // Update active nav item
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                item.classList.add('text-gray-700');
+                item.classList.remove('text-white');
+            });
+            
+            // Set active nav item
+            const activeItem = document.querySelector(`button[onclick="showSection('${sectionName}')"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+                activeItem.classList.remove('text-gray-700');
+                activeItem.classList.add('text-white');
+            }
+            
+            // Update page title
+            const titles = {
+                'dashboard': 'Dashboard',
+                'consultation': 'Schedule Consultation',
+                'resources': 'Resources',
+                'help': 'Help Centre',
+                'contact': 'Contact Us'
+            };
+            document.getElementById('page-title').textContent = titles[sectionName];
+        }
+
+        // FAQ toggle functionality
+        function toggleFAQ(faqId) {
+            const faqContent = document.getElementById(faqId);
+            const faqIcon = document.getElementById(faqId + '-icon');
+            
+            if (faqContent.classList.contains('hidden')) {
+                faqContent.classList.remove('hidden');
+                faqIcon.classList.add('fa-chevron-up');
+                faqIcon.classList.remove('fa-chevron-down');
+            } else {
+                faqContent.classList.add('hidden');
+                faqIcon.classList.remove('fa-chevron-up');
+                faqIcon.classList.add('fa-chevron-down');
+            }
+        }
+
+        // Scroll to section functionality
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Help contact form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const helpForm = document.getElementById('help-contact-form');
+            if (helpForm) {
+                helpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(helpForm);
+                    const submitButton = helpForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    // Show loading state
+                    submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Sending...';
+                    submitButton.disabled = true;
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        // Show success state
+                        submitButton.innerHTML = '<i class="fa-solid fa-check mr-2"></i>Message Sent!';
+                        submitButton.classList.remove('bg-law-blue', 'hover:bg-blue-800');
+                        submitButton.classList.add('bg-green-600');
+                        
+                        // Reset form
+                        helpForm.reset();
+                        
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('bg-green-600');
+                            submitButton.classList.add('bg-law-blue', 'hover:bg-blue-800');
+                        }, 3000);
+                        
+                        // Show success message
+                        alert('Thank you for your message! We will get back to you within 24 hours.');
+                    }, 2000);
+                });
+            }
+        });
+
+        // Search functionality for FAQs
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('input[placeholder="Search for help topics..."]');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const faqItems = document.querySelectorAll('[id^="faq-"]');
+                    
+                    faqItems.forEach(item => {
+                        const parentContainer = item.closest('.border.border-gray-200.rounded-lg');
+                        if (parentContainer) {
+                            const questionText = parentContainer.querySelector('button span').textContent.toLowerCase();
+                            const answerText = item.textContent.toLowerCase();
+                            
+                            if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                                parentContainer.style.display = '';
+                                // Highlight search term if found
+                                if (searchTerm && (questionText.includes(searchTerm) || answerText.includes(searchTerm))) {
+                                    parentContainer.style.backgroundColor = '#fef3c7';
+                                    parentContainer.style.borderColor = '#f59e0b';
+                                }
+                            } else {
+                                parentContainer.style.display = 'none';
+                            }
+                        }
+                    });
+                    
+                    // Reset highlighting when search is cleared
+                    if (!searchTerm) {
+                        const allFaqContainers = document.querySelectorAll('.border.border-gray-200.rounded-lg');
+                        allFaqContainers.forEach(container => {
+                            container.style.backgroundColor = '';
+                            container.style.borderColor = '';
+                            container.style.display = '';
+                        });
+                    }
+                });
+            }
+        });
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('dashboard');
+        });
+    </script>
 </body>
 </html>

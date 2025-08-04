@@ -65,6 +65,12 @@
             padding-left: 0 !important;
             padding-right: 0 !important;
         }
+
+        /* Fix for active nav item hover state */
+        .nav-item.active:hover {
+            background-color: #1e3a8a !important; /* Keep law-blue background on hover */
+            color: white !important; /* Keep white text on hover */
+        }
     </style>
 </head>
 <body class="font-inter bg-law-light">
@@ -120,7 +126,7 @@
                 <div class="border-t border-gray-200 mt-6 pt-6">
                     <ul class="space-y-2">
                         <li>
-                            <button onclick="showSection('settings')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <button onclick="window.location.href='clientSettings.html'" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
                                 <i class="fa-solid fa-cog mr-3 text-gray-400"></i>
                                 <span>Settings</span>
                             </button>
@@ -643,7 +649,7 @@
                                 <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Complete</span>
                             </div>
                             <p class="text-sm text-law-gray mb-3">Basic personal and contact information</p>
-                            <button class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
+                            <button onclick="window.open('clientFinancialQuestionnaireSection1.html', '_blank')" class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
                         </div>
 
                         <div id="questionnaire-section-2" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -657,7 +663,7 @@
                                 <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Complete</span>
                             </div>
                             <p class="text-sm text-law-gray mb-3">Current and past employment, income sources</p>
-                            <button class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
+                            <button onclick="window.open('clientFinancialQuestionnaireSection2.html', '_blank')" class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
                         </div>
 
                         <div id="questionnaire-section-3" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -671,10 +677,7 @@
                                 <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">In Progress</span>
                             </div>
                             <p class="text-sm text-law-gray mb-3">Real estate, vehicles, personal property, investments</p>
-                            <button onclick="window.open('clientFinancialQuestionnaire.html', '_blank')" class="inline-flex items-center px-4 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors duration-200">
-                                <i class="fa-solid fa-edit mr-2"></i>
-                                Continue Section
-                            </button>
+                            <button onclick="window.open('clientFinancialQuestionnaireSection3.html', '_blank')" class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
                         </div>
 
                         <div id="questionnaire-section-4" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -688,20 +691,49 @@
                                 <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Pending</span>
                             </div>
                             <p class="text-sm text-law-gray mb-3">Housing, utilities, food, transportation, and other expenses</p>
-                            <button disabled class="text-gray-400 text-sm font-medium cursor-not-allowed">Complete previous sections first</button>
+                            <button onclick="window.open('clientFinancialQuestionnaireSection4.html', '_blank')" class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
                         </div>
 
-                        <div id="questionnaire-section-remaining" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div id="questionnaire-section-5" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center">
                                     <div class="flex items-center justify-center h-8 w-8 rounded-full bg-gray-100 mr-3">
-                                        <i class="fa-solid fa-ellipsis text-gray-400 text-sm"></i>
+                                        <i class="fa-solid fa-circle-pause text-gray-400 text-sm"></i>
                                     </div>
-                                    <h5 class="text-md font-medium text-gray-900">Remaining Sections (5-7)</h5>
+                                    <h5 class="text-md font-medium text-gray-900">Section 5: Debts & Liabilities</h5>
                                 </div>
-                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Locked</span>
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Pending</span>
                             </div>
-                            <p class="text-sm text-law-gray mb-3">Additional financial details, debt information, and legal matters</p>
+                            <p class="text-sm text-law-gray mb-3">Credit cards, loans, and other debts</p>
+                            <button onclick="window.open('clientFinancialQuestionnaireSection5.html', '_blank')" class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
+                        </div>
+
+                        <div id="questionnaire-section-6" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-gray-100 mr-3">
+                                        <i class="fa-solid fa-circle-pause text-gray-400 text-sm"></i>
+                                    </div>
+                                    <h5 class="text-md font-medium text-gray-900">Section 6: Financial History</h5>
+                                </div>
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Pending</span>
+                            </div>
+                            <p class="text-sm text-law-gray mb-3">Previous bankruptcy filings and financial transactions</p>
+                            <button onclick="window.open('clientFinancialQuestionnaireSection6.html', '_blank')" class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
+                        </div>
+
+                        <div id="questionnaire-section-7" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-gray-100 mr-3">
+                                        <i class="fa-solid fa-circle-pause text-gray-400 text-sm"></i>
+                                    </div>
+                                    <h5 class="text-md font-medium text-gray-900">Section 7: Legal & Additional Information</h5>
+                                </div>
+                                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">Pending</span>
+                            </div>
+                            <p class="text-sm text-law-gray mb-3">Legal matters, pending lawsuits, and additional disclosures</p>
+                            <button onclick="window.open('clientFinancialQuestionnaireSection7.html', '_blank')" class="text-law-blue hover:text-blue-800 text-sm font-medium">View Details</button>
                         </div>
                     </div>
                 </div>
@@ -757,13 +789,299 @@
 
             <div id="help-section" class="section-content hidden p-6">
                 <div class="max-w-4xl mx-auto">
-                    <div class="mb-6">
+                    <div class="mb-8">
                         <h3 class="text-2xl font-bold text-gray-900 mb-2">Help Centre</h3>
-                        <p class="text-law-gray">Find answers and get support</p>
+                        <p class="text-law-gray">Find answers and get support for your bankruptcy case</p>
                     </div>
-                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                        <p class="text-law-gray">Help resources will be available here.</p>
+
+                    <!-- Search Bar -->
+                    <div class="mb-8">
+                        <div class="relative">
+                            <input type="text" placeholder="Search for help topics..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-search text-gray-400"></i>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- FAQ Categories -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer" onclick="scrollToSection('general-faq')">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-law-blue rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fa-solid fa-question-circle text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">General Questions</h4>
+                            </div>
+                            <p class="text-sm text-law-gray">Common questions about bankruptcy process</p>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer" onclick="scrollToSection('documents-faq')">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fa-solid fa-folder text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">Documents & Forms</h4>
+                            </div>
+                            <p class="text-sm text-law-gray">Help with uploading and managing documents</p>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer" onclick="scrollToSection('account-faq')">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3">
+                                    <i class="fa-solid fa-user-cog text-white"></i>
+                                </div>
+                                <h4 class="font-semibold text-gray-900">Account & Settings</h4>
+                            </div>
+                            <p class="text-sm text-law-gray">Managing your account and preferences</p>
+                        </div>
+                    </div>
+
+                    <!-- General Questions FAQ -->
+                    <section id="general-faq" class="mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-question-circle mr-3 text-law-blue"></i>
+                                    General Questions
+                                </h4>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-4">
+                                    <!-- FAQ Item 1 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-1')">
+                                            <span class="font-medium text-gray-900">What is Chapter 7 bankruptcy?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-1-icon"></i>
+                                        </button>
+                                        <div id="faq-1" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Chapter 7 bankruptcy is a liquidation process that allows individuals to discharge most of their unsecured debts. It typically takes 3-6 months to complete and provides a fresh financial start.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 2 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-2')">
+                                            <span class="font-medium text-gray-900">How long does the bankruptcy process take?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-2-icon"></i>
+                                        </button>
+                                        <div id="faq-2" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">The typical Chapter 7 bankruptcy process takes 3-6 months from filing to discharge. Chapter 13 takes 3-5 years as it involves a repayment plan.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 3 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-3')">
+                                            <span class="font-medium text-gray-900">Will I lose my home and car?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-3-icon"></i>
+                                        </button>
+                                        <div id="faq-3" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Most clients keep their home and car through exemptions. We'll review your specific situation to determine what assets you can keep during your consultation.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 4 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-4')">
+                                            <span class="font-medium text-gray-900">What debts can be discharged?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-4-icon"></i>
+                                        </button>
+                                        <div id="faq-4" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Most unsecured debts can be discharged including credit cards, medical bills, personal loans, and utility bills. Student loans, recent taxes, and child support typically cannot be discharged.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Documents FAQ -->
+                    <section id="documents-faq" class="mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-folder mr-3 text-green-500"></i>
+                                    Documents & Forms
+                                </h4>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-4">
+                                    <!-- FAQ Item 5 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-5')">
+                                            <span class="font-medium text-gray-900">What documents do I need to provide?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-5-icon"></i>
+                                        </button>
+                                        <div id="faq-5" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">You'll need to provide 6 months of pay stubs, 2 years of tax returns, bank statements, and a list of all debts and assets. Check the Documents section for a complete checklist.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 6 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-6')">
+                                            <span class="font-medium text-gray-900">How do I upload documents securely?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-6-icon"></i>
+                                        </button>
+                                        <div id="faq-6" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Use the secure upload feature in the Documents section. All files are encrypted and protected by attorney-client privilege. Accepted formats include PDF, JPG, PNG, and DOC files.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 7 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-7')">
+                                            <span class="font-medium text-gray-900">What if I'm missing some documents?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-7-icon"></i>
+                                        </button>
+                                        <div id="faq-7" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Don't worry if you're missing documents. We can help you obtain copies from banks, employers, or government agencies. Upload what you have and we'll guide you through getting the rest.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Account FAQ -->
+                    <section id="account-faq" class="mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-user-cog mr-3 text-orange-500"></i>
+                                    Account & Settings
+                                </h4>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-4">
+                                    <!-- FAQ Item 8 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-8')">
+                                            <span class="font-medium text-gray-900">How do I update my contact information?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-8-icon"></i>
+                                        </button>
+                                        <div id="faq-8" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Go to Settings to update your email, phone number, and address. It's important to keep this information current so we can reach you about your case.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 9 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-9')">
+                                            <span class="font-medium text-gray-900">How do I reset my password?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-9-icon"></i>
+                                        </button>
+                                        <div id="faq-9" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Click "Forgot Password" on the login page or go to Settings > Security to change your password. You'll receive an email with reset instructions.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAQ Item 10 -->
+                                    <div class="border border-gray-200 rounded-lg">
+                                        <button class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none" onclick="toggleFAQ('faq-10')">
+                                            <span class="font-medium text-gray-900">Can I access my account from mobile?</span>
+                                            <i class="fa-solid fa-chevron-down text-gray-400 transform transition-transform" id="faq-10-icon"></i>
+                                        </button>
+                                        <div id="faq-10" class="hidden px-4 pb-3">
+                                            <p class="text-law-gray">Yes! Our client portal is fully responsive and works on all devices. You can access your account from any smartphone, tablet, or computer with an internet connection.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contact Form Section -->
+                    <section id="contact-form-section" class="mb-8">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-envelope mr-3 text-law-blue"></i>
+                                    Still Need Help?
+                                </h4>
+                                <p class="text-sm text-law-gray mt-1">Can't find what you're looking for? Send us a message and we'll get back to you within 24 hours.</p>
+                            </div>
+                            <div class="p-6">
+                                <form id="help-contact-form" class="space-y-6">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                                <option>General Question</option>
+                                                <option>Document Upload Issue</option>
+                                                <option>Account Problem</option>
+                                                <option>Technical Support</option>
+                                                <option>Appointment Request</option>
+                                                <option>Other</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                                <option>Normal</option>
+                                                <option>High</option>
+                                                <option>Urgent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                        <textarea rows="5" placeholder="Please describe your question or issue in detail..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent"></textarea>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="urgent-response" class="rounded border-gray-300 text-law-blue focus:ring-law-blue">
+                                        <label for="urgent-response" class="ml-2 text-sm text-gray-700">This is urgent and requires immediate attention</label>
+                                    </div>
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <div class="text-sm text-law-gray">
+                                            <i class="fa-solid fa-clock mr-1"></i>
+                                            We typically respond within 24 hours
+                                        </div>
+                                        <button type="submit" class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors font-medium">
+                                            <i class="fa-solid fa-paper-plane mr-2"></i>
+                                            Send Message
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Quick Contact Options -->
+                    <section id="quick-contact" class="mb-8">
+                        <div class="bg-gradient-to-r from-law-blue to-blue-600 rounded-lg text-white p-6">
+                            <h4 class="text-lg font-semibold mb-4">Need Immediate Assistance?</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <a href="tel:+15559876543" class="flex items-center p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                    <i class="fa-solid fa-phone mr-3 text-xl"></i>
+                                    <div>
+                                        <div class="font-medium">Call Us</div>
+                                        <div class="text-sm opacity-90">(555) 987-6543</div>
+                                    </div>
+                                </a>
+                                
+                                <a href="mailto:support@cohenlaw.com" class="flex items-center p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                    <i class="fa-solid fa-envelope mr-3 text-xl"></i>
+                                    <div>
+                                        <div class="font-medium">Email Us</div>
+                                        <div class="text-sm opacity-90">support@cohenlaw.com</div>
+                                    </div>
+                                </a>
+                                
+                                <button onclick="showSection('appointments')" class="flex items-center p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
+                                    <i class="fa-solid fa-calendar mr-3 text-xl"></i>
+                                    <div>
+                                        <div class="font-medium">Schedule Meeting</div>
+                                        <div class="text-sm opacity-90">Book appointment</div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </main>
@@ -870,9 +1188,15 @@
             }
         }
 
-        // Initialize with dashboard
+        // Initialize with dashboard or hash section
         document.addEventListener('DOMContentLoaded', function() {
-            showSection('dashboard');
+            // Check if there's a hash in the URL (e.g., #documents, #messages, etc.)
+            const hash = window.location.hash.substring(1); // Remove the # symbol
+            if (hash && document.getElementById(hash + '-section')) {
+                showSection(hash);
+            } else {
+                showSection('dashboard');
+            }
         });
 
         // Modal functions
@@ -1541,6 +1865,111 @@
                 setTimeout(initializeExpandableText, 100); // Small delay to ensure elements are visible
             }
         };
+
+        // FAQ toggle functionality
+        function toggleFAQ(faqId) {
+            const faqContent = document.getElementById(faqId);
+            const faqIcon = document.getElementById(faqId + '-icon');
+            
+            if (faqContent.classList.contains('hidden')) {
+                faqContent.classList.remove('hidden');
+                faqIcon.classList.add('fa-chevron-up');
+                faqIcon.classList.remove('fa-chevron-down');
+            } else {
+                faqContent.classList.add('hidden');
+                faqIcon.classList.remove('fa-chevron-up');
+                faqIcon.classList.add('fa-chevron-down');
+            }
+        }
+
+        // Scroll to section functionality
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Help contact form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const helpForm = document.getElementById('help-contact-form');
+            if (helpForm) {
+                helpForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(helpForm);
+                    const submitButton = helpForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    // Show loading state
+                    submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Sending...';
+                    submitButton.disabled = true;
+                    
+                    // Simulate form submission
+                    setTimeout(() => {
+                        // Show success state
+                        submitButton.innerHTML = '<i class="fa-solid fa-check mr-2"></i>Message Sent!';
+                        submitButton.classList.remove('bg-law-blue', 'hover:bg-blue-800');
+                        submitButton.classList.add('bg-green-600');
+                        
+                        // Reset form
+                        helpForm.reset();
+                        
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            submitButton.innerHTML = originalText;
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('bg-green-600');
+                            submitButton.classList.add('bg-law-blue', 'hover:bg-blue-800');
+                        }, 3000);
+                        
+                        // Show success message
+                        alert('Thank you for your message! We will get back to you within 24 hours.');
+                    }, 2000);
+                });
+            }
+        });
+
+        // Search functionality for FAQs
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('input[placeholder="Search for help topics..."]');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const faqItems = document.querySelectorAll('[id^="faq-"]');
+                    
+                    faqItems.forEach(item => {
+                        const parentContainer = item.closest('.border.border-gray-200.rounded-lg');
+                        if (parentContainer) {
+                            const questionText = parentContainer.querySelector('button span').textContent.toLowerCase();
+                            const answerText = item.textContent.toLowerCase();
+                            
+                            if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                                parentContainer.style.display = '';
+                                // Highlight search term if found
+                                if (searchTerm && (questionText.includes(searchTerm) || answerText.includes(searchTerm))) {
+                                    parentContainer.style.backgroundColor = '#fef3c7';
+                                    parentContainer.style.borderColor = '#f59e0b';
+                                }
+                            } else {
+                                parentContainer.style.display = 'none';
+                            }
+                        }
+                    });
+                    
+                    // Reset highlighting when search is cleared
+                    if (!searchTerm) {
+                        const allFaqContainers = document.querySelectorAll('.border.border-gray-200.rounded-lg');
+                        allFaqContainers.forEach(container => {
+                            container.style.backgroundColor = '';
+                            container.style.borderColor = '';
+                            container.style.display = '';
+                        });
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>

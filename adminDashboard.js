@@ -336,7 +336,7 @@ function showSection(sectionName) {
     });
     
     document.querySelectorAll('.nav-item').forEach(nav => {
-        nav.classList.remove('active');
+        nav.classList.remove('active', 'bg-law-blue', 'text-white');
     });
 
     const section = document.getElementById(sectionName + '-section');
@@ -344,7 +344,24 @@ function showSection(sectionName) {
         section.classList.remove('hidden');
     }
 
-    event.target.closest('.nav-item').classList.add('active');
+    // Find the nav item that corresponds to this section
+    const navItems = document.querySelectorAll('.nav-item');
+    let activeNavItem = Array.from(navItems).find(nav => {
+        const onclick = nav.getAttribute('onclick');
+        return onclick && (onclick.includes(`'${sectionName}'`) || onclick.includes(`"${sectionName}"`));
+    });
+    
+    // Special case: if section is 'clients-leads', look for loadClientsManagement()
+    if (!activeNavItem && sectionName === 'clients-leads') {
+        activeNavItem = Array.from(navItems).find(nav => {
+            const onclick = nav.getAttribute('onclick');
+            return onclick && onclick.includes('loadClientsManagement');
+        });
+    }
+    
+    if (activeNavItem) {
+        activeNavItem.classList.add('active', 'bg-law-blue', 'text-white');
+    }
 
     updatePageTitle(sectionName);
 }
@@ -1083,57 +1100,7 @@ function clearFilters() {
 }
 
 // Initialize the application
-// Sidebar toggle functionality
-let sidebarCollapsed = false;
-
-function toggleSidebar() {
-    console.log('Toggle sidebar called');
-    const sidebar = document.getElementById('admin-sidebar');
-    const toggleIcon = document.getElementById('sidebar-toggle-icon');
-    
-    console.log('Sidebar element:', sidebar);
-    console.log('Toggle icon element:', toggleIcon);
-    
-    if (!sidebarCollapsed) {
-        // Collapse sidebar
-        sidebar.classList.remove('w-64');
-        sidebar.classList.add('w-16');
-        
-        // Hide text labels
-        const navTexts = sidebar.querySelectorAll('nav button span');
-        navTexts.forEach(text => text.classList.add('hidden'));
-        
-        // Hide sidebar header text
-        const headerTitle = document.getElementById('sidebar-header').querySelector('h1');
-        if (headerTitle) {
-            headerTitle.classList.add('hidden');
-        }
-        
-        // Change toggle icon to expand arrow
-        toggleIcon.className = 'fa-solid fa-chevron-right text-gray-600';
-        
-        sidebarCollapsed = true;
-    } else {
-        // Expand sidebar
-        sidebar.classList.remove('w-16');
-        sidebar.classList.add('w-64');
-        
-        // Show text labels
-        const navTexts = sidebar.querySelectorAll('nav button span');
-        navTexts.forEach(text => text.classList.remove('hidden'));
-        
-        // Show sidebar header text
-        const headerTitle = document.getElementById('sidebar-header').querySelector('h1');
-        if (headerTitle) {
-            headerTitle.classList.remove('hidden');
-        }
-        
-        // Change toggle icon back to hamburger
-        toggleIcon.className = 'fa-solid fa-bars text-gray-600';
-        
-        sidebarCollapsed = false;
-    }
-}
+// Sidebar toggle functionality is now handled in the HTML file to avoid conflicts
 
 // Document Management Functions
 let currentDocumentCategory = null;
@@ -2103,11 +2070,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('case-type-filter').addEventListener('change', filterData);
     document.getElementById('newsletter-filter').addEventListener('change', filterData);
     
-    // Add sidebar toggle functionality
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener('click', toggleSidebar);
-    }
+    // Sidebar toggle functionality is handled by onclick attribute in HTML
     
     // Mobile sidebar toggle functionality
     const mobileToggle = document.getElementById('mobile-sidebar-toggle');

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Cohen & Cohen P.C. Client Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-blue': '#1e3a8a',
+                        'law-gold': '#fbbf24',
+                        'law-gray': '#6b7280',
+                        'law-light': '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Sidebar collapsed state styles */
+        #sidebar.w-16 .nav-item {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        #sidebar.w-16 .nav-item i {
+            margin-right: 0 !important;
+        }
+
+        #sidebar.w-16 #sidebar-header {
+            justify-content: center !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        /* Fix for active nav item hover state */
+        .nav-item.active:hover {
+            background-color: #1e3a8a !important; /* Keep law-blue background on hover */
+            color: white !important; /* Keep white text on hover */
+        }
+
+        .nav-item.active {
+            background-color: #1e3a8a !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="font-inter bg-law-light">
+    <div class="flex h-screen">
+        <aside id="sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300">
+            <div id="sidebar-header" class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h1 class="text-lg font-bold text-law-blue">Cohen & Cohen P.C.</h1>
+                <button id="sidebar-toggle" onclick="toggleSidebar()" class="p-1 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                    <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-gray-600"></i>
+                </button>
+            </div>
+            
+            <nav id="sidebar-nav" class="flex-1 p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <button onclick="window.location.href='clientDashboard.html'" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-home mr-3 text-gray-400"></i>
+                            <span>Dashboard</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="window.location.href='clientDashboard.html#documents'" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-folder mr-3 text-gray-400"></i>
+                            <span>My Documents</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="window.location.href='clientDashboard.html#questionnaire'" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-clipboard-list mr-3 text-gray-400"></i>
+                            <span>Financial Questionnaire</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="window.location.href='clientDashboard.html#case-status'" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-gavel mr-3 text-gray-400"></i>
+                            <span>Case Status</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="window.location.href='clientDashboard.html#messages'" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-envelope mr-3 text-gray-400"></i>
+                            <span>Messages</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="window.location.href='clientDashboard.html#appointments'" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-calendar mr-3 text-gray-400"></i>
+                            <span>Appointments</span>
+                        </button>
+                    </li>
+                </ul>
+                
+                <div class="border-t border-gray-200 mt-6 pt-6">
+                    <ul class="space-y-2">
+                        <li>
+                            <button class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200 active">
+                                <i class="fa-solid fa-cog mr-3 text-gray-400"></i>
+                                <span>Settings</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="window.location.href='clientDashboard.html#help'" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                                <i class="fa-solid fa-question-circle mr-3 text-gray-400"></i>
+                                <span>Help Centre</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-200">
+                                <i class="fa-solid fa-sign-out-alt mr-3 text-red-500"></i>
+                                <span>Sign Out</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="border-t border-gray-200 p-4">
+                <div class="flex items-center space-x-3">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-gray-900 truncate">John Smith</p>
+                        <p class="text-xs text-gray-500 truncate">Client ID: #12345</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main-content" class="flex-1 overflow-auto">
+            <header id="header" class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
+                <div class="px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <button id="mobile-sidebar-toggle" class="p-2 rounded-lg hover:bg-gray-100 lg:hidden">
+                                <i class="fa-solid fa-bars text-gray-600"></i>
+                            </button>
+                            <h2 id="page-title" class="text-xl font-semibold text-gray-900">Settings</h2>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="p-2 rounded-lg hover:bg-gray-100 relative">
+                                <i class="fa-solid fa-bell text-gray-600"></i>
+                                <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                            </button>
+                            <div class="h-6 w-px bg-gray-300"></div>
+                            <div class="flex items-center space-x-2">
+                                <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Client Avatar" class="w-8 h-8 rounded-full">
+                                <span class="text-sm font-medium text-gray-700 hidden sm:block">John Smith</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Settings Content -->
+            <div class="p-6">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Profile Settings -->
+                    <section id="profile-settings" class="mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h2 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-user mr-3 text-law-blue"></i>
+                                    Profile Information
+                                </h2>
+                                <p class="text-sm text-law-gray mt-1">Update your personal information and contact details</p>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-start space-x-6 mb-6">
+                                    <div class="relative">
+                                        <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg" alt="Profile" class="w-20 h-20 rounded-full">
+                                        <button class="absolute -bottom-1 -right-1 w-7 h-7 bg-law-blue text-white rounded-full flex items-center justify-center hover:bg-blue-800 transition-colors">
+                                            <i class="fa-solid fa-camera text-xs"></i>
+                                        </button>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3 class="text-lg font-medium text-gray-900">John Smith</h3>
+                                        <p class="text-law-gray">Client since March 2023</p>
+                                        <button class="mt-2 text-sm text-law-blue hover:text-blue-800 font-medium">Change profile photo</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                        <input type="text" value="John" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                        <input type="text" value="Smith" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                        <input type="email" value="john.smith@email.com" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                        <input type="tel" value="(555) 123-4567" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent">
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Address</label>
+                                        <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-law-blue focus:border-transparent" placeholder="Enter your full address">123 Main Street, Suite 456
+Springfield, IL 62701</textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end mt-6">
+                                    <button class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors font-medium">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Security Settings -->
+                    <section id="security-settings" class="mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h2 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-shield-halved mr-3 text-law-blue"></i>
+                                    Security & Privacy
+                                </h2>
+                                <p class="text-sm text-law-gray mt-1">Manage your password and security preferences</p>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-6">
+                                    <!-- Password Change -->
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-10 h-10 bg-law-blue rounded-lg flex items-center justify-center">
+                                                <i class="fa-solid fa-key text-white text-sm"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-medium text-gray-900">Password</h3>
+                                                <p class="text-sm text-law-gray">Last changed 2 months ago</p>
+                                            </div>
+                                        </div>
+                                        <button class="px-4 py-2 text-law-blue border border-law-blue rounded-lg hover:bg-law-blue hover:text-white transition-colors font-medium">
+                                            Change Password
+                                        </button>
+                                    </div>
+
+                                    <!-- Two-Factor Authentication -->
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                                                <i class="fa-solid fa-mobile-screen-button text-white text-sm"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-medium text-gray-900">Two-Factor Authentication</h3>
+                                                <p class="text-sm text-law-gray">Add an extra layer of security to your account</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center space-x-3">
+                                            <span class="text-sm text-green-600 font-medium">Enabled</span>
+                                            <label class="relative inline-flex items-center cursor-pointer">
+                                                <input type="checkbox" checked class="sr-only peer">
+                                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-law-blue/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-law-blue"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Login Activity -->
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
+                                                <i class="fa-solid fa-clock-rotate-left text-white text-sm"></i>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-medium text-gray-900">Login Activity</h3>
+                                                <p class="text-sm text-law-gray">View recent login history and active sessions</p>
+                                            </div>
+                                        </div>
+                                        <button class="px-4 py-2 text-law-blue border border-law-blue rounded-lg hover:bg-law-blue hover:text-white transition-colors font-medium">
+                                            View Activity
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Notification Settings -->
+                    <section id="notification-settings" class="mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h2 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-bell mr-3 text-law-blue"></i>
+                                    Notification Preferences
+                                </h2>
+                                <p class="text-sm text-law-gray mt-1">Choose how you want to be notified about updates</p>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between py-2">
+                                        <div>
+                                            <h3 class="font-medium text-gray-900">Email Notifications</h3>
+                                            <p class="text-sm text-law-gray">Receive updates about your case via email</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-law-blue/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-law-blue"></div>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between py-2">
+                                        <div>
+                                            <h3 class="font-medium text-gray-900">SMS Notifications</h3>
+                                            <p class="text-sm text-law-gray">Get important alerts via text message</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-law-blue/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-law-blue"></div>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between py-2">
+                                        <div>
+                                            <h3 class="font-medium text-gray-900">Document Updates</h3>
+                                            <p class="text-sm text-law-gray">Notify when new documents are available</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-law-blue/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-law-blue"></div>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between py-2">
+                                        <div>
+                                            <h3 class="font-medium text-gray-900">Appointment Reminders</h3>
+                                            <p class="text-sm text-law-gray">Receive reminders before scheduled meetings</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-law-blue/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-law-blue"></div>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between py-2">
+                                        <div>
+                                            <h3 class="font-medium text-gray-900">Marketing Communications</h3>
+                                            <p class="text-sm text-law-gray">Receive newsletters and firm updates</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-law-blue/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-law-blue"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end mt-6">
+                                    <button class="px-6 py-2 bg-law-blue text-white rounded-lg hover:bg-blue-800 transition-colors font-medium">
+                                        Save Preferences
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Privacy Settings -->
+                    <section id="privacy-settings" class="mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h2 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-user-shield mr-3 text-law-blue"></i>
+                                    Privacy & Data
+                                </h2>
+                                <p class="text-sm text-law-gray mt-1">Control how your data is used and shared</p>
+                            </div>
+                            <div class="p-6">
+                                <div class="space-y-6">
+                                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                                        <div class="flex items-start space-x-3">
+                                            <i class="fa-solid fa-info-circle text-law-blue mt-1"></i>
+                                            <div>
+                                                <h3 class="font-medium text-gray-900 mb-1">Data Protection</h3>
+                                                <p class="text-sm text-law-gray">Your personal information is protected by attorney-client privilege and our strict privacy policy. We never share your data with third parties without your explicit consent.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="space-y-4">
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-medium text-gray-900">Data Export</h3>
+                                                <p class="text-sm text-law-gray">Download a copy of your personal data</p>
+                                            </div>
+                                            <button class="px-4 py-2 text-law-blue border border-law-blue rounded-lg hover:bg-law-blue hover:text-white transition-colors font-medium">
+                                                Request Export
+                                            </button>
+                                        </div>
+                                        
+                                        <div class="flex items-center justify-between">
+                                            <div>
+                                                <h3 class="font-medium text-gray-900">Account Deletion</h3>
+                                                <p class="text-sm text-law-gray">Permanently delete your account and data</p>
+                                            </div>
+                                            <button class="px-4 py-2 text-red-600 border border-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-colors font-medium">
+                                                Delete Account
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Support Section -->
+                    <section id="support-section" class="mb-8">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                            <div class="px-6 py-4 border-b border-gray-200">
+                                <h2 class="text-lg font-semibold text-gray-900 flex items-center">
+                                    <i class="fa-solid fa-life-ring mr-3 text-law-blue"></i>
+                                    Support & Help
+                                </h2>
+                                <p class="text-sm text-law-gray mt-1">Get help and contact our support team</p>
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="text-center p-4 border border-gray-200 rounded-lg hover:border-law-blue transition-colors cursor-pointer">
+                                        <div class="w-12 h-12 bg-law-blue rounded-lg flex items-center justify-center mx-auto mb-3">
+                                            <i class="fa-solid fa-phone text-white"></i>
+                                        </div>
+                                        <h3 class="font-medium text-gray-900 mb-1">Call Support</h3>
+                                        <p class="text-sm text-law-gray">(555) 987-6543</p>
+                                    </div>
+                                    
+                                    <div class="text-center p-4 border border-gray-200 rounded-lg hover:border-law-blue transition-colors cursor-pointer">
+                                        <div class="w-12 h-12 bg-law-blue rounded-lg flex items-center justify-center mx-auto mb-3">
+                                            <i class="fa-solid fa-envelope text-white"></i>
+                                        </div>
+                                        <h3 class="font-medium text-gray-900 mb-1">Email Support</h3>
+                                        <p class="text-sm text-law-gray">support@cohenlaw.com</p>
+                                    </div>
+                                    
+                                    <div class="text-center p-4 border border-gray-200 rounded-lg hover:border-law-blue transition-colors cursor-pointer">
+                                        <div class="w-12 h-12 bg-law-blue rounded-lg flex items-center justify-center mx-auto mb-3">
+                                            <i class="fa-solid fa-question-circle text-white"></i>
+                                        </div>
+                                        <h3 class="font-medium text-gray-900 mb-1">Help Center</h3>
+                                        <p class="text-sm text-law-gray">Browse FAQs</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile sidebar toggle
+        document.getElementById('mobile-sidebar-toggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Sidebar toggle functionality
+        let sidebarCollapsed = false;
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggleIcon = document.getElementById('sidebar-toggle-icon');
+            
+            if (!sidebarCollapsed) {
+                // Collapse sidebar
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-16');
+                
+                // Hide text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.add('hidden'));
+                
+                // Hide company name
+                const companyName = sidebar.querySelector('h1');
+                companyName.classList.add('hidden');
+                
+                // Hide user info
+                const userInfo = sidebar.querySelector('.border-t.border-gray-200.p-4 div');
+                if (userInfo) {
+                    const userTexts = userInfo.querySelectorAll('p');
+                    userTexts.forEach(text => text.classList.add('hidden'));
+                }
+                
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-chevron-right');
+                sidebarCollapsed = true;
+            } else {
+                // Expand sidebar
+                sidebar.classList.remove('w-16');
+                sidebar.classList.add('w-64');
+                
+                // Show text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.remove('hidden'));
+                
+                // Show company name
+                const companyName = sidebar.querySelector('h1');
+                companyName.classList.remove('hidden');
+                
+                // Show user info
+                const userInfo = sidebar.querySelector('.border-t.border-gray-200.p-4 div');
+                if (userInfo) {
+                    const userTexts = userInfo.querySelectorAll('p');
+                    userTexts.forEach(text => text.classList.remove('hidden'));
+                }
+                
+                toggleIcon.classList.remove('fa-chevron-right');
+                toggleIcon.classList.add('fa-bars');
+                sidebarCollapsed = false;
+            }
+        }
+
+        // Toggle switches functionality
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                console.log('Setting toggled:', this.closest('.flex').querySelector('h3').textContent);
+            });
+        });
+
+        // Save buttons functionality
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Save')) {
+                button.addEventListener('click', function() {
+                    // Show success message
+                    const originalText = this.textContent;
+                    this.textContent = 'Saved!';
+                    this.classList.add('bg-green-600');
+                    this.classList.remove('bg-law-blue');
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.classList.remove('bg-green-600');
+                        this.classList.add('bg-law-blue');
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -107,14 +107,20 @@
             padding-left: 0 !important;
             padding-right: 0 !important;
         }
+
+        /* Fix for active nav item hover state */
+        .nav-item.active:hover {
+            background-color: #1e3a8a !important; /* Keep law-blue background on hover */
+            color: white !important; /* Keep white text on hover */
+        }
     </style>
 </head>
 <body class="font-inter bg-law-light">
     <div class="flex h-screen">
-        <aside id="admin-sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300 hidden lg:block">
+        <aside id="admin-sidebar" class="bg-white border-r border-gray-200 w-64 flex-shrink-0 transition-all duration-300">
             <div id="sidebar-header" class="flex items-center justify-between p-4 border-b border-gray-200">
                 <h1 class="text-lg font-bold text-law-blue">Cohen & Cohen P.C.</h1>
-                <button id="sidebar-toggle" onclick="toggleSidebar()" class="p-1 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                <button id="sidebar-toggle" onclick="event.preventDefault(); toggleSidebar(); return false;" class="p-1 rounded-lg hover:bg-gray-100 transition-colors duration-200">
                     <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-gray-600"></i>
                 </button>
             </div>
@@ -149,6 +155,12 @@
                         <button onclick="loadSystemManagement('forms')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
                             <i class="fa-solid fa-file-lines mr-3 text-gray-400"></i>
                             <span>Form Management</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button onclick="showSection('faq-management')" class="nav-item w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-law-blue transition-colors duration-200">
+                            <i class="fa-solid fa-question-circle mr-3 text-gray-400"></i>
+                            <span>FAQ Management</span>
                         </button>
                     </li>
                     <li class="pt-4 border-t border-gray-200">
@@ -591,7 +603,7 @@
                                 </button>
                                 <button onclick="showUserTab('financial')" class="user-tab-btn py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="financial">
                                     <i class="fa-solid fa-calculator mr-2"></i>
-                                    Financial Forms
+                                    Financial Questionnaire
                                 </button>
                             </nav>
                         </div>
@@ -923,12 +935,8 @@
                             </div>
                         </div>
                         
-                        <div id="user-tab-financial" class="user-tab-content p-6 hidden">
-                            <div class="text-center py-8">
-                                <i class="fa-solid fa-calculator text-gray-400 text-4xl mb-4"></i>
-                                <h3 class="text-lg font-medium text-gray-900 mb-2">Financial Forms</h3>
-                                <p class="text-gray-500">Financial questionnaire data will be displayed here</p>
-                            </div>
+                        <div id="user-tab-financial" class="user-tab-content hidden">
+                            <div id="financial-questionnaire-container"></div>
                         </div>
                     </div>
                 </section>
@@ -1549,6 +1557,169 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- FAQ Management Section -->
+                <section id="faq-management-section" class="section-content hidden p-6">
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Header -->
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">FAQ Management</h3>
+                            <p class="text-law-gray">Create and manage frequently asked questions for clients and leads</p>
+                        </div>
+
+                        <!-- Tab Navigation -->
+                        <div class="mb-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div id="client-faq-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer border-law-blue">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-10 h-10 bg-law-blue rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fa-solid fa-users text-white"></i>
+                                        </div>
+                                        <h4 class="font-semibold text-gray-900">Client FAQs</h4>
+                                    </div>
+                                    <p class="text-sm text-law-gray">Manage questions for existing clients</p>
+                                </div>
+
+                                <div id="lead-faq-tab" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
+                                            <i class="fa-solid fa-user-plus text-white"></i>
+                                        </div>
+                                        <h4 class="font-semibold text-gray-900">Lead FAQs</h4>
+                                    </div>
+                                    <p class="text-sm text-law-gray">Manage questions for potential clients</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Form Section -->
+                        <div id="faq-form-section" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <h4 id="form-title" class="text-lg font-semibold text-gray-900">Add New FAQ</h4>
+                                <span id="section-label" class="px-3 py-1 bg-law-blue text-white text-sm font-medium rounded-full">Client</span>
+                            </div>
+                            
+                            <form id="faq-form" class="space-y-6">
+                                <div>
+                                    <label for="faq-category" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Category <span class="text-red-500">*</span>
+                                    </label>
+                                    <select 
+                                        id="faq-category" 
+                                        name="category" 
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent transition-colors duration-200"
+                                    >
+                                        <option value="">Select a category</option>
+                                        <option value="general">General Questions</option>
+                                        <option value="documents">Documents & Forms</option>
+                                        <option value="account">Account & Settings</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="faq-question" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Question <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="faq-question" 
+                                        name="question" 
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent transition-colors duration-200"
+                                        placeholder="Enter the frequently asked question..."
+                                    >
+                                </div>
+                                
+                                <div>
+                                    <label for="faq-answer" class="block text-sm font-medium text-gray-700 mb-2">
+                                        Answer <span class="text-red-500">*</span>
+                                    </label>
+                                    <textarea 
+                                        id="faq-answer" 
+                                        name="answer" 
+                                        rows="4"
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-law-blue focus:border-transparent transition-colors duration-200 resize-vertical"
+                                        placeholder="Provide a comprehensive answer to the question..."
+                                    ></textarea>
+                                </div>
+                                
+                                <div class="flex space-x-4">
+                                    <button 
+                                        type="submit" 
+                                        id="submit-btn"
+                                        class="px-6 py-3 bg-law-blue text-white font-medium rounded-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-law-blue focus:ring-offset-2 transition-colors duration-200"
+                                    >
+                                        Add FAQ
+                                    </button>
+                                    <button 
+                                        type="button" 
+                                        id="cancel-edit-btn"
+                                        class="hidden px-4 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors duration-200"
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- FAQ Categories Section -->
+                        <div id="faq-categories-section">
+                            <div class="mb-6">
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                                    <span id="current-section-title">Client</span> FAQ Categories
+                                </h4>
+                                <p class="text-sm text-law-gray">Manage FAQs organized by category</p>
+                            </div>
+
+                            <!-- General Questions -->
+                            <section id="general-faq" class="mb-8">
+                                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                                    <div class="px-6 py-4 border-b border-gray-200">
+                                        <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                            <i class="fa-solid fa-question-circle mr-3 text-law-blue"></i>
+                                            General Questions
+                                        </h4>
+                                    </div>
+                                    <div class="p-6">
+                                        <div id="general-faq-list" class="space-y-4"></div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Documents & Forms -->
+                            <section id="documents-faq" class="mb-8">
+                                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                                    <div class="px-6 py-4 border-b border-gray-200">
+                                        <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                            <i class="fa-solid fa-folder mr-3 text-green-500"></i>
+                                            Documents & Forms
+                                        </h4>
+                                    </div>
+                                    <div class="p-6">
+                                        <div id="documents-faq-list" class="space-y-4"></div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- Account & Settings -->
+                            <section id="account-faq" class="mb-8">
+                                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                                    <div class="px-6 py-4 border-b border-gray-200">
+                                        <h4 class="text-lg font-semibold text-gray-900 flex items-center">
+                                            <i class="fa-solid fa-user-cog mr-3 text-orange-500"></i>
+                                            Account & Settings
+                                        </h4>
+                                    </div>
+                                    <div class="p-6">
+                                        <div id="account-faq-list" class="space-y-4"></div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
             </div>
         </main>
     </div>
@@ -1665,6 +1836,476 @@
     </div>
 
     <script src="adminDashboard.js"></script>
-    <script src="adminApplicationData.js"></script>
+    
+    <script>
+        
+        // Navigation functions are now handled by adminDashboard.js
+        // The external JS file has been updated to properly handle nav styling
+
+        // Financial Questionnaire Integration
+        function loadFinancialQuestionnaire() {
+            const container = document.getElementById('financial-questionnaire-container');
+            if (container && !container.hasChildNodes()) {
+                // Add necessary styles for the questionnaire viewer
+                const existingStyles = document.getElementById('financial-questionnaire-styles');
+                if (!existingStyles) {
+                    const styleElement = document.createElement('style');
+                    styleElement.id = 'financial-questionnaire-styles';
+                    styleElement.textContent = `
+                        /* Financial Questionnaire Styles - Scoped */
+                        #financial-questionnaire-container .fq-section-tab {
+                            transition: all 0.2s ease;
+                            border: 2px solid #d1d5db;
+                            border-radius: 0.75rem;
+                            padding: 0.75rem 1.5rem;
+                            background: white;
+                            cursor: pointer;
+                        }
+                        #financial-questionnaire-container .fq-section-tab:hover {
+                            background-color: #f3f4f6;
+                            border-color: #1e3a8a;
+                        }
+                        #financial-questionnaire-container .fq-section-tab.active {
+                            background-color: #1e3a8a;
+                            color: white;
+                            border-color: #1e3a8a;
+                        }
+                        #financial-questionnaire-container .fq-section-tab.active * {
+                            color: white !important;
+                        }
+                        #financial-questionnaire-container .fq-section-content {
+                            display: none;
+                        }
+                        #financial-questionnaire-container .fq-section-content.active {
+                            display: block;
+                        }
+                        #financial-questionnaire-container .fq-status-complete {
+                            background-color: #d1fae5;
+                            color: #064e3b;
+                            border: 1px solid #10b981;
+                        }
+                    `;
+                    document.head.appendChild(styleElement);
+                }
+                
+                // Embed a simplified financial questionnaire content
+                container.innerHTML = `
+                    <div class="space-y-6">
+                        <!-- Header Summary -->
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-900">Financial Questionnaire</h3>
+                                    <p class="text-sm text-gray-600 mt-1">Robert & Maria Johnson - Submitted March 15, 2024</p>
+                                </div>
+                                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium fq-status-complete">
+                                    <i class="fa-solid fa-check-circle mr-1"></i>
+                                    Completed
+                                </span>
+                            </div>
+                            
+                            <!-- Financial Summary -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                                    <p class="text-sm font-medium text-green-800">Total Assets</p>
+                                    <p class="text-2xl font-bold text-green-600">$847,350</p>
+                                </div>
+                                <div class="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+                                    <p class="text-sm font-medium text-red-800">Total Debts</p>
+                                    <p class="text-2xl font-bold text-red-600">$524,780</p>
+                                </div>
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
+                                    <p class="text-sm font-medium text-blue-800">Net Worth</p>
+                                    <p class="text-2xl font-bold text-blue-600">$322,570</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section Navigation -->
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Questionnaire Sections</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                <button onclick="showFinancialSection(1)" class="fq-section-tab flex items-center justify-between text-left active" data-section="1">
+                                    <div class="flex items-center">
+                                        <i class="fa-solid fa-user mr-3 text-gray-600"></i>
+                                        <div>
+                                            <div class="font-semibold text-sm">Section 1</div>
+                                            <div class="text-xs text-gray-500">Basic Information</div>
+                                        </div>
+                                    </div>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </button>
+                                <button onclick="showFinancialSection(2)" class="fq-section-tab flex items-center justify-between text-left" data-section="2">
+                                    <div class="flex items-center">
+                                        <i class="fa-solid fa-home mr-3 text-gray-600"></i>
+                                        <div>
+                                            <div class="font-semibold text-sm">Section 2</div>
+                                            <div class="text-xs text-gray-500">Assets & Property</div>
+                                        </div>
+                                    </div>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </button>
+                                <button onclick="showFinancialSection(3)" class="fq-section-tab flex items-center justify-between text-left" data-section="3">
+                                    <div class="flex items-center">
+                                        <i class="fa-solid fa-credit-card mr-3 text-gray-600"></i>
+                                        <div>
+                                            <div class="font-semibold text-sm">Section 3</div>
+                                            <div class="text-xs text-gray-500">Debts & Liabilities</div>
+                                        </div>
+                                    </div>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </button>
+                                <button onclick="showFinancialSection(4)" class="fq-section-tab flex items-center justify-between text-left" data-section="4">
+                                    <div class="flex items-center">
+                                        <i class="fa-solid fa-file-contract mr-3 text-gray-600"></i>
+                                        <div>
+                                            <div class="font-semibold text-sm">Section 4</div>
+                                            <div class="text-xs text-gray-500">Leases & Contracts</div>
+                                        </div>
+                                    </div>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </button>
+                                <button onclick="showFinancialSection(5)" class="fq-section-tab flex items-center justify-between text-left" data-section="5">
+                                    <div class="flex items-center">
+                                        <i class="fa-solid fa-dollar-sign mr-3 text-gray-600"></i>
+                                        <div>
+                                            <div class="font-semibold text-sm">Section 5</div>
+                                            <div class="text-xs text-gray-500">Current Income</div>
+                                        </div>
+                                    </div>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </button>
+                                <button onclick="showFinancialSection(6)" class="fq-section-tab flex items-center justify-between text-left" data-section="6">
+                                    <div class="flex items-center">
+                                        <i class="fa-solid fa-shopping-cart mr-3 text-gray-600"></i>
+                                        <div>
+                                            <div class="font-semibold text-sm">Section 6</div>
+                                            <div class="text-xs text-gray-500">Current Expenses</div>
+                                        </div>
+                                    </div>
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Content Area -->
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                            <!-- Section 1: Basic Information -->
+                            <div id="fq-section-1" class="fq-section-content active p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-900">Section 1: Basic Information</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Personal details and contact information</p>
+                                    </div>
+                                    <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium fq-status-complete">
+                                        <i class="fa-solid fa-check mr-2"></i>Complete
+                                    </span>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                                        <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
+                                            <i class="fa-solid fa-user mr-2"></i>Primary Debtor
+                                        </h4>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">Name:</span>
+                                                <span class="text-sm font-medium">Robert Johnson</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">DOB:</span>
+                                                <span class="text-sm font-medium">March 15, 1985</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">SSN:</span>
+                                                <span class="text-sm font-medium">***-**-7892</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">Occupation:</span>
+                                                <span class="text-sm font-medium">Software Engineer</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                                        <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
+                                            <i class="fa-solid fa-user-friends mr-2"></i>Spouse/Co-Debtor
+                                        </h4>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">Name:</span>
+                                                <span class="text-sm font-medium">Maria Johnson</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">DOB:</span>
+                                                <span class="text-sm font-medium">July 22, 1987</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">SSN:</span>
+                                                <span class="text-sm font-medium">***-**-4521</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm text-gray-600">Occupation:</span>
+                                                <span class="text-sm font-medium">Nurse Practitioner</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Section 2: Assets & Property -->
+                            <div id="fq-section-2" class="fq-section-content p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-900">Section 2: Assets & Property</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Real estate, vehicles, and personal property</p>
+                                    </div>
+                                    <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium fq-status-complete">
+                                        <i class="fa-solid fa-check mr-2"></i>Complete
+                                    </span>
+                                </div>
+                                
+                                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                                    <h4 class="font-semibold text-gray-900 mb-3 flex items-center">
+                                        <i class="fa-solid fa-home mr-2"></i>Primary Residence
+                                    </h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                        <div>
+                                            <span class="text-xs text-gray-500 uppercase">Address</span>
+                                            <p class="text-sm font-medium">1247 Maple Street, Austin, TX 78701</p>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs text-gray-500 uppercase">Current Value</span>
+                                            <p class="text-sm font-bold text-green-600">$485,000</p>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs text-gray-500 uppercase">Mortgage Balance</span>
+                                            <p class="text-sm font-bold text-red-600">$312,450</p>
+                                        </div>
+                                        <div>
+                                            <span class="text-xs text-gray-500 uppercase">Equity</span>
+                                            <p class="text-sm font-bold text-blue-600">$172,550</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Sections 3-6: Simplified placeholders -->
+                            <div id="fq-section-3" class="fq-section-content p-6">
+                                <div class="text-center py-8">
+                                    <i class="fa-solid fa-credit-card text-gray-400 text-4xl mb-4"></i>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Section 3: Debts & Liabilities</h3>
+                                    <p class="text-gray-600">Detailed debt information is available in the full questionnaire viewer.</p>
+                                </div>
+                            </div>
+                            
+                            <div id="fq-section-4" class="fq-section-content p-6">
+                                <div class="text-center py-8">
+                                    <i class="fa-solid fa-file-contract text-gray-400 text-4xl mb-4"></i>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Section 4: Leases & Contracts</h3>
+                                    <p class="text-gray-600">Contract and lease information is available in the full questionnaire viewer.</p>
+                                </div>
+                            </div>
+                            
+                            <div id="fq-section-5" class="fq-section-content p-6">
+                                <div class="text-center py-8">
+                                    <i class="fa-solid fa-dollar-sign text-gray-400 text-4xl mb-4"></i>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Section 5: Current Income</h3>
+                                    <p class="text-gray-600">Income information is available in the full questionnaire viewer.</p>
+                                </div>
+                            </div>
+                            
+                            <div id="fq-section-6" class="fq-section-content p-6">
+                                <div class="text-center py-8">
+                                    <i class="fa-solid fa-shopping-cart text-gray-400 text-4xl mb-4"></i>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Section 6: Current Expenses</h3>
+                                    <p class="text-gray-600">Expense information is available in the full questionnaire viewer.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex justify-end space-x-3">
+                            <button onclick="openFullQuestionnaire()" class="flex items-center px-4 py-2 text-sm font-medium text-law-blue bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                                <i class="fa-solid fa-external-link-alt mr-2"></i>
+                                View Full Questionnaire
+                            </button>
+                            <button onclick="exportQuestionnairePDF()" class="flex items-center px-4 py-2 text-sm font-medium text-law-blue bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                                <i class="fa-solid fa-download mr-2"></i>
+                                Export PDF
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add the showFinancialSection function
+                if (typeof window.showFinancialSection === 'undefined') {
+                    window.showFinancialSection = function(sectionNumber) {
+                        // Hide all section contents within the financial questionnaire
+                        const contents = container.querySelectorAll('.fq-section-content');
+                        contents.forEach(content => {
+                            content.classList.remove('active');
+                        });
+
+                        // Remove active class from all tabs within the financial questionnaire
+                        const tabs = container.querySelectorAll('.fq-section-tab');
+                        tabs.forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+
+                        // Show selected section content
+                        const selectedContent = container.querySelector(`#fq-section-${sectionNumber}`);
+                        if (selectedContent) {
+                            selectedContent.classList.add('active');
+                        }
+
+                        // Add active class to selected tab
+                        const selectedTab = container.querySelector(`[data-section="${sectionNumber}"]`);
+                        if (selectedTab) {
+                            selectedTab.classList.add('active');
+                        }
+                    };
+                }
+                
+                // Initialize the first section
+                setTimeout(() => {
+                    if (typeof window.showFinancialSection === 'function') {
+                        window.showFinancialSection(1);
+                    }
+                }, 100);
+            }
+        }
+
+        // Function to open the full questionnaire in a new window/tab
+        function openFullQuestionnaire() {
+            window.open('adminFinancialQuestionnaireViewer.html', '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+        }
+
+        // Function to export questionnaire as PDF (placeholder)
+        function exportQuestionnairePDF() {
+            alert('PDF export functionality would be implemented here. This would generate a comprehensive PDF report of the financial questionnaire data.');
+        }
+
+        // Override or enhance the showUserTab function for financial tab
+        const originalShowUserTab = window.showUserTab;
+        window.showUserTab = function(tabName) {
+            if (originalShowUserTab) {
+                originalShowUserTab(tabName);
+            }
+            
+            if (tabName === 'financial') {
+                loadFinancialQuestionnaire();
+            }
+        };
+
+        // Add showSection function if it doesn't exist
+        if (typeof window.showSection === 'undefined') {
+            window.showSection = function(sectionName) {
+                // Hide all sections
+                const sections = document.querySelectorAll('.section-content');
+                sections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+                
+                // Remove active class from all nav buttons
+                const navButtons = document.querySelectorAll('.nav-item');
+                navButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                
+                // Show selected section
+                const targetSection = document.getElementById(sectionName + '-section');
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                }
+                
+                // Add active class to clicked nav button
+                const activeButton = document.querySelector(`[onclick="showSection('${sectionName}')"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+                
+                // Update page title
+                updatePageTitle(sectionName);
+            };
+        }
+        
+        // Function to update page title based on section
+        function updatePageTitle(sectionName) {
+            const titleElement = document.querySelector('#page-title h2');
+            const subtitleElement = document.querySelector('#page-title p');
+            
+            switch(sectionName) {
+                case 'dashboard':
+                    titleElement.textContent = 'Dashboard Overview';
+                    subtitleElement.textContent = 'Manage clients, leads, and system settings';
+                    break;
+                case 'faq-management':
+                    titleElement.textContent = 'FAQ Management';
+                    subtitleElement.textContent = 'Create and manage frequently asked questions';
+                    break;
+                case 'admin-profile':
+                    titleElement.textContent = 'Admin Profile';
+                    subtitleElement.textContent = 'Manage admin account settings and preferences';
+                    break;
+                default:
+                    titleElement.textContent = 'Admin Dashboard';
+                    subtitleElement.textContent = 'Manage clients, leads, and system settings';
+            }
+        }
+        
+        // Sidebar toggle functionality
+        let sidebarCollapsed = false;
+
+        function toggleSidebar() {
+            event.stopPropagation();
+            
+            const sidebar = document.getElementById('admin-sidebar');
+            const toggleIcon = document.getElementById('sidebar-toggle-icon');
+            
+            if (!sidebarCollapsed) {
+                // Collapse sidebar
+                sidebar.classList.remove('w-64');
+                sidebar.classList.add('w-16');
+                
+                // Hide text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.add('hidden'));
+                
+                // Hide sidebar header text
+                const headerTitle = document.getElementById('sidebar-header').querySelector('h1');
+                if (headerTitle) {
+                    headerTitle.classList.add('hidden');
+                }
+                
+                // Change toggle icon to expand arrow
+                toggleIcon.className = 'fa-solid fa-chevron-right text-gray-600';
+                
+                sidebarCollapsed = true;
+            } else {
+                // Expand sidebar
+                sidebar.classList.remove('w-16');
+                sidebar.classList.add('w-64');
+                
+                // Show text labels
+                const navTexts = sidebar.querySelectorAll('nav button span');
+                navTexts.forEach(text => text.classList.remove('hidden'));
+                
+                // Show sidebar header text
+                const headerTitle = document.getElementById('sidebar-header').querySelector('h1');
+                if (headerTitle) {
+                    headerTitle.classList.remove('hidden');
+                }
+                
+                // Change toggle icon back to hamburger
+                toggleIcon.className = 'fa-solid fa-bars text-gray-600';
+                
+                sidebarCollapsed = false;
+            }
+        }
+    </script>
+    
+    <!-- FAQ Management Script -->
+    <script src="faqManagement.js"></script>
 </body>
 </html>
